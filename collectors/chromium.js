@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const API_URL = "https://chromestatus.com/api/v0/features";
+const CHROME_STATUS_URL = "https://chromestatus.com/api/v0/features";
 
 export async function collectChromiumPosition(spec) {
   try {
-    const response = await axios.get(`${API_URL}?q=${encodeURIComponent(spec.shortname)}`);
+    const response = await axios.get(`${CHROME_STATUS_URL}?q=${encodeURIComponent(spec.shortname)}`);
     // remove XSSI prefix and parse JSON
     const data = JSON.parse(response.data.substring(response.data.indexOf('\n') + 1));
 
