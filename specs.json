@@ -1,0 +1,12 @@
+[
+  {
+    "shortname": "file-system-access",
+    "repo": "WICG/file-system-access",
+    "url": "https://wicg.github.io/file-system-access/"
+  },
+  {
+    "shortname": "speculation-rules",
+    "repo": "WICG/nav-speculation",
+    "url": "https://wicg.github.io/nav-speculation/"
+  }
+]
