@@ -238,6 +238,202 @@
         }
       }
     },
+    "web_features_mapping": [
+      "file-system-access",
+      {
+        "wpt": {
+          "url": "https://wpt.fyi/results?q=feature:file-system-access"
+        },
+        "state-of-surveys": [
+          {
+            "name": "State of JS 2025",
+            "url": "https://2025.stateofjs.com/en-US/features/#browser_apis_pain_points",
+            "question": "features",
+            "subQuestion": "browser_apis_pain_points",
+            "path": "dataAPI.surveys.state_of_js.js2025.features.browser_apis_pain_points.freeform.allEditions.0.buckets.11.entity"
+          },
+          {
+            "name": "State of JS 2024",
+            "url": "https://2024.stateofjs.com/en-US/features/#browser_apis_pain_points",
+            "question": "features",
+            "subQuestion": "browser_apis_pain_points",
+            "path": "dataAPI.surveys.state_of_js.js2024.features.browser_apis_pain_points.freeform.currentEdition.buckets.11.entity"
+          },
+          {
+            "name": "State of HTML 2025",
+            "url": "https://2025.stateofhtml.com/en-US/usage/#html_interoperability_features_features_only",
+            "question": "usage",
+            "subQuestion": "html_interoperability_features_features_only",
+            "path": "dataAPI.surveys.state_of_html.html2025.usage.html_interoperability_features_features_only.freeform.allEditions.0.buckets.8.entity"
+          },
+          {
+            "name": "State of HTML 2025",
+            "url": "https://2025.stateofhtml.com/en-US/usage/#html_interoperability_features",
+            "question": "usage",
+            "subQuestion": "html_interoperability_features",
+            "path": "dataAPI.surveys.state_of_html.html2025.usage.html_interoperability_features.freeform.allEditions.0.buckets.10.entity"
+          },
+          {
+            "name": "State of HTML 2025",
+            "url": "https://2025.stateofhtml.com/en-US/system_capabilities/#system_capabilities_pain_points_limitations_1",
+            "question": "system_capabilities",
+            "subQuestion": "system_capabilities_pain_points_limitations_1",
+            "path": "dataAPI.surveys.state_of_html.html2025.system_capabilities.system_capabilities_pain_points_limitations_1.freeform.allEditions.0.buckets.0.nestedBuckets.0.nestedBuckets.0.entity"
+          },
+          {
+            "name": "State of HTML 2025",
+            "url": "https://2025.stateofhtml.com/en-US/system_capabilities/#system_capabilities_pain_points_interop_issues_1",
+            "question": "system_capabilities",
+            "subQuestion": "system_capabilities_pain_points_interop_issues_1",
+            "path": "dataAPI.surveys.state_of_html.html2025.system_capabilities.system_capabilities_pain_points_interop_issues_1.freeform.allEditions.0.buckets.1.nestedBuckets.0.nestedBuckets.0.entity"
+          },
+          {
+            "name": "State of HTML 2025",
+            "url": "https://2025.stateofhtml.com/en-US/system_capabilities/#system_capabilities_pain_points_features",
+            "question": "system_capabilities",
+            "subQuestion": "system_capabilities_pain_points_features",
+            "path": "dataAPI.surveys.state_of_html.html2025.system_capabilities.system_capabilities_pain_points_features.freeform.allEditions.0.buckets.0.entity"
+          },
+          {
+            "name": "State of HTML 2025",
+            "url": "https://2025.stateofhtml.com/en-US/system_capabilities/#system_capabilities_pain_points",
+            "question": "system_capabilities",
+            "subQuestion": "system_capabilities_pain_points",
+            "path": "dataAPI.surveys.state_of_html.html2025.system_capabilities.system_capabilities_pain_points.freeform.allEditions.0.buckets.1.nestedBuckets.0.nestedBuckets.0.entity"
+          },
+          {
+            "name": "State of HTML 2025",
+            "url": "https://2025.stateofhtml.com/en-US/system_capabilities/#system_capabilities_features",
+            "question": "system_capabilities",
+            "subQuestion": "system_capabilities_features",
+            "path": "dataAPI.surveys.state_of_html.html2025.system_capabilities.system_capabilities_features.0.entity"
+          },
+          {
+            "name": "State of HTML 2025",
+            "url": "https://2025.stateofhtml.com/en-US/features/#all_features",
+            "question": "features",
+            "subQuestion": "all_features",
+            "path": "dataAPI.surveys.state_of_html.html2025.features.all_features.57.entity"
+          },
+          {
+            "name": "State of HTML 2025",
+            "url": "https://2025.stateofhtml.com/en-US/_all_features/#all_features",
+            "question": "_all_features",
+            "subQuestion": "all_features",
+            "path": "dataAPI.surveys.state_of_html.html2025._all_features.all_features.57.entity"
+          },
+          {
+            "name": "State of HTML 2024",
+            "url": "https://2024.stateofhtml.com/en-US/usage/#html_interoperability_features",
+            "question": "usage",
+            "subQuestion": "html_interoperability_features",
+            "path": "dataAPI.surveys.state_of_html.html2024.usage.html_interoperability_features.freeform.allEditions.0.buckets.14.entity"
+          },
+          {
+            "name": "State of HTML 2024",
+            "url": "https://2024.stateofhtml.com/en-US/features/#reading_list",
+            "question": "reading_list",
+            "subQuestion": "reading_list",
+            "path": "dataAPI.surveys.state_of_html.html2024.reading_list.reading_list.combined.allEditions.0.buckets.16.entity"
+          },
+          {
+            "name": "State of HTML 2024",
+            "url": "https://2024.stateofhtml.com/en-US/features/mobile-web-apps/#mobile_web_apps_features",
+            "question": "mobile_web_apps",
+            "subQuestion": "mobile_web_apps_features",
+            "path": "dataAPI.surveys.state_of_html.html2024.mobile_web_apps.mobile_web_apps_features.0.entity"
+          },
+          {
+            "name": "State of HTML 2024",
+            "url": "https://2024.stateofhtml.com/en-US/features/#all_features",
+            "question": "features",
+            "subQuestion": "all_features",
+            "path": "dataAPI.surveys.state_of_html.html2024.features.all_features.42.entity"
+          },
+          {
+            "name": "State of HTML 2023",
+            "url": "https://2023.stateofhtml.com/en-US/usage/#html_interoperability_features",
+            "question": "usage",
+            "subQuestion": "html_interoperability_features",
+            "path": "dataAPI.surveys.state_of_html.html2023.usage.html_interoperability_features.freeform.currentEdition.buckets.14.entity"
+          },
+          {
+            "name": "State of HTML 2023",
+            "url": "https://2023.stateofhtml.com/en-US/features/#reading_list",
+            "question": "reading_list",
+            "subQuestion": "reading_list",
+            "path": "dataAPI.surveys.state_of_html.html2023.reading_list.reading_list.responses.currentEdition.buckets.16.entity"
+          },
+          {
+            "name": "State of HTML 2023",
+            "url": "https://2023.stateofhtml.com/en-US/features/mobile-web-apps/#mobile_web_apps_features",
+            "question": "mobile_web_apps",
+            "subQuestion": "mobile_web_apps_features",
+            "path": "dataAPI.surveys.state_of_html.html2023.mobile_web_apps.mobile_web_apps_features.0.entity"
+          },
+          {
+            "name": "State of HTML 2023",
+            "url": "https://2023.stateofhtml.com/en-US/features/#all_features",
+            "question": "features",
+            "subQuestion": "all_features",
+            "path": "dataAPI.surveys.state_of_html.html2023.features.all_features.35.entity"
+          },
+          {
+            "name": "State of CSS 2025",
+            "url": "https://2025.stateofcss.com/en-US/usage/#css_missing_features",
+            "question": "usage",
+            "subQuestion": "css_missing_features",
+            "path": "dataAPI.surveys.state_of_css.css2025.usage.css_missing_features.freeform.allEditions.0.buckets.21.groupedBuckets.1.groupedBuckets.11.entity"
+          }
+        ],
+        "standards-positions": [
+          {
+            "vendor": "mozilla",
+            "url": "https://github.com/mozilla/standards-positions/issues/154",
+            "position": "negative",
+            "concerns": []
+          },
+          {
+            "vendor": "apple",
+            "url": "https://github.com/WebKit/standards-positions/issues/28",
+            "position": "oppose",
+            "concerns": [
+              "security"
+            ]
+          }
+        ],
+        "mdn-docs": [
+          {
+            "slug": "Web/API/Window/showOpenFilePicker",
+            "title": "Window: showOpenFilePicker() method",
+            "anchor": null,
+            "url": "https://developer.mozilla.org/docs/Web/API/Window/showOpenFilePicker"
+          },
+          {
+            "slug": "Web/API/Window/showDirectoryPicker",
+            "title": "Window: showDirectoryPicker() method",
+            "anchor": null,
+            "url": "https://developer.mozilla.org/docs/Web/API/Window/showDirectoryPicker"
+          },
+          {
+            "slug": "Web/API/Window/showSaveFilePicker",
+            "title": "Window: showSaveFilePicker() method",
+            "anchor": null,
+            "url": "https://developer.mozilla.org/docs/Web/API/Window/showSaveFilePicker"
+          },
+          {
+            "slug": "Web/API/File_System_API",
+            "title": "File System API",
+            "anchor": null,
+            "url": "https://developer.mozilla.org/docs/Web/API/File_System_API"
+          }
+        ],
+        "chrome-use-counters": {
+          "percentageOfPageLoad": 0.00005437,
+          "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/258"
+        }
+      }
+    ],
     "wpt": {
       "hasResults": true,
       "tests": 10,
@@ -570,6 +766,93 @@
         }
       }
     },
+    "web_features_mapping": [
+      "speculation-rules",
+      {
+        "wpt": {
+          "url": "https://wpt.fyi/results?q=feature:speculation-rules"
+        },
+        "state-of-surveys": [
+          {
+            "name": "State of HTML 2025",
+            "url": "https://2025.stateofhtml.com/en-US/performance/#performance_pain_points_features",
+            "question": "performance",
+            "subQuestion": "performance_pain_points_features",
+            "path": "dataAPI.surveys.state_of_html.html2025.performance.performance_pain_points_features.freeform.allEditions.0.buckets.1.nestedBuckets.0.entity"
+          },
+          {
+            "name": "State of HTML 2025",
+            "url": "https://2025.stateofhtml.com/en-US/performance/#performance_pain_points",
+            "question": "performance",
+            "subQuestion": "performance_pain_points",
+            "path": "dataAPI.surveys.state_of_html.html2025.performance.performance_pain_points.freeform.allEditions.0.buckets.0.nestedBuckets.1.nestedBuckets.0.entity"
+          },
+          {
+            "name": "State of HTML 2025",
+            "url": "https://2025.stateofhtml.com/en-US/performance/#performance_features",
+            "question": "performance",
+            "subQuestion": "performance_features",
+            "path": "dataAPI.surveys.state_of_html.html2025.performance.performance_features.6.entity"
+          },
+          {
+            "name": "State of HTML 2025",
+            "url": "https://2025.stateofhtml.com/en-US/features/#all_features",
+            "question": "features",
+            "subQuestion": "all_features",
+            "path": "dataAPI.surveys.state_of_html.html2025.features.all_features.41.entity"
+          },
+          {
+            "name": "State of HTML 2025",
+            "url": "https://2025.stateofhtml.com/en-US/_all_features/#all_features",
+            "question": "_all_features",
+            "subQuestion": "all_features",
+            "path": "dataAPI.surveys.state_of_html.html2025._all_features.all_features.41.entity"
+          }
+        ],
+        "standards-positions": [
+          {
+            "vendor": "mozilla",
+            "url": "https://github.com/mozilla/standards-positions/issues/620",
+            "position": "neutral",
+            "concerns": [
+              "complexity"
+            ]
+          }
+        ],
+        "mdn-docs": [
+          {
+            "slug": "Web/API/Speculation_Rules_API",
+            "title": "Speculation Rules API",
+            "anchor": null,
+            "url": "https://developer.mozilla.org/docs/Web/API/Speculation_Rules_API"
+          }
+        ],
+        "developer-signals": {
+          "url": "https://github.com/web-platform-dx/developer-signals/issues/186",
+          "votes": 10
+        },
+        "chrome-use-counters": {
+          "percentageOfPageLoad": 0.11751639,
+          "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/317"
+        },
+        "bugs": {
+          "firefox": [
+            "https://bugzil.la/1969396",
+            "https://bugzil.la/1969838"
+          ],
+          "firefox_android": [
+            "https://bugzil.la/1969396",
+            "https://bugzil.la/1969838"
+          ],
+          "safari": [
+            "https://webkit.org/b/295193"
+          ],
+          "safari_ios": [
+            "https://webkit.org/b/295193"
+          ]
+        }
+      }
+    ],
     "wpt": {
       "hasResults": true,
       "tests": 209,
@@ -775,6 +1058,47 @@
         }
       }
     },
+    "web_features_mapping": [
+      "scheduler",
+      {
+        "wpt": {
+          "url": "https://wpt.fyi/results?q=feature:scheduler"
+        },
+        "state-of-surveys": [
+          {
+            "name": "State of JS 2025",
+            "url": "https://2025.stateofjs.com/en-US/features/#browser_api_features",
+            "question": "features",
+            "subQuestion": "browser_api_features",
+            "path": "dataAPI.surveys.state_of_js.js2025.features.browser_api_features.combined.allEditions.1.buckets.14.entity"
+          }
+        ],
+        "standards-positions": [
+          {
+            "vendor": "mozilla",
+            "url": "https://github.com/mozilla/standards-positions/issues/546",
+            "position": "positive",
+            "concerns": []
+          }
+        ],
+        "mdn-docs": [
+          {
+            "slug": "Web/API/Prioritized_Task_Scheduling_API",
+            "title": "Prioritized Task Scheduling API",
+            "anchor": null,
+            "url": "https://developer.mozilla.org/docs/Web/API/Prioritized_Task_Scheduling_API"
+          }
+        ],
+        "developer-signals": {
+          "url": "https://github.com/web-platform-dx/developer-signals/issues/254",
+          "votes": 14
+        },
+        "chrome-use-counters": {
+          "percentageOfPageLoad": 0.10647357,
+          "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/118"
+        }
+      }
+    ],
     "wpt": {
       "hasResults": true,
       "tests": 114,
