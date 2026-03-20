@@ -3,7 +3,7 @@ const { browsers, features, groups, snapshots } = data;
 
 export async function collectWF(spec) {
 
-  const data = features[spec.shortname];
+  const data = features[spec.shortname] || features[spec.wfShortname];
 
   return data || null;
 }
