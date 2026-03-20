@@ -5,7 +5,7 @@ import { collectGithubMetadata } from "./collectors/github.js";
 import { collectMozillaPosition } from "./collectors/mozilla.js";
 import { collectWebkitPosition } from "./collectors/webkit.js";
 import { collectChromiumPosition } from "./collectors/chromium.js";
-import { collectWF } from "./collectors/web-features.js";
+import { collectWebFeatures } from "./collectors/web-features.js";
 import { collectWPTFyi } from "./collectors/wpt.js";
 import { collectRecentSubstantiveContributions } from "./collectors/substantive-contributions.js";
 
@@ -14,7 +14,7 @@ const collectors = [
   { key: "mozilla",                         fn: collectMozillaPosition },
   { key: "webkit",                          fn: collectWebkitPosition },
   { key: "chromium",                        fn: collectChromiumPosition },
-  { key: "web_features",                    fn: collectWF },
+  { key: "web_features",                    fn: collectWebFeatures },
   { key: "wpt",                             fn: collectWPTFyi },
   { key: "substantiveContributionsLastYear", fn: collectRecentSubstantiveContributions },
 ];

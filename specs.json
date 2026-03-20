@@ -1,18 +1,20 @@
 [
   {
     "shortname": "file-system-access",
+    "webFeaturesId": "file-system-access",
     "repo": "WICG/file-system-access",
     "url": "https://wicg.github.io/file-system-access/"
   },
   {
     "shortname": "speculation-rules",
+    "webFeaturesId": "speculation-rules",
     "feature": "prefetch",
     "repo": "WICG/nav-speculation",
     "url": "https://wicg.github.io/nav-speculation/prefetch.html"
   },
   {
     "shortname": "scheduling-apis",
-    "wfShortname": "scheduler",
+    "webFeaturesId": "scheduler",
     "repo": "WICG/scheduling-apis",
     "url": "https://wicg.github.io/scheduling-apis/"
   }

@@ -2,9 +2,9 @@ const WPT_FYI_URL = "https://wpt.fyi/api/search";
 
 export async function collectWPTFyi(spec) {
   try {
-    const query = spec.wfShortname
-      ? spec.wfShortname
-      : spec.shortname + (spec.feature ? `/${spec.feature}` : "");
+    const query = spec.feature
+      ? spec.shortname + (spec.feature ? `/${spec.feature}` : "")
+      : spec.webFeaturesId;
     const url = `${WPT_FYI_URL}?label=master&q=${encodeURIComponent(query)}`;
 
     const res = await fetch(url);
