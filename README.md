@@ -16,10 +16,10 @@ npm install
 
 ## Usage
 
-To collect metadata for all specs defined in `specs.json`:
+To collect metadata for all specs defined in `specs.json` (pass a github token in the environment variable `GITHUB_TOKEN` to increase the GitHub API rate limit from 60 to 5000 requests per hour):
 
 ```shell
-node index.js
+GITHUB_TOKEN="@@@" node index.js
 ```
 
 The script will:
