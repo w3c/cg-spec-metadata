@@ -240,7 +240,8 @@
     },
     "wpt": {
       "hasResults": true,
-      "resultCount": 11
+      "tests": 10,
+      "subtests": 163
     },
     "substantiveContributionsLastYear": 1
   },
@@ -571,7 +572,8 @@
     },
     "wpt": {
       "hasResults": true,
-      "resultCount": 209
+      "tests": 209,
+      "subtests": 235
     },
     "substantiveContributionsLastYear": 2
   },
@@ -775,7 +777,8 @@
     },
     "wpt": {
       "hasResults": true,
-      "resultCount": 114
+      "tests": 114,
+      "subtests": 307
     },
     "substantiveContributionsLastYear": 1
   }

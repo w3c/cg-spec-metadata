@@ -14,11 +14,20 @@ export async function collectWPTFyi(spec) {
 
     const data = await res.json();
 
-    const count = Array.isArray(data.results) ? data.results.length : 0;
+    const filtered = data.results.filter(r => r.test.startsWith(`/${query}/`));
+    const result = filtered.reduce(
+      (acc, r) => {
+        acc.count++;
+        acc.total_combined += r.legacy_status.reduce((sum, s) => sum + s.total, 0);
+        return acc;
+      },
+      { count: 0, total_combined: 0 }
+    );
 
     return {
-      hasResults: count > 0,
-      resultCount: count
+      hasResults: result.count > 0,
+      tests: result.count,
+      subtests: result.total_combined
     };
   } catch (err) {
     console.error(`[WPT] Error fetching WPT data for ${spec.repo}: ${err.message}`);
