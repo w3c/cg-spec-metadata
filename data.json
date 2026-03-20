@@ -1,0 +1,779 @@
+[
+  {
+    "shortname": "file-system-access",
+    "github": {
+      "stars": 697,
+      "forks": 68,
+      "openIssues": 85,
+      "openPRs": 7,
+      "closedPRs": 135,
+      "lastCommitDate": "2025-10-10T14:22:22Z"
+    },
+    "mozilla": {
+      "issue": "https://github.com/mozilla/standards-positions/issues/154",
+      "position": "negative"
+    },
+    "webkit": {
+      "issue": "https://github.com/WebKit/standards-positions/issues/28",
+      "position": "oppose"
+    },
+    "chromium": {
+      "featureId": 5324970347200512,
+      "name": "FileSystemAccess: add \"write\" access mode",
+      "intentStage": "None",
+      "shipping_year": 2025,
+      "browsers": {
+        "chrome": {
+          "bug": "https://crbug.com/40276567",
+          "blink_components": [
+            "Blink>Storage>FileSystem"
+          ],
+          "devrel": [
+            "devrel-chromestatus-all@google.com"
+          ],
+          "owners": [
+            "mych@chromium.org"
+          ],
+          "origintrial": false,
+          "prefixed": null,
+          "flag": false,
+          "status": {
+            "text": "Proposed",
+            "val": 2,
+            "milestone_str": "Proposed"
+          },
+          "desktop": null,
+          "android": null,
+          "webview": null,
+          "ios": null
+        },
+        "ff": {
+          "view": {
+            "url": "https://github.com/mozilla/standards-positions/issues/1276",
+            "notes": null,
+            "text": "No signal",
+            "val": 5
+          }
+        },
+        "safari": {
+          "view": {
+            "url": "https://github.com/WebKit/standards-positions/issues/534",
+            "notes": null,
+            "text": "No signal",
+            "val": 5
+          }
+        },
+        "webdev": {
+          "view": {
+            "text": "No signals",
+            "val": 4,
+            "url": null,
+            "notes": null
+          }
+        },
+        "other": {
+          "view": {
+            "text": null,
+            "val": null,
+            "url": null,
+            "notes": null
+          }
+        }
+      }
+    },
+    "web_features": {
+      "caniuse": [
+        "native-filesystem-api"
+      ],
+      "compat_features": [
+        "api.FileSystemDirectoryHandle.@@asyncIterator",
+        "api.FileSystemFileHandle.createWritable",
+        "api.FileSystemHandle.queryPermission",
+        "api.FileSystemHandle.requestPermission",
+        "api.FileSystemWritableFileStream",
+        "api.FileSystemWritableFileStream.seek",
+        "api.FileSystemWritableFileStream.truncate",
+        "api.FileSystemWritableFileStream.write",
+        "api.Window.showDirectoryPicker",
+        "api.Window.showOpenFilePicker",
+        "api.Window.showSaveFilePicker"
+      ],
+      "description": "The showOpenFilePicker(), showDirectoryPicker(), and showSaveFilePicker() methods request access to files and directories on the user's device and returns a handle for reading and writing to them.",
+      "description_html": "The <code>showOpenFilePicker()</code>, <code>showDirectoryPicker()</code>, and <code>showSaveFilePicker()</code> methods request access to files and directories on the user's device and returns a handle for reading and writing to them.",
+      "group": [
+        "file-system"
+      ],
+      "kind": "feature",
+      "name": "File system access",
+      "spec": [
+        "https://wicg.github.io/file-system-access/"
+      ],
+      "status": {
+        "baseline": false,
+        "by_compat_key": {
+          "api.FileSystemDirectoryHandle.@@asyncIterator": {
+            "baseline": "high",
+            "baseline_high_date": "2025-09-27",
+            "baseline_low_date": "2023-03-27",
+            "support": {
+              "chrome": "86",
+              "chrome_android": "109",
+              "edge": "86",
+              "firefox": "111",
+              "firefox_android": "111",
+              "safari": "16.4",
+              "safari_ios": "16.4"
+            }
+          },
+          "api.FileSystemFileHandle.createWritable": {
+            "baseline": "low",
+            "baseline_low_date": "2025-09-15",
+            "support": {
+              "chrome": "86",
+              "chrome_android": "109",
+              "edge": "86",
+              "firefox": "111",
+              "firefox_android": "111",
+              "safari": "26",
+              "safari_ios": "26"
+            }
+          },
+          "api.FileSystemHandle.queryPermission": {
+            "baseline": false,
+            "support": {
+              "chrome": "86",
+              "chrome_android": "109",
+              "edge": "86"
+            }
+          },
+          "api.FileSystemHandle.requestPermission": {
+            "baseline": false,
+            "support": {
+              "chrome": "86",
+              "chrome_android": "109",
+              "edge": "86"
+            }
+          },
+          "api.FileSystemWritableFileStream": {
+            "baseline": "low",
+            "baseline_low_date": "2025-09-15",
+            "support": {
+              "chrome": "86",
+              "chrome_android": "109",
+              "edge": "86",
+              "firefox": "111",
+              "firefox_android": "111",
+              "safari": "26",
+              "safari_ios": "26"
+            }
+          },
+          "api.FileSystemWritableFileStream.seek": {
+            "baseline": "low",
+            "baseline_low_date": "2025-09-15",
+            "support": {
+              "chrome": "86",
+              "chrome_android": "109",
+              "edge": "86",
+              "firefox": "111",
+              "firefox_android": "111",
+              "safari": "26",
+              "safari_ios": "26"
+            }
+          },
+          "api.FileSystemWritableFileStream.truncate": {
+            "baseline": "low",
+            "baseline_low_date": "2025-09-15",
+            "support": {
+              "chrome": "86",
+              "chrome_android": "109",
+              "edge": "86",
+              "firefox": "111",
+              "firefox_android": "111",
+              "safari": "26",
+              "safari_ios": "26"
+            }
+          },
+          "api.FileSystemWritableFileStream.write": {
+            "baseline": "low",
+            "baseline_low_date": "2025-09-15",
+            "support": {
+              "chrome": "86",
+              "chrome_android": "109",
+              "edge": "86",
+              "firefox": "111",
+              "firefox_android": "111",
+              "safari": "26",
+              "safari_ios": "26"
+            }
+          },
+          "api.Window.showDirectoryPicker": {
+            "baseline": false,
+            "support": {
+              "chrome": "86",
+              "chrome_android": "132",
+              "edge": "86"
+            }
+          },
+          "api.Window.showOpenFilePicker": {
+            "baseline": false,
+            "support": {
+              "chrome": "86",
+              "chrome_android": "132",
+              "edge": "86"
+            }
+          },
+          "api.Window.showSaveFilePicker": {
+            "baseline": false,
+            "support": {
+              "chrome": "86",
+              "chrome_android": "132",
+              "edge": "86"
+            }
+          }
+        },
+        "support": {
+          "chrome": "86",
+          "chrome_android": "132",
+          "edge": "86"
+        }
+      }
+    },
+    "wpt": {
+      "hasResults": true,
+      "resultCount": 11
+    }
+  },
+  {
+    "shortname": "speculation-rules",
+    "feature": "prefetch",
+    "github": {
+      "stars": 191,
+      "forks": 41,
+      "openIssues": 34,
+      "openPRs": 3,
+      "closedPRs": 244,
+      "lastCommitDate": "2026-03-02T07:46:30Z"
+    },
+    "mozilla": {
+      "issue": "https://github.com/mozilla/standards-positions/issues/1214",
+      "position": "positive"
+    },
+    "webkit": {
+      "issue": "https://github.com/WebKit/standards-positions/issues/54",
+      "position": null
+    },
+    "chromium": {
+      "featureId": 5074313831120896,
+      "name": "Speculation rules: form_submission field",
+      "intentStage": "None",
+      "shipping_year": 2026,
+      "browsers": {
+        "chrome": {
+          "bug": "https://issues.chromium.org/issues/346555939",
+          "blink_components": [
+            "Internals>Preload>Prerender"
+          ],
+          "devrel": [
+            "devrel-chromestatus-all@google.com"
+          ],
+          "owners": [
+            "robertlin@chromium.org"
+          ],
+          "origintrial": false,
+          "prefixed": null,
+          "flag": false,
+          "status": {
+            "text": "Proposed",
+            "val": 2,
+            "milestone_str": "Proposed"
+          },
+          "desktop": null,
+          "android": null,
+          "webview": null,
+          "ios": null
+        },
+        "ff": {
+          "view": {
+            "url": "https://github.com/mozilla/standards-positions/issues/1355",
+            "notes": null,
+            "text": "No signal",
+            "val": 5
+          }
+        },
+        "safari": {
+          "view": {
+            "url": "https://github.com/WebKit/standards-positions/issues/614",
+            "notes": null,
+            "text": "No signal",
+            "val": 5
+          }
+        },
+        "webdev": {
+          "view": {
+            "text": "No signals",
+            "val": 4,
+            "url": null,
+            "notes": null
+          }
+        },
+        "other": {
+          "view": {
+            "text": null,
+            "val": null,
+            "url": null,
+            "notes": null
+          }
+        }
+      }
+    },
+    "web_features": {
+      "compat_features": [
+        "api.Document.prerendering",
+        "api.Document.prerenderingchange_event",
+        "api.PerformanceNavigationTiming.activationStart",
+        "api.Request.destination.speculationrules",
+        "html.elements.script.type.speculationrules",
+        "html.elements.script.type.speculationrules.eagerness",
+        "html.elements.script.type.speculationrules.expects_no_vary_search",
+        "html.elements.script.type.speculationrules.prefetch",
+        "html.elements.script.type.speculationrules.prerender",
+        "html.elements.script.type.speculationrules.referrer_policy",
+        "html.elements.script.type.speculationrules.relative_to",
+        "html.elements.script.type.speculationrules.requires",
+        "html.elements.script.type.speculationrules.requires.anonymous-client-ip-when-cross-origin",
+        "html.elements.script.type.speculationrules.source_optional",
+        "html.elements.script.type.speculationrules.tag",
+        "html.elements.script.type.speculationrules.target_hint",
+        "html.elements.script.type.speculationrules.urls",
+        "html.elements.script.type.speculationrules.where",
+        "http.headers.Content-Security-Policy.script-src.inline-speculation-rules",
+        "http.headers.Sec-Purpose.speculationrules",
+        "http.headers.Sec-Speculation-Tags",
+        "http.headers.Speculation-Rules",
+        "http.headers.Supports-Loading-Mode",
+        "http.headers.Supports-Loading-Mode.credentialed-prerender",
+        "http.headers.Supports-Loading-Mode.fenced-frame"
+      ],
+      "description": "Speculation rules are hints to the browser to proactively download pages in the background so they appear instantly when the user navigates to them.",
+      "description_html": "Speculation rules are hints to the browser to proactively download pages in the background so they appear instantly when the user navigates to them.",
+      "kind": "feature",
+      "name": "Speculation rules",
+      "spec": [
+        "https://html.spec.whatwg.org/multipage/speculative-loading.html#speculation-rules",
+        "https://wicg.github.io/nav-speculation/prerendering.html"
+      ],
+      "status": {
+        "baseline": false,
+        "by_compat_key": {
+          "api.Document.prerendering": {
+            "baseline": false,
+            "support": {
+              "chrome": "108",
+              "chrome_android": "108",
+              "edge": "108"
+            }
+          },
+          "api.Document.prerenderingchange_event": {
+            "baseline": false,
+            "support": {
+              "chrome": "108",
+              "chrome_android": "108",
+              "edge": "108"
+            }
+          },
+          "api.PerformanceNavigationTiming.activationStart": {
+            "baseline": false,
+            "support": {
+              "chrome": "108",
+              "chrome_android": "57",
+              "edge": "108"
+            }
+          },
+          "api.Request.destination.speculationrules": {
+            "baseline": false,
+            "support": {
+              "chrome": "121",
+              "chrome_android": "121",
+              "edge": "121"
+            }
+          },
+          "html.elements.script.type.speculationrules": {
+            "baseline": false,
+            "support": {
+              "chrome": "109",
+              "chrome_android": "109",
+              "edge": "109"
+            }
+          },
+          "html.elements.script.type.speculationrules.eagerness": {
+            "baseline": false,
+            "support": {
+              "chrome": "121",
+              "chrome_android": "121",
+              "edge": "121"
+            }
+          },
+          "html.elements.script.type.speculationrules.expects_no_vary_search": {
+            "baseline": false,
+            "support": {
+              "chrome": "127",
+              "chrome_android": "127",
+              "edge": "127"
+            }
+          },
+          "html.elements.script.type.speculationrules.prefetch": {
+            "baseline": false,
+            "support": {
+              "chrome": "110",
+              "chrome_android": "109",
+              "edge": "110"
+            }
+          },
+          "html.elements.script.type.speculationrules.prerender": {
+            "baseline": false,
+            "support": {
+              "chrome": "109",
+              "chrome_android": "109",
+              "edge": "109"
+            }
+          },
+          "html.elements.script.type.speculationrules.referrer_policy": {
+            "baseline": false,
+            "support": {
+              "chrome": "111",
+              "chrome_android": "111",
+              "edge": "111"
+            }
+          },
+          "html.elements.script.type.speculationrules.relative_to": {
+            "baseline": false,
+            "support": {
+              "chrome": "121",
+              "chrome_android": "121",
+              "edge": "121"
+            }
+          },
+          "html.elements.script.type.speculationrules.requires": {
+            "baseline": false,
+            "support": {
+              "chrome": "110",
+              "chrome_android": "109",
+              "edge": "110"
+            }
+          },
+          "html.elements.script.type.speculationrules.requires.anonymous-client-ip-when-cross-origin": {
+            "baseline": false,
+            "support": {
+              "chrome": "110",
+              "chrome_android": "109"
+            }
+          },
+          "html.elements.script.type.speculationrules.source_optional": {
+            "baseline": false,
+            "support": {
+              "chrome": "122",
+              "chrome_android": "122",
+              "edge": "122"
+            }
+          },
+          "html.elements.script.type.speculationrules.tag": {
+            "baseline": false,
+            "support": {
+              "chrome": "136",
+              "chrome_android": "136",
+              "edge": "136"
+            }
+          },
+          "html.elements.script.type.speculationrules.target_hint": {
+            "baseline": false,
+            "support": {}
+          },
+          "html.elements.script.type.speculationrules.urls": {
+            "baseline": false,
+            "support": {
+              "chrome": "109",
+              "chrome_android": "109",
+              "edge": "109"
+            }
+          },
+          "html.elements.script.type.speculationrules.where": {
+            "baseline": false,
+            "support": {
+              "chrome": "121",
+              "chrome_android": "121",
+              "edge": "121"
+            }
+          },
+          "http.headers.Content-Security-Policy.script-src.inline-speculation-rules": {
+            "baseline": false,
+            "support": {
+              "chrome": "110",
+              "chrome_android": "110",
+              "edge": "110"
+            }
+          },
+          "http.headers.Sec-Purpose.speculationrules": {
+            "baseline": false,
+            "support": {
+              "chrome": "110",
+              "chrome_android": "110",
+              "edge": "110"
+            }
+          },
+          "http.headers.Sec-Speculation-Tags": {
+            "baseline": false,
+            "support": {
+              "chrome": "136",
+              "chrome_android": "136",
+              "edge": "136"
+            }
+          },
+          "http.headers.Speculation-Rules": {
+            "baseline": false,
+            "support": {
+              "chrome": "121",
+              "chrome_android": "121",
+              "edge": "121"
+            }
+          },
+          "http.headers.Supports-Loading-Mode": {
+            "baseline": false,
+            "support": {
+              "chrome": "109",
+              "chrome_android": "109",
+              "edge": "109"
+            }
+          },
+          "http.headers.Supports-Loading-Mode.credentialed-prerender": {
+            "baseline": false,
+            "support": {
+              "chrome": "109",
+              "chrome_android": "109",
+              "edge": "109"
+            }
+          },
+          "http.headers.Supports-Loading-Mode.fenced-frame": {
+            "baseline": false,
+            "support": {
+              "chrome": "117",
+              "chrome_android": "117",
+              "edge": "117"
+            }
+          }
+        },
+        "support": {
+          "chrome": "109",
+          "chrome_android": "109",
+          "edge": "109"
+        }
+      }
+    },
+    "wpt": {
+      "hasResults": true,
+      "resultCount": 209
+    }
+  },
+  {
+    "shortname": "scheduling-apis",
+    "github": {
+      "stars": 926,
+      "forks": 46,
+      "openIssues": 28,
+      "openPRs": 1,
+      "closedPRs": 61,
+      "lastCommitDate": "2025-05-30T20:41:30Z"
+    },
+    "mozilla": {
+      "issue": "https://github.com/mozilla/standards-positions/issues/546",
+      "position": "positive"
+    },
+    "webkit": {
+      "issue": "https://github.com/WebKit/standards-positions/issues/361",
+      "position": null
+    },
+    "chromium": {
+      "status": "no-signal"
+    },
+    "web_features": {
+      "compat_features": [
+        "api.Scheduler",
+        "api.Scheduler.postTask",
+        "api.Scheduler.yield",
+        "api.TaskController",
+        "api.TaskController.TaskController",
+        "api.TaskController.setPriority",
+        "api.TaskPriorityChangeEvent",
+        "api.TaskPriorityChangeEvent.TaskPriorityChangeEvent",
+        "api.TaskPriorityChangeEvent.previousPriority",
+        "api.TaskSignal",
+        "api.TaskSignal.any_static",
+        "api.TaskSignal.priority",
+        "api.TaskSignal.prioritychange_event",
+        "api.scheduler"
+      ],
+      "description": "The scheduler API provides a way to prioritize all tasks belonging to an application.",
+      "description_html": "The <code>scheduler</code> API provides a way to prioritize all tasks belonging to an application.",
+      "kind": "feature",
+      "name": "Scheduler API",
+      "spec": [
+        "https://wicg.github.io/scheduling-apis/"
+      ],
+      "status": {
+        "baseline": false,
+        "by_compat_key": {
+          "api.Scheduler": {
+            "baseline": false,
+            "support": {
+              "chrome": "94",
+              "chrome_android": "94",
+              "edge": "94",
+              "firefox": "142",
+              "firefox_android": "142"
+            }
+          },
+          "api.Scheduler.postTask": {
+            "baseline": false,
+            "support": {
+              "chrome": "94",
+              "chrome_android": "94",
+              "edge": "94",
+              "firefox": "142",
+              "firefox_android": "142"
+            }
+          },
+          "api.Scheduler.yield": {
+            "baseline": false,
+            "support": {
+              "chrome": "129",
+              "chrome_android": "129",
+              "edge": "129",
+              "firefox": "142",
+              "firefox_android": "142"
+            }
+          },
+          "api.TaskController": {
+            "baseline": false,
+            "support": {
+              "chrome": "94",
+              "chrome_android": "94",
+              "edge": "94",
+              "firefox": "142",
+              "firefox_android": "142"
+            }
+          },
+          "api.TaskController.TaskController": {
+            "baseline": false,
+            "support": {
+              "chrome": "94",
+              "chrome_android": "94",
+              "edge": "94",
+              "firefox": "142",
+              "firefox_android": "142"
+            }
+          },
+          "api.TaskController.setPriority": {
+            "baseline": false,
+            "support": {
+              "chrome": "94",
+              "chrome_android": "94",
+              "edge": "94",
+              "firefox": "142",
+              "firefox_android": "142"
+            }
+          },
+          "api.TaskPriorityChangeEvent": {
+            "baseline": false,
+            "support": {
+              "chrome": "94",
+              "chrome_android": "94",
+              "edge": "94",
+              "firefox": "142",
+              "firefox_android": "142"
+            }
+          },
+          "api.TaskPriorityChangeEvent.TaskPriorityChangeEvent": {
+            "baseline": false,
+            "support": {
+              "chrome": "94",
+              "chrome_android": "94",
+              "edge": "94",
+              "firefox": "142",
+              "firefox_android": "142"
+            }
+          },
+          "api.TaskPriorityChangeEvent.previousPriority": {
+            "baseline": false,
+            "support": {
+              "chrome": "94",
+              "chrome_android": "94",
+              "edge": "94",
+              "firefox": "142",
+              "firefox_android": "142"
+            }
+          },
+          "api.TaskSignal": {
+            "baseline": false,
+            "support": {
+              "chrome": "94",
+              "chrome_android": "94",
+              "edge": "94",
+              "firefox": "142",
+              "firefox_android": "142"
+            }
+          },
+          "api.TaskSignal.any_static": {
+            "baseline": false,
+            "support": {
+              "chrome": "116",
+              "chrome_android": "116",
+              "edge": "116",
+              "firefox": "142",
+              "firefox_android": "142"
+            }
+          },
+          "api.TaskSignal.priority": {
+            "baseline": false,
+            "support": {
+              "chrome": "94",
+              "chrome_android": "94",
+              "edge": "94",
+              "firefox": "142",
+              "firefox_android": "142"
+            }
+          },
+          "api.TaskSignal.prioritychange_event": {
+            "baseline": false,
+            "support": {
+              "chrome": "94",
+              "chrome_android": "94",
+              "edge": "94",
+              "firefox": "142",
+              "firefox_android": "142"
+            }
+          },
+          "api.scheduler": {
+            "baseline": false,
+            "support": {
+              "chrome": "94",
+              "chrome_android": "94",
+              "edge": "94",
+              "firefox": "142",
+              "firefox_android": "142"
+            }
+          }
+        },
+        "support": {
+          "chrome": "129",
+          "chrome_android": "129",
+          "edge": "129",
+          "firefox": "142",
+          "firefox_android": "142"
+        }
+      }
+    },
+    "wpt": {
+      "hasResults": true,
+      "resultCount": 114
+    }
+  }
+]
