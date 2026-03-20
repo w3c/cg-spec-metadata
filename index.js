@@ -7,6 +7,7 @@ import { collectWebkitPosition } from "./collectors/webkit.js";
 import { collectChromiumPosition } from "./collectors/chromium.js";
 import { collectWF } from "./collectors/web-features.js";
 import { collectWPTFyi } from "./collectors/wpt.js";
+import { collectRecentSubstantiveContributions } from "./collectors/substantive-contributions.js";
 
 async function run() {
   const results = [];
@@ -26,6 +27,7 @@ async function run() {
     metadata.chromium = await collectChromiumPosition(spec);
     metadata.web_features = await collectWF(spec);
     metadata.wpt = await collectWPTFyi(spec);
+    metadata.substantiveContributorsLastYear = await collectRecentSubstantiveContributions(spec);
 
     results.push(metadata);
   }
