@@ -1,3 +1,6 @@
+/**
+ * Collector: WebKit's standards positions, based on the data from the standards-positions repository, which is maintained by the WebKit team.
+ */
 const WEBKIT_JSON_URL =
   "https://raw.githubusercontent.com/WebKit/standards-positions/main/summary.json";
 

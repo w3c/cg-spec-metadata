@@ -1,5 +1,5 @@
 /**
- * Collector for web-features-mapping data, which provides a mapping between external data and web features ids, which can then be used to correlate with other data sources like Chrome Status and WPT.
+ * Collector: web-features-mapping data, which provides a mapping between external data and web features ids, which can then be used to correlate with other data sources like Chrome Status and WPT.
  * The data is fetched from the web-features-mapping repository, which is maintained by the web-platform-dx team.
  * The collector looks up the web feature ID for each spec and returns the corresponding data from the web-features-mapping dataset.
  */

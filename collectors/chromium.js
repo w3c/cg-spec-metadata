@@ -1,3 +1,7 @@
+/**
+ * Collector: Chromium's feature status, based on the data from the Chrome Status API, which is maintained by the Chrome team.
+ * The collector looks up the status for each spec based on its shortname and returns the corresponding data from the Chrome Status dataset.
+ */
 const CHROME_STATUS_URL = "https://chromestatus.com/api/v0/features";
 
 export async function collectChromiumPosition(spec) {

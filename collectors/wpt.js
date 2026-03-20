@@ -1,3 +1,6 @@
+/**
+ * Collector: WPT results from wpt.fyi, based on the data from the wpt.fyi API.
+ */
 const WPT_FYI_URL = "https://wpt.fyi/api/search";
 
 export async function collectWPTFyi(spec) {
