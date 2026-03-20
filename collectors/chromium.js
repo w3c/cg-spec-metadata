@@ -29,7 +29,8 @@ export async function collectChromiumPosition(spec) {
       browsers: match.browsers
     };
 
-  } catch (e) {
-    return { error: e.message };
+  } catch (err) {
+    console.error(`[chromium] Error fetching chrome status data for ${spec.repo}: ${err.message}`);
+    return { error: err.message };
   }
 }

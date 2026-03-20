@@ -24,7 +24,8 @@ export async function collectMozillaPosition(spec) {
     issue: entry ? `https://github.com/mozilla/standards-positions/issues/${entry[0]}` : "N/A",
     position: entry ? entry[1].position : "no-signal"
   };
-  } catch (error) {
-    return { error: error.message };
+  } catch (err) {
+    console.error(`[mozilla] Error fetching Mozilla standards position for ${spec.repo}: ${err.message}`);
+    return { error: err.message };
   }
 }

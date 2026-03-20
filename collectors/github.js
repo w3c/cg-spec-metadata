@@ -23,7 +23,8 @@ export async function collectGithubMetadata(spec) {
       closedPRs: closedPRs.total_count ?? 0,
       lastCommitDate: commits[0]?.commit?.committer?.date || null
     };
-  } catch (e) {
-    return { error: e.message };
+  } catch (err) {
+    console.error(`[github] Error fetching github data for ${spec.repo}: ${err.message}`);
+    return { error: err.message };
   }
 }

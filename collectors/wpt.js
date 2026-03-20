@@ -20,7 +20,8 @@ export async function collectWPTFyi(spec) {
       hasResults: count > 0,
       resultCount: count
     };
-  } catch (e) {
-    return { error: e.message };
+  } catch (err) {
+    console.error(`[WPT] Error fetching WPT data for ${spec.repo}: ${err.message}`);
+    return { error: err.message };
   }
 }

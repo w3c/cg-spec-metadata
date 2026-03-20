@@ -241,7 +241,8 @@
     "wpt": {
       "hasResults": true,
       "resultCount": 11
-    }
+    },
+    "substantiveContributionsLastYear": 1
   },
   {
     "shortname": "speculation-rules",
@@ -571,7 +572,8 @@
     "wpt": {
       "hasResults": true,
       "resultCount": 209
-    }
+    },
+    "substantiveContributionsLastYear": 2
   },
   {
     "shortname": "scheduling-apis",
@@ -774,6 +776,7 @@
     "wpt": {
       "hasResults": true,
       "resultCount": 114
-    }
+    },
+    "substantiveContributionsLastYear": 1
   }
 ]

@@ -26,7 +26,8 @@ export async function collectWebkitPosition(spec) {
         issue: entry ? entry.id : "N/A",
         position: entry ? entry.position : "no-signal"
     };
-  } catch (error) {
-    return { error: error.message };
+  } catch (err) {
+    console.error(`[webkit] Error fetching Webkit standards position for ${spec.repo}: ${err.message}`);
+    return { error: err.message };
   }
 }
