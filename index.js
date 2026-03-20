@@ -9,34 +9,35 @@ import { collectWF } from "./collectors/web-features.js";
 import { collectWPTFyi } from "./collectors/wpt.js";
 import { collectRecentSubstantiveContributions } from "./collectors/substantive-contributions.js";
 
+const collectors = [
+  { key: "github",                          fn: collectGithubMetadata },
+  { key: "mozilla",                         fn: collectMozillaPosition },
+  { key: "webkit",                          fn: collectWebkitPosition },
+  { key: "chromium",                        fn: collectChromiumPosition },
+  { key: "web_features",                    fn: collectWF },
+  { key: "wpt",                             fn: collectWPTFyi },
+  { key: "substantiveContributionsLastYear", fn: collectRecentSubstantiveContributions },
+];
+
 async function run() {
-  const results = [];
+  const results = await Promise.all(
+    specs.map(async (spec) => {
+      console.log(`Collecting metadata for ${spec.shortname}`);
 
-  for (const spec of specs) {
-    console.log(`Collecting metadata for ${spec.shortname}`);
+      const collectedEntries = await Promise.all(
+        collectors.map(async ({ key, fn }) => [key, await fn(spec)])
+      );
 
-    const metadata = {
-      shortname: spec.shortname,
-      specUrl: spec.specUrl,
-      feature: spec.feature
-    };
-
-    metadata.github = await collectGithubMetadata(spec);
-    metadata.mozilla = await collectMozillaPosition(spec);
-    metadata.webkit = await collectWebkitPosition(spec);
-    metadata.chromium = await collectChromiumPosition(spec);
-    metadata.web_features = await collectWF(spec);
-    metadata.wpt = await collectWPTFyi(spec);
-    metadata.substantiveContributionsLastYear = await collectRecentSubstantiveContributions(spec);
-
-    results.push(metadata);
-  }
-
-  fs.writeFileSync(
-    "./data.json",
-    JSON.stringify(results, null, 2)
+      return {
+        shortname: spec.shortname,
+        specUrl: spec.specUrl,
+        feature: spec.feature,
+        ...Object.fromEntries(collectedEntries),
+      };
+    })
   );
 
+  fs.writeFileSync("./data.json", JSON.stringify(results, null, 2));
   console.log("Metadata collection complete.");
 }
 
