@@ -2,6 +2,7 @@
  * Collector: Mozilla's standards positions, based on the data from the standards-positions repository, which is maintained by the Mozilla web-platform team.
  * The collector looks up the position for each spec based on its URL and returns the corresponding data from the standards-positions dataset.
  */
+import { logger } from '../logger.js';
 
 const MOZILLA_JSON_URL =
   "https://mozilla.github.io/standards-positions/merged-data.json";
@@ -30,7 +31,7 @@ export async function collectMozillaPosition(spec) {
     position: entry ? entry[1].position : "no-signal"
   };
   } catch (err) {
-    console.error(`[mozilla] Error fetching Mozilla standards position for ${spec.repo}: ${err.message}`);
+    logger.error(`[mozilla] Error fetching Mozilla standards position for ${spec.repo}: ${err.message}`);
     return { error: err.message };
   }
 }

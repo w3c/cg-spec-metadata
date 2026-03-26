@@ -1,7 +1,7 @@
 /**
  * Collector: W3C Repo Manager – Substantive Contributors (last 12 months)
  */
-
+import { logger } from '../logger.js';
 const W3C_REPO_MANAGER_BASE =
   "https://labs.w3.org/repo-manager/api/repos";
 
@@ -39,7 +39,7 @@ export async function collectRecentSubstantiveContributions(spec) {
   try {
     return await fetchSubstantiveContributors(spec.repo);
   } catch (err) {
-    console.error(`[w3c-contributors] Error fetching contributors for ${spec.repo}: ${err.message}`);
+    logger.error(`[w3c-contributors] Error fetching contributors for ${spec.repo}: ${err.message}`);
     return { error: err.message };
   }
 }

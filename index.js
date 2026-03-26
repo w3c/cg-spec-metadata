@@ -1,4 +1,5 @@
 import fs from "fs";
+import { logger } from './logger.js';
 import specs from "./specs.json" with { type: "json" };
 
 import { collectGithubMetadata } from "./collectors/github.js";
@@ -21,10 +22,35 @@ const collectors = [
   { key: "substantiveContributionsLastYear", fn: collectRecentSubstantiveContributions },
 ];
 
+const args = process.argv;
+
+if (args.includes('--help') || args.includes('-h')) {
+    console.log("Usage: node index.js [shortname1] [shortname2] ...\n\
+Example: node index.js\n\
+         node index.js file-system-access\n\
+\n\
+If no shortnames are provided, metadata for all specs will be collected.");
+    process.exit(0);
+}
+
 async function run() {
+
+  // Get arguments starting from the 3rd index (node index.js shortname1 shortname2)
+  const targetShortnames = args.slice(2);
+
+  // Filter specs: if no args provided, process all. Otherwise, filter by shortname.
+  const specsToProcess = targetShortnames.length > 0
+      ? specs.filter(s => targetShortnames.includes(s.shortname))
+      : specs;
+
+  if (targetShortnames.length > 0 && specsToProcess.length === 0) {
+      logger.error(`No specs found matching ${targetShortnames.join(', ')}`);
+      process.exit(1);
+  }
+
   const results = await Promise.all(
-    specs.map(async (spec) => {
-      console.log(`Collecting metadata for ${spec.shortname}`);
+    specsToProcess.map(async (spec) => {
+      logger.info(`Collecting metadata for ${spec.shortname}`);
 
       const collectedEntries = await Promise.all(
         collectors.map(async ({ key, fn }) => [key, await fn(spec)])
@@ -40,7 +66,7 @@ async function run() {
   );
 
   fs.writeFileSync("./data.json", JSON.stringify(results, null, 2));
-  console.log("Metadata collection complete.");
+  logger.success("Metadata collection complete.");
 }
 
 run();

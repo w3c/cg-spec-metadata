@@ -3,7 +3,7 @@
  * The data is fetched from the web-features-mapping repository, which is maintained by the web-platform-dx team.
  * The collector looks up the web feature ID for each spec and returns the corresponding data from the web-features-mapping dataset.
  */
-
+import { logger } from '../logger.js';
 const WEB_FEATURES_MAPPINGS_URL = "https://raw.githubusercontent.com/web-platform-dx/web-features-mappings/refs/heads/main/mappings/combined-data.json";
 
 let cache = null;
@@ -27,7 +27,7 @@ export async function collectWebFeaturesMapping(spec) {
 
   return entry || {};
   } catch (err) {
-    console.error(`[web-features-mapping] Error fetching web-features-mapping data for ${spec.repo}: ${err.message}`);
+    logger.error(`[web-features-mapping] Error fetching web-features-mapping data for ${spec.repo}: ${err.message}`);
     return { error: err.message };
   }
 }

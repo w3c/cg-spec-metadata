@@ -2,6 +2,7 @@
  * Collector: Chromium's feature status, based on the data from the Chrome Status API, which is maintained by the Chrome team.
  * The collector looks up the status for each spec based on its shortname and returns the corresponding data from the Chrome Status dataset.
  */
+import { logger } from '../logger.js';
 const CHROME_STATUS_URL = "https://chromestatus.com/api/v0/features";
 
 export async function collectChromiumPosition(spec) {
@@ -34,7 +35,7 @@ export async function collectChromiumPosition(spec) {
     };
 
   } catch (err) {
-    console.error(`[chromium] Error fetching chrome status data for ${spec.repo}: ${err.message}`);
+    logger.error(`[chromium] Error fetching chrome status data for ${spec.repo}: ${err.message}`);
     return { error: err.message };
   }
 }

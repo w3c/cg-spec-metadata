@@ -1,6 +1,7 @@
 /**
  * Collector: GitHub Repository Metadata (stars, forks, open issues, PRs, last commit date)
  */
+import { logger } from '../logger.js';
 
 async function githubFetch(url) {
   const response = await fetch(url, {
@@ -18,7 +19,7 @@ async function githubFetch(url) {
 export async function collectGithubMetadata(spec) {
   if (!spec.repo) return null;
   if (!process.env.GITHUB_TOKEN) {
-    console.warn("[github] GITHUB_TOKEN is not set — API requests may be rate-limited");
+    logger.warn("[github] GITHUB_TOKEN is not set — API requests may be rate-limited");
   }
   try {
     const GITHUB_API_REPO_URL = `https://api.github.com/repos/${spec.repo}`;
@@ -44,7 +45,7 @@ export async function collectGithubMetadata(spec) {
       lastCommitDate: commits[0]?.commit?.committer?.date || null
     };
   } catch (err) {
-    console.error(`[github] Error fetching github data for ${spec.repo}: ${err.message}`);
+    logger.error(`[github] Error fetching github data for ${spec.repo}: ${err.message}`);
     return { error: err.message };
   }
 }

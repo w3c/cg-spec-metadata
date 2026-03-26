@@ -1,6 +1,7 @@
 /**
  * Collector: WPT results from wpt.fyi, based on the data from the wpt.fyi API.
  */
+import { logger } from '../logger.js';
 const WPT_FYI_URL = "https://wpt.fyi/api/search";
 
 export async function collectWPTFyi(spec) {
@@ -33,7 +34,7 @@ export async function collectWPTFyi(spec) {
       subtests: result.total_combined
     };
   } catch (err) {
-    console.error(`[WPT] Error fetching WPT data for ${spec.repo}: ${err.message}`);
+    logger.error(`[WPT] Error fetching WPT data for ${spec.repo}: ${err.message}`);
     return { error: err.message };
   }
 }

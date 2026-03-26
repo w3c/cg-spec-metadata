@@ -1,6 +1,7 @@
 /**
  * Collector: WebKit's standards positions, based on the data from the standards-positions repository, which is maintained by the WebKit team.
  */
+import { logger } from '../logger.js';
 const WEBKIT_JSON_URL =
   "https://raw.githubusercontent.com/WebKit/standards-positions/main/summary.json";
 
@@ -30,7 +31,7 @@ export async function collectWebkitPosition(spec) {
         position: entry ? entry.position : "no-signal"
     };
   } catch (err) {
-    console.error(`[webkit] Error fetching Webkit standards position for ${spec.repo}: ${err.message}`);
+    logger.error(`[webkit] Error fetching Webkit standards position for ${spec.repo}: ${err.message}`);
     return { error: err.message };
   }
 }
