@@ -1,6 +1,7 @@
-import fs from "fs";
+import { writeFile } from 'node:fs/promises';
 import { logger } from './logger.js';
 import specs from "./specs.json" with { type: "json" };
+import data from "./data.json" with { type: "json" };
 
 import { collectGithubMetadata } from "./collectors/github.js";
 import { collectMozillaPosition } from "./collectors/mozilla.js";
@@ -31,6 +32,24 @@ Example: node index.js\n\
 \n\
 If no shortnames are provided, metadata for all specs will be collected.");
     process.exit(0);
+}
+
+// Update data.json with new results, merging with existing data
+async function updateDataFile(results) {
+  const dataMap = new Map(data.map(item => [item.shortname, item]));
+
+  results.forEach(result => {
+    dataMap.set(result.shortname, result);
+  });
+
+  const finalData = Array.from(dataMap.values());
+
+  try {
+    await writeFile('./data.json', JSON.stringify(finalData, null, 2), 'utf8');
+    logger.success(`data.json updated. Total specs: ${finalData.length}`);
+  } catch (err) {
+    logger.error("Failed to write to data.json", err.message);
+  }
 }
 
 async function run() {
@@ -64,8 +83,7 @@ async function run() {
       };
     })
   );
-
-  fs.writeFileSync("./data.json", JSON.stringify(results, null, 2));
+  updateDataFile(results);
   logger.success("Metadata collection complete.");
 }
 
