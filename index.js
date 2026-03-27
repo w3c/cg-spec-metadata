@@ -1,7 +1,6 @@
 import { writeFile } from 'node:fs/promises';
 import { logger } from './logger.js';
-import specs from "./specs.json" with { type: "json" };
-import data from "./data.json" with { type: "json" };
+import { mergeResultsWithOverride } from "./utils.js";
 
 import { collectGithubMetadata } from "./collectors/github.js";
 import { collectMozillaPosition } from "./collectors/mozilla.js";
@@ -11,6 +10,10 @@ import { collectWebFeatures } from "./collectors/web-features.js";
 import { collectWebFeaturesMapping } from "./collectors/web-features-mapping.js";
 import { collectWPTFyi } from "./collectors/wpt.js";
 import { collectRecentSubstantiveContributions } from "./collectors/substantive-contributions.js";
+
+import specs from "./specs.json" with { type: "json" };
+import data from "./data.json" with { type: "json" };
+import override from "./override.json" with { type: "json" };
 
 const collectors = [
   { key: "github",                          fn: collectGithubMetadata },
@@ -42,7 +45,8 @@ async function updateDataFile(results) {
     dataMap.set(result.shortname, result);
   });
 
-  const finalData = Array.from(dataMap.values());
+  // Apply the override data to the merged results before writing to file
+  const finalData = mergeResultsWithOverride(Array.from(dataMap.values()), override);
 
   try {
     await writeFile('./data.json', JSON.stringify(finalData, null, 2), 'utf8');
