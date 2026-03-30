@@ -422,7 +422,7 @@
           }
         ],
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.00004638,
+          "percentageOfPageLoad": 0.00003744,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/258"
         }
       }
@@ -438,8 +438,8 @@
     "shortname": "speculation-rules",
     "feature": "prefetch",
     "github": {
-      "stars": 191,
-      "forks": 41,
+      "stars": 192,
+      "forks": 42,
       "openIssues": 34,
       "openPRs": 3,
       "closedPRs": 244,
@@ -822,10 +822,10 @@
         ],
         "developer-signals": {
           "url": "https://github.com/web-platform-dx/developer-signals/issues/186",
-          "votes": 10
+          "votes": 11
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.11751639,
+          "percentageOfPageLoad": 0.12588601,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/317"
         },
         "bugs": {
@@ -849,14 +849,14 @@
     "wpt": {
       "hasResults": true,
       "tests": 209,
-      "subtests": 228
+      "subtests": 233
     },
     "substantiveContributionsLastYear": 2
   },
   {
     "shortname": "scheduling-apis",
     "github": {
-      "stars": 926,
+      "stars": 925,
       "forks": 46,
       "openIssues": 28,
       "openPRs": 1,
@@ -1087,7 +1087,7 @@
           "votes": 14
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.10647357,
+          "percentageOfPageLoad": 0.11582267,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/118"
         }
       }
