@@ -11,7 +11,7 @@ This project uses Node.js and expects at least Node 18+ (for fetch support).
 Clone the repo and install the dependencies:
 
 ```shell
-git clone https://github.com/deniak/cg-spec-metadata.git
+git clone https://github.com/w3c/cg-spec-metadata.git
 cd cg-spec-metadata
 npm install
 ```
@@ -53,5 +53,5 @@ If you need to correct data for a given specification, the `override.json` file 
 
 ### Automatic pull requests
 
-A [GitHub action](https://github.com/deniak/cg-spec-metadata/blob/main/.github/workflows/update-data.yml) is configured to run every week and submit a pull request to ensure data.json is up-to-date.
+A [GitHub action](https://github.com/w3c/cg-spec-metadata/blob/main/.github/workflows/update-data.yml) is configured to run every week and submit a pull request to ensure data.json is up-to-date.
 
