@@ -2,8 +2,8 @@
   {
     "shortname": "file-system-access",
     "github": {
-      "stars": 697,
-      "forks": 68,
+      "stars": 698,
+      "forks": 69,
       "openIssues": 85,
       "openPRs": 7,
       "closedPRs": 135,
@@ -422,7 +422,7 @@
           }
         ],
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.00003744,
+          "percentageOfPageLoad": 0.00004436,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/258"
         }
       }
@@ -440,8 +440,8 @@
     "github": {
       "stars": 192,
       "forks": 42,
-      "openIssues": 34,
-      "openPRs": 3,
+      "openIssues": 35,
+      "openPRs": 4,
       "closedPRs": 244,
       "lastCommitDate": "2026-03-02T07:46:30Z"
     },
@@ -825,7 +825,7 @@
           "votes": 11
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.12588601,
+          "percentageOfPageLoad": 0.12078338,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/317"
         },
         "bugs": {
@@ -849,14 +849,14 @@
     "wpt": {
       "hasResults": true,
       "tests": 209,
-      "subtests": 233
+      "subtests": 235
     },
     "substantiveContributionsLastYear": 2
   },
   {
     "shortname": "scheduling-apis",
     "github": {
-      "stars": 925,
+      "stars": 924,
       "forks": 46,
       "openIssues": 28,
       "openPRs": 1,
@@ -1087,7 +1087,7 @@
           "votes": 14
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.11582267,
+          "percentageOfPageLoad": 0.11169867,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/118"
         }
       }
