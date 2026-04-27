@@ -2,7 +2,7 @@
   {
     "shortname": "file-system-access",
     "github": {
-      "stars": 697,
+      "stars": 698,
       "forks": 68,
       "openIssues": 87,
       "openPRs": 7,
@@ -422,7 +422,7 @@
           }
         ],
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.00004733,
+          "percentageOfPageLoad": 0.00004845,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/258"
         }
       }
@@ -430,7 +430,7 @@
     "wpt": {
       "hasResults": true,
       "tests": 10,
-      "subtests": 163
+      "subtests": 326
     },
     "substantiveContributionsLastYear": 1
   },
@@ -438,12 +438,12 @@
     "shortname": "speculation-rules",
     "feature": "prefetch",
     "github": {
-      "stars": 195,
+      "stars": 196,
       "forks": 42,
-      "openIssues": 34,
-      "openPRs": 3,
-      "closedPRs": 246,
-      "lastCommitDate": "2026-04-16T20:54:30Z"
+      "openIssues": 33,
+      "openPRs": 2,
+      "closedPRs": 247,
+      "lastCommitDate": "2026-04-20T17:22:51Z"
     },
     "mozilla": {
       "issue": "https://github.com/mozilla/standards-positions/issues/1214",
@@ -825,7 +825,7 @@
           "votes": 16
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.11731367,
+          "percentageOfPageLoad": 0.11802247,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/317"
         },
         "bugs": {
@@ -849,7 +849,7 @@
     "wpt": {
       "hasResults": true,
       "tests": 210,
-      "subtests": 242
+      "subtests": 484
     },
     "substantiveContributionsLastYear": 2
   },
@@ -1087,7 +1087,7 @@
           "votes": 14
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.10895442,
+          "percentageOfPageLoad": 0.10812824,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/118"
         }
       }
@@ -1095,7 +1095,7 @@
     "wpt": {
       "hasResults": true,
       "tests": 114,
-      "subtests": 307
+      "subtests": 500
     },
     "substantiveContributionsLastYear": 1
   }
