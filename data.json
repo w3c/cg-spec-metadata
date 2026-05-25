@@ -2,7 +2,7 @@
   {
     "shortname": "file-system-access",
     "github": {
-      "stars": 701,
+      "stars": 702,
       "forks": 70,
       "openIssues": 87,
       "openPRs": 7,
@@ -423,7 +423,7 @@
           }
         ],
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.00004396,
+          "percentageOfPageLoad": 0.00004508,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/258"
         },
         "chrome-status": [
@@ -539,7 +539,7 @@
     "wpt": {
       "hasResults": true,
       "tests": 10,
-      "subtests": 163
+      "subtests": 489
     },
     "substantiveContributionsLastYear": 1
   },
@@ -549,7 +549,7 @@
     "github": {
       "stars": 198,
       "forks": 42,
-      "openIssues": 33,
+      "openIssues": 34,
       "openPRs": 2,
       "closedPRs": 248,
       "lastCommitDate": "2026-05-14T10:42:27Z"
@@ -932,10 +932,10 @@
         ],
         "developer-signals": {
           "url": "https://github.com/web-platform-dx/developer-signals/issues/186",
-          "votes": 18
+          "votes": 19
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.11820317,
+          "percentageOfPageLoad": 0.1251127,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/317"
         },
         "chrome-status": [
@@ -1204,7 +1204,7 @@
     "wpt": {
       "hasResults": true,
       "tests": 210,
-      "subtests": 243
+      "subtests": 487
     },
     "substantiveContributionsLastYear": 2
   },
@@ -1212,7 +1212,7 @@
     "shortname": "scheduling-apis",
     "github": {
       "stars": 925,
-      "forks": 46,
+      "forks": 47,
       "openIssues": 29,
       "openPRs": 1,
       "closedPRs": 61,
@@ -1442,7 +1442,7 @@
           "votes": 14
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.11636225,
+          "percentageOfPageLoad": 0.11806533,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/118"
         },
         "chrome-status": [
@@ -1491,7 +1491,7 @@
     "wpt": {
       "hasResults": true,
       "tests": 114,
-      "subtests": 307
+      "subtests": 921
     },
     "substantiveContributionsLastYear": 1
   }
