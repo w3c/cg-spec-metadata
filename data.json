@@ -2,7 +2,7 @@
   {
     "shortname": "file-system-access",
     "github": {
-      "stars": 702,
+      "stars": 703,
       "forks": 69,
       "openIssues": 88,
       "openPRs": 7,
@@ -423,7 +423,7 @@
           }
         ],
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.00004564,
+          "percentageOfPageLoad": 0.00004592,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/258"
         },
         "chrome-status": [
@@ -547,7 +547,7 @@
     "shortname": "speculation-rules",
     "feature": "prefetch",
     "github": {
-      "stars": 198,
+      "stars": 197,
       "forks": 42,
       "openIssues": 35,
       "openPRs": 2,
@@ -611,9 +611,9 @@
         },
         "webdev": {
           "view": {
-            "text": "No signals",
-            "val": 4,
-            "url": null,
+            "text": "Positive",
+            "val": 2,
+            "url": "https://github.com/WICG/nav-speculation/issues/322",
             "notes": null
           }
         },
@@ -931,11 +931,11 @@
           }
         ],
         "developer-signals": {
-          "url": "https://github.com/web-platform-dx/developer-signals/issues/675",
-          "votes": 0
+          "url": "https://github.com/web-platform-dx/developer-signals/issues/186",
+          "votes": 19
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.12559386,
+          "percentageOfPageLoad": 0.12687363,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/317"
         },
         "chrome-status": [
@@ -952,7 +952,7 @@
             ],
             "updated": {
               "by": "robertlin@chromium.org",
-              "when": "2026-05-29 09:45:48.726270"
+              "when": "2026-06-04 17:43:08.417774"
             }
           },
           {
@@ -998,7 +998,7 @@
             ],
             "updated": {
               "by": "lingqi@chromium.org",
-              "when": "2026-05-25 07:42:24.598647"
+              "when": "2026-06-03 13:12:33.014682"
             }
           },
           {
@@ -1204,7 +1204,7 @@
     "wpt": {
       "hasResults": true,
       "tests": 210,
-      "subtests": 243
+      "subtests": 241
     },
     "substantiveContributionsLastYear": 2
   },
@@ -1438,11 +1438,11 @@
           }
         ],
         "developer-signals": {
-          "url": "https://github.com/web-platform-dx/developer-signals/issues/725",
-          "votes": 0
+          "url": "https://github.com/web-platform-dx/developer-signals/issues/254",
+          "votes": 14
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.11679904,
+          "percentageOfPageLoad": 0.11546003,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/118"
         },
         "chrome-status": [
