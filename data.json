@@ -6,7 +6,7 @@
       "forks": 69,
       "openIssues": 88,
       "openPRs": 7,
-      "closedPRs": 134,
+      "closedPRs": 133,
       "lastCommitDate": "2025-10-10T14:22:22Z"
     },
     "mozilla": {
@@ -423,7 +423,7 @@
           }
         ],
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.00004065,
+          "percentageOfPageLoad": 0.00004297,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/258"
         },
         "chrome-status": [
@@ -548,9 +548,9 @@
     "feature": "prefetch",
     "github": {
       "stars": 197,
-      "forks": 42,
-      "openIssues": 35,
-      "openPRs": 2,
+      "forks": 43,
+      "openIssues": 36,
+      "openPRs": 3,
       "closedPRs": 248,
       "lastCommitDate": "2026-05-14T10:42:27Z"
     },
@@ -941,7 +941,7 @@
           "votes": 20
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.13159232,
+          "percentageOfPageLoad": 0.12849416,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/317"
         },
         "chrome-status": [
@@ -1210,7 +1210,7 @@
     "wpt": {
       "hasResults": true,
       "tests": 210,
-      "subtests": 243
+      "subtests": 244
     },
     "substantiveContributionsLastYear": 2
   },
@@ -1445,10 +1445,10 @@
         ],
         "developer-signals": {
           "url": "https://github.com/web-platform-dx/developer-signals/issues/254",
-          "votes": 16
+          "votes": 17
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.12006594,
+          "percentageOfPageLoad": 0.12190514,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/118"
         },
         "chrome-status": [
