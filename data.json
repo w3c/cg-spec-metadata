@@ -3,7 +3,7 @@
     "shortname": "file-system-access",
     "github": {
       "stars": 703,
-      "forks": 69,
+      "forks": 70,
       "openIssues": 88,
       "openPRs": 7,
       "closedPRs": 133,
@@ -423,7 +423,7 @@
           }
         ],
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.00004297,
+          "percentageOfPageLoad": 0.00005668,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/258"
         },
         "chrome-status": [
@@ -547,7 +547,7 @@
     "shortname": "speculation-rules",
     "feature": "prefetch",
     "github": {
-      "stars": 197,
+      "stars": 198,
       "forks": 43,
       "openIssues": 36,
       "openPRs": 3,
@@ -938,10 +938,10 @@
         ],
         "developer-signals": {
           "url": "https://github.com/web-platform-dx/developer-signals/issues/186",
-          "votes": 20
+          "votes": 22
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.12849416,
+          "percentageOfPageLoad": 0.13939556,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/317"
         },
         "chrome-status": [
@@ -1210,7 +1210,7 @@
     "wpt": {
       "hasResults": true,
       "tests": 210,
-      "subtests": 244
+      "subtests": 243
     },
     "substantiveContributionsLastYear": 2
   },
@@ -1448,7 +1448,7 @@
           "votes": 17
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.12190514,
+          "percentageOfPageLoad": 0.13447673,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/118"
         },
         "chrome-status": [
