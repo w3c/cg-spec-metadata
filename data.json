@@ -539,7 +539,7 @@
     "wpt": {
       "hasResults": true,
       "tests": 10,
-      "subtests": 163
+      "subtests": 489
     },
     "substantiveContributionsLastYear": 1
   },
@@ -549,7 +549,7 @@
     "github": {
       "stars": 198,
       "forks": 43,
-      "openIssues": 36,
+      "openIssues": 37,
       "openPRs": 3,
       "closedPRs": 248,
       "lastCommitDate": "2026-05-14T10:42:27Z"
@@ -1210,7 +1210,7 @@
     "wpt": {
       "hasResults": true,
       "tests": 210,
-      "subtests": 243
+      "subtests": 731
     },
     "substantiveContributionsLastYear": 2
   },
@@ -1497,7 +1497,7 @@
     "wpt": {
       "hasResults": true,
       "tests": 114,
-      "subtests": 307
+      "subtests": 921
     },
     "substantiveContributionsLastYear": 0
   }
