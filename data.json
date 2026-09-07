@@ -2,11 +2,11 @@
   {
     "shortname": "file-system-access",
     "github": {
-      "stars": 703,
+      "stars": 705,
       "forks": 70,
       "openIssues": 88,
       "openPRs": 7,
-      "closedPRs": 133,
+      "closedPRs": 134,
       "lastCommitDate": "2025-10-10T14:22:22Z"
     },
     "mozilla": {
@@ -423,7 +423,7 @@
           }
         ],
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.00005668,
+          "percentageOfPageLoad": 0.0000457,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/258"
         },
         "chrome-status": [
@@ -539,7 +539,7 @@
     "wpt": {
       "hasResults": true,
       "tests": 10,
-      "subtests": 489
+      "subtests": 163
     },
     "substantiveContributionsLastYear": 1
   },
@@ -547,12 +547,12 @@
     "shortname": "speculation-rules",
     "feature": "prefetch",
     "github": {
-      "stars": 198,
+      "stars": 200,
       "forks": 43,
-      "openIssues": 37,
-      "openPRs": 3,
-      "closedPRs": 248,
-      "lastCommitDate": "2026-05-14T10:42:27Z"
+      "openIssues": 39,
+      "openPRs": 5,
+      "closedPRs": 249,
+      "lastCommitDate": "2026-08-27T00:57:56Z"
     },
     "mozilla": {
       "issue": "https://github.com/mozilla/standards-positions/issues/1214",
@@ -879,6 +879,14 @@
           {
             "description": "My company has a web app in which users can create, edit, and save documents. The app's landing page is the documents list, from which users can open their documents in a proprietary editor in a new tab.\n\nThe editor has many features, so it loads and evaluates several megabytes of assets. Even with request & bytecode caching, loading and evaluating assets is pretty slow. \n\nWith the Speculation Rules API (specifically prerendering), I can start asset load and evaluation before a user opens their document, and then use the Broadcast Channel API to tell the prerendered page what document to open.",
             "url": "https://github.com/web-platform-dx/developer-signals/issues/186#issuecomment-4209725860"
+          },
+          {
+            "description": "Intelligently prefetch pages using my existing, simple Rails-based stack without cumbersome SPA/ frontend framework dependencies. Unlike the existing prefetch it would be nice to not have to be careful around cache settings in order for this to work.",
+            "url": "https://github.com/web-platform-dx/developer-signals/issues/186#issuecomment-5331978273"
+          },
+          {
+            "description": "Improve performance for my web apps without resorting to SPA frameworks. Service Workers and Cache API have come a long way towards making MPA apps comparable to SPAs. Speculation rules will close the gap further while providing an ergonomical API.",
+            "url": "https://github.com/web-platform-dx/developer-signals/issues/186#issuecomment-5536607047"
           }
         ],
         "state-of-surveys": [
@@ -938,10 +946,10 @@
         ],
         "developer-signals": {
           "url": "https://github.com/web-platform-dx/developer-signals/issues/186",
-          "votes": 22
+          "votes": 26
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.13939556,
+          "percentageOfPageLoad": 0.12071221,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/317"
         },
         "chrome-status": [
@@ -1210,14 +1218,14 @@
     "wpt": {
       "hasResults": true,
       "tests": 210,
-      "subtests": 731
+      "subtests": 244
     },
     "substantiveContributionsLastYear": 2
   },
   {
     "shortname": "scheduling-apis",
     "github": {
-      "stars": 925,
+      "stars": 926,
       "forks": 47,
       "openIssues": 29,
       "openPRs": 1,
@@ -1445,10 +1453,10 @@
         ],
         "developer-signals": {
           "url": "https://github.com/web-platform-dx/developer-signals/issues/254",
-          "votes": 17
+          "votes": 19
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.13447673,
+          "percentageOfPageLoad": 0.12156256,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/118"
         },
         "chrome-status": [
@@ -1496,8 +1504,8 @@
     ],
     "wpt": {
       "hasResults": true,
-      "tests": 114,
-      "subtests": 921
+      "tests": 118,
+      "subtests": 341
     },
     "substantiveContributionsLastYear": 0
   }
