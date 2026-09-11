@@ -1,0 +1,59 @@
+{
+  "formatVersion": 1,
+  "shortname": "speculation-rules",
+  "collectedAt": "2026-09-11T12:06:19.386Z",
+  "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
+  "lastEdited": {
+    "date": "2026-08-27",
+    "source": "http-last-modified"
+  },
+  "support": {
+    "chrome": {
+      "state": "shipped",
+      "label": "Shipped",
+      "url": null
+    },
+    "edge": {
+      "state": "shipped",
+      "label": "Shipped",
+      "url": null
+    },
+    "firefox": {
+      "state": "positive",
+      "label": "Supportive",
+      "url": "https://github.com/mozilla/standards-positions/issues/1214"
+    },
+    "webkit": {
+      "state": "unknown",
+      "label": "Unknown",
+      "url": "https://github.com/WebKit/standards-positions/issues/54"
+    }
+  },
+  "github": {
+    "stars": 200,
+    "starsUrl": "https://github.com/WICG/nav-speculation/stargazers",
+    "lastCommitDate": "2026-08-27"
+  },
+  "wpt": {
+    "tests": 210,
+    "subtests": null,
+    "url": "https://wpt.fyi/results?q=feature:speculation-rules"
+  },
+  "developerSignals": {
+    "votes": 27,
+    "url": "https://github.com/web-platform-dx/developer-signals/issues/186"
+  },
+  "chromeStatus": {
+    "label": null,
+    "url": "https://chromestatus.com/feature/5074313831120896"
+  },
+  "compatDataUrl": "https://developer.mozilla.org/docs/Web/API/Speculation_Rules_API#browser_compatibility",
+  "progress": null,
+  "cgStatus": null,
+  "incubatingGroup": null,
+  "standardizationPlan": null,
+  "stability": null,
+  "contributions": null,
+  "experimentationStatus": null,
+  "snapshotsIndex": null
+}

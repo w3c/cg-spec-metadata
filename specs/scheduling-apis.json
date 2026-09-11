@@ -1,0 +1,59 @@
+{
+  "formatVersion": 1,
+  "shortname": "scheduling-apis",
+  "collectedAt": "2026-09-11T12:06:18.484Z",
+  "specUrl": "https://wicg.github.io/scheduling-apis/",
+  "lastEdited": {
+    "date": "2025-05-30",
+    "source": "http-last-modified"
+  },
+  "support": {
+    "chrome": {
+      "state": "shipped",
+      "label": "Shipped",
+      "url": null
+    },
+    "edge": {
+      "state": "shipped",
+      "label": "Shipped",
+      "url": null
+    },
+    "firefox": {
+      "state": "shipped",
+      "label": "Shipped",
+      "url": null
+    },
+    "webkit": {
+      "state": "unknown",
+      "label": "Unknown",
+      "url": "https://github.com/WebKit/standards-positions/issues/361"
+    }
+  },
+  "github": {
+    "stars": 926,
+    "starsUrl": "https://github.com/WICG/scheduling-apis/stargazers",
+    "lastCommitDate": "2025-05-30"
+  },
+  "wpt": {
+    "tests": 118,
+    "subtests": null,
+    "url": "https://wpt.fyi/results?q=feature:scheduler"
+  },
+  "developerSignals": {
+    "votes": 19,
+    "url": "https://github.com/web-platform-dx/developer-signals/issues/254"
+  },
+  "chromeStatus": {
+    "label": null,
+    "url": "https://chromestatus.com/feature/6266249336586240"
+  },
+  "compatDataUrl": "https://developer.mozilla.org/docs/Web/API/Prioritized_Task_Scheduling_API#browser_compatibility",
+  "progress": null,
+  "cgStatus": null,
+  "incubatingGroup": null,
+  "standardizationPlan": null,
+  "stability": null,
+  "contributions": null,
+  "experimentationStatus": null,
+  "snapshotsIndex": null
+}
