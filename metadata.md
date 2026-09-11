@@ -1,6 +1,12 @@
 # Metadata reference
 
-This document describes the metadata collected by this project for each Community Group specification. The pipeline reads the list of specs from `specs.json`, runs one collector per data source (see `collectors/`), merges the results with any manual corrections from `override.json`, and writes everything to `data.json`.
+This document describes the metadata collected by this project for each Community Group specification. The pipeline reads the list of specs from `specs.json`, runs one collector per data source (see `collectors/`), merges the results with any manual corrections from `override.json`, and writes two outputs:
+
+- **`data.json`** — the raw archive. One array entry per spec, everything every collector returned.
+- **`specs/<shortname>.json`** — a small, format-versioned *projection* of one spec, for published
+  specification documents to read at load time (see
+  [`w3c/cg-assets`](https://github.com/w3c/cg-assets)). It carries one field per value a document
+  renders, with every derivation already applied. See [Projected metadata](#projected-metadata).
 
 Every entry in `data.json` has the following top-level shape:
 
@@ -8,7 +14,9 @@ Every entry in `data.json` has the following top-level shape:
 {
   "shortname": "...",
   "specUrl": "...",
+  "repo": "...",
   "feature": "...",
+  "collectedAt": "2026-08-24T00:12:03.114Z",
   "github": { ... },
   "mozilla": { ... },
   "webkit": { ... },
@@ -16,11 +24,23 @@ Every entry in `data.json` has the following top-level shape:
   "web_features": { ... },
   "web_features_mapping": [ ... ],
   "wpt": { ... },
-  "substantiveContributionsLastYear": 0
+  "substantiveContributionsLastYear": 0,
+  "lastEdited": { ... }
 }
 ```
 
+`specUrl`, `repo` and `collectedAt` are copied from `specs.json` (or stamped) when a spec is
+collected, so an entry that has not been collected since they were introduced will not have them
+yet. `collectedAt` is stamped per entry at collection time, not when the file is written, so a
+targeted run (`node index.js <shortname>`) leaves the timestamps of the other specs alone.
+
 **Error convention:** when a collector fails (network error, HTTP error, unexpected payload), its key contains `{ "error": "<message>" }` instead of the normal object.
+
+**Overrides:** `override.json` is matched on `shortname` and deep-merged over the collected result
+by `mergeResultsWithOverride` in `utils.js`, so it can correct any nested value and can also *add*
+keys that no collector produces. Two things to know: **arrays are replaced wholesale, never
+merged** — an override that touches `web_features_mapping` must supply the entire two-element array
+— and there is no way to delete a key, only to set it to `null` or `""`.
 
 ---
 
@@ -193,6 +213,117 @@ The `mappings` object links the feature to external resources. Possible keys (ea
 - **Collector:** `collectors/substantive-contributions.js`
 
 A single number: the count of substantive contributors who had at least one pull request updated in the last 12 months. This is an indicator of active, IPR-relevant participation in the spec's repository.
+
+### `lastEdited` — when the document itself was last edited
+
+- **Source:** the HTTP `Last-Modified` of `specs.json`'s `url`
+- **Collector:** `collectors/last-edited.js`
+
+```json
+{ "date": "2025-05-30", "source": "http-last-modified" }
+```
+
+`date` is `YYYY-MM-DD`, or `null` when no trustworthy answer was available, in which case `source`
+is `"none"` and the value should be supplied through `override.json`.
+
+This is deliberately **not** `github.lastCommitDate`. A commit that touches only the README or the
+CI config moves the repository's date without editing the document, and for a repository that
+publishes several documents the commit date says nothing about which one changed — for
+`speculation-rules` the two currently differ by fifteen months. The header is rejected when it is
+in the future, or within a minute of the response `Date` (some proxies echo their own clock).
+
+Parsing the document is not an option: bikeshed bakes a `<time class="dt-updated">` into its
+output, but ReSpec runs in the reader's browser, so fetching a ReSpec spec server-side returns
+unprocessed source with no date in it at all.
+
+---
+
+## Projected metadata (`specs/<shortname>.json`)
+
+One file per spec, rewritten on every run, holding exactly what a published specification document
+renders. `index.js` prunes files for specs that are no longer in `specs.json`.
+
+Three properties of this shape are deliberate:
+
+- **`formatVersion`.** A published document is a client that can never be updated. It refuses a
+  version it does not recognise and falls back to the values its generator baked in, which is the
+  only way this shape can ever change.
+- **Derivations are already applied.** "Chrome has shipped this" is currently expressed in
+  `web_features` as "a `chrome` key exists under `status.support`", because that dataset has no
+  `false`/`null` sentinel. If it ever gains one, deriving here means one commit rather than every
+  document published to date rendering the wrong thing.
+- **`null` means "not known".** A document keeps whatever its generator baked in. A value that is
+  known to be empty is an explicit string such as `"None"`. Every key is always present.
+
+The projection also drops every third-party free-text field — `web_features.description_html`,
+`chromium.name`, Chrome Status `summary` and `motivation` — so no prose from another source reaches
+a document. That takes a ~26 KB entry down to ~1.2 KB.
+
+```json
+{
+  "formatVersion": 1,
+  "shortname": "scheduling-apis",
+  "collectedAt": "2026-08-24T00:12:03.114Z",
+  "specUrl": "https://wicg.github.io/scheduling-apis/",
+  "lastEdited": { "date": "2025-05-30", "source": "http-last-modified" },
+  "support": {
+    "chrome":  { "state": "shipped", "label": "Shipped", "url": null },
+    "edge":    { "state": "shipped", "label": "Shipped", "url": null },
+    "firefox": { "state": "shipped", "label": "Shipped", "url": null },
+    "webkit":  { "state": "unknown", "label": "Unknown",
+                 "url": "https://github.com/WebKit/standards-positions/issues/361" }
+  },
+  "github": { "stars": 925, "starsUrl": "...", "lastCommitDate": "2025-05-30" },
+  "wpt": { "tests": 114, "subtests": null, "url": "..." },
+  "developerSignals": { "votes": 17, "url": "..." },
+  "chromeStatus": { "label": null, "url": "..." },
+  "compatDataUrl": "...",
+
+  "progress": null,
+  "cgStatus": null,
+  "incubatingGroup": null,
+  "standardizationPlan": null,
+  "stability": null,
+  "contributions": null,
+  "experimentationStatus": null,
+  "snapshotsIndex": null
+}
+```
+
+### `support` — the per-browser cells
+
+A browser has shipped when its key is present in `web_features.status.support`
+(`chrome`, `edge`, `firefox`, and `safari` for the WebKit column). Otherwise the standards-position
+collectors supply the label; the Chromium-based columns have no position source, so they fall back
+to `Unknown` without a link.
+
+| position | label |
+|---|---|
+| `positive`, `support` | Supportive |
+| `neutral` | Neutral |
+| `defer` | Deferred |
+| `negative`, `oppose` | Opposed |
+| `blocked` | Blocked |
+| `null` (issue open, no position stated) | Unknown |
+| `no-signal` (spec absent from the dataset) | Unknown, and unlinked — `issue` is `"N/A"` |
+
+`chromium` is **not** used here. Its collector matches Chrome Status on `shortname` rather than
+`webFeaturesId`, so a spec whose id differs (`scheduling-apis` → `scheduler`) misses entirely; and
+where it does match it returns one arbitrary sub-feature, which for `file-system-access` reports
+Chrome as `Proposed` although it shipped in Chrome 86.
+
+### Fields that are authored, not collected
+
+`progress`, `cgStatus`, `incubatingGroup`, `standardizationPlan`, `stability`, `contributions`,
+`experimentationStatus` and `snapshotsIndex` have no source. They are group decisions — the
+maturity stage, the progress-bar step, whether the CG is open, the plan to take the work to a
+standards body — and are supplied through `override.json` until they have a home of their own.
+They are emitted as `null` so that the shape is stable and a document can tell "not known" from
+"known to be empty".
+
+`wpt.subtests` is `null` for a different reason: the collected `wpt.subtests` is summed across
+browser runs and the run count is not collected, so the per-run figure a document wants is not yet
+derivable.
 
 ---
 

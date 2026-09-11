@@ -1,4 +1,4 @@
-import { writeFile } from 'node:fs/promises';
+import { mkdir, readdir, unlink, writeFile } from 'node:fs/promises';
 import { logger } from './logger.js';
 import { mergeResultsWithOverride } from "./utils.js";
 
@@ -10,20 +10,23 @@ import { collectWebFeatures } from "./collectors/web-features.js";
 import { collectWebFeaturesMapping } from "./collectors/web-features-mapping.js";
 import { collectWPTFyi } from "./collectors/wpt.js";
 import { collectRecentSubstantiveContributions } from "./collectors/substantive-contributions.js";
+import { collectLastEdited } from "./collectors/last-edited.js";
+import { project } from "./projection.js";
 
 import specs from "./specs.json" with { type: "json" };
 import data from "./data.json" with { type: "json" };
 import override from "./override.json" with { type: "json" };
 
 const collectors = [
-  { key: "github",                          fn: collectGithubMetadata },
-  { key: "mozilla",                         fn: collectMozillaPosition },
-  { key: "webkit",                          fn: collectWebkitPosition },
-  { key: "chromium",                        fn: collectChromiumPosition },
-  { key: "web_features",                    fn: collectWebFeatures },
-  { key: "web_features_mapping",            fn: collectWebFeaturesMapping },
-  { key: "wpt",                             fn: collectWPTFyi },
+  { key: "github",                           fn: collectGithubMetadata },
+  { key: "mozilla",                          fn: collectMozillaPosition },
+  { key: "webkit",                           fn: collectWebkitPosition },
+  { key: "chromium",                         fn: collectChromiumPosition },
+  { key: "web_features",                     fn: collectWebFeatures },
+  { key: "web_features_mapping",             fn: collectWebFeaturesMapping },
+  { key: "wpt",                              fn: collectWPTFyi },
   { key: "substantiveContributionsLastYear", fn: collectRecentSubstantiveContributions },
+  { key: "lastEdited",                       fn: collectLastEdited },
 ];
 
 const args = process.argv;
@@ -35,6 +38,43 @@ Example: node index.js\n\
 \n\
 If no shortnames are provided, metadata for all specs will be collected.");
     process.exit(0);
+}
+
+// Shortnames become filenames, so keep them to something obviously safe.
+const SAFE_SHORTNAME = /^[a-z0-9][a-z0-9-]*$/;
+const SPECS_DIR = './specs';
+
+// Write one projected file per spec for documents to read, and remove the files
+// of specs that are no longer in specs.json.
+async function updateSpecFiles(finalData) {
+  const written = new Set();
+  const inputs = new Map(specs.map(spec => [spec.shortname, spec]));
+
+  await mkdir(SPECS_DIR, { recursive: true });
+
+  for (const spec of finalData) {
+    if (!SAFE_SHORTNAME.test(spec.shortname ?? "")) {
+      logger.error(`Refusing to write a file for the shortname "${spec.shortname}"`);
+      continue;
+    }
+    const name = `${spec.shortname}.json`;
+    try {
+      const projected = project(spec, inputs.get(spec.shortname));
+      await writeFile(`${SPECS_DIR}/${name}`, JSON.stringify(projected, null, 2) + "\n", 'utf8');
+      written.add(name);
+    } catch (err) {
+      logger.error(`Failed to write ${SPECS_DIR}/${name}`, err.message);
+    }
+  }
+
+  for (const name of await readdir(SPECS_DIR)) {
+    if (name.endsWith('.json') && !written.has(name)) {
+      await unlink(`${SPECS_DIR}/${name}`);
+      logger.info(`Removed ${SPECS_DIR}/${name}, which is no longer in specs.json`);
+    }
+  }
+
+  logger.success(`${SPECS_DIR}/ updated. Total specs: ${written.size}`);
 }
 
 // Update data.json with new results, merging with existing data
@@ -54,6 +94,8 @@ async function updateDataFile(results) {
   } catch (err) {
     logger.error("Failed to write to data.json", err.message);
   }
+
+  await updateSpecFiles(finalData);
 }
 
 async function run() {
@@ -81,13 +123,15 @@ async function run() {
 
       return {
         shortname: spec.shortname,
-        specUrl: spec.specUrl,
+        specUrl: spec.url,
+        repo: spec.repo,
         feature: spec.feature,
+        collectedAt: new Date().toISOString(),
         ...Object.fromEntries(collectedEntries),
       };
     })
   );
-  updateDataFile(results);
+  await updateDataFile(results);
   logger.success("Metadata collection complete.");
 }
 
