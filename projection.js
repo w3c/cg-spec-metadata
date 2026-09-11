@@ -1,19 +1,6 @@
 /**
  * Projects a collected spec entry into the small, stable shape that published
- * specification documents read at load time (see cg-assets/js/cg-metadata.js).
- *
- * Why a projection rather than the raw entry:
- *
- *  - A published document is an immortal client. "Chrome has shipped this" is
- *    currently expressed as "a `chrome` key exists under
- *    web_features.status.support", because that dataset has no false/null
- *    sentinel. If web-features ever adds one, every document published against
- *    the raw shape renders wrong and cannot be patched. Deriving here means one
- *    commit instead.
- *  - Size, and the injection surface. The raw entry is ~26 KB, most of it
- *    by_compat_key and Chrome Status prose that no document renders. Projecting
- *    drops every third-party free-text field (description_html, chromium.name,
- *    chrome-status summary/motivation) off the wire entirely.
+ * specification documents read at load time.
  *
  * Every key is always present. `null` means "not known" and tells the document
  * to keep whatever its generator baked in; a value that is known to be empty is
