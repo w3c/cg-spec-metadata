@@ -3,13 +3,13 @@
     "shortname": "file-system-access",
     "specUrl": "https://wicg.github.io/file-system-access/",
     "repo": "WICG/file-system-access",
-    "collectedAt": "2026-09-11T12:06:18.638Z",
+    "collectedAt": "2026-09-14T00:28:23.426Z",
     "github": {
       "stars": 706,
       "forks": 70,
       "openIssues": 88,
       "openPRs": 7,
-      "closedPRs": 0,
+      "closedPRs": 134,
       "lastCommitDate": "2025-10-10T14:22:22Z"
     },
     "mozilla": {
@@ -426,7 +426,7 @@
           }
         ],
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.00004804,
+          "percentageOfPageLoad": 0.00004547,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/258"
         },
         "chrome-status": [
@@ -555,7 +555,7 @@
     "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
     "repo": "WICG/nav-speculation",
     "feature": "prefetch",
-    "collectedAt": "2026-09-11T12:06:19.386Z",
+    "collectedAt": "2026-09-14T00:28:21.458Z",
     "github": {
       "stars": 200,
       "forks": 43,
@@ -959,7 +959,7 @@
           "votes": 27
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.11774985,
+          "percentageOfPageLoad": 0.12090392,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/317"
         },
         "chrome-status": [
@@ -1227,8 +1227,8 @@
     ],
     "wpt": {
       "hasResults": true,
-      "tests": 210,
-      "subtests": 244
+      "tests": 211,
+      "subtests": 245
     },
     "substantiveContributionsLastYear": 2,
     "lastEdited": {
@@ -1240,13 +1240,13 @@
     "shortname": "scheduling-apis",
     "specUrl": "https://wicg.github.io/scheduling-apis/",
     "repo": "WICG/scheduling-apis",
-    "collectedAt": "2026-09-11T12:06:18.484Z",
+    "collectedAt": "2026-09-14T00:28:23.217Z",
     "github": {
-      "stars": 926,
+      "stars": 927,
       "forks": 47,
       "openIssues": 29,
       "openPRs": 1,
-      "closedPRs": 0,
+      "closedPRs": 61,
       "lastCommitDate": "2025-05-30T20:41:30Z"
     },
     "mozilla": {
@@ -1470,10 +1470,10 @@
         ],
         "developer-signals": {
           "url": "https://github.com/web-platform-dx/developer-signals/issues/254",
-          "votes": 19
+          "votes": 20
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.11942082,
+          "percentageOfPageLoad": 0.12120676,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/118"
         },
         "chrome-status": [
@@ -1522,7 +1522,7 @@
     "wpt": {
       "hasResults": true,
       "tests": 118,
-      "subtests": 341
+      "subtests": 343
     },
     "substantiveContributionsLastYear": 0,
     "lastEdited": {

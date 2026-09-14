@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "scheduling-apis",
-  "collectedAt": "2026-09-11T12:06:18.484Z",
+  "collectedAt": "2026-09-14T00:28:23.217Z",
   "specUrl": "https://wicg.github.io/scheduling-apis/",
   "lastEdited": {
     "date": "2025-05-30",
@@ -30,7 +30,7 @@
     }
   },
   "github": {
-    "stars": 926,
+    "stars": 927,
     "starsUrl": "https://github.com/WICG/scheduling-apis/stargazers",
     "lastCommitDate": "2025-05-30"
   },
@@ -40,7 +40,7 @@
     "url": "https://wpt.fyi/results?q=feature:scheduler"
   },
   "developerSignals": {
-    "votes": 19,
+    "votes": 20,
     "url": "https://github.com/web-platform-dx/developer-signals/issues/254"
   },
   "chromeStatus": {
