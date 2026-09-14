@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "speculation-rules",
-  "collectedAt": "2026-09-11T12:06:19.386Z",
+  "collectedAt": "2026-09-14T00:28:21.458Z",
   "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
   "lastEdited": {
     "date": "2026-08-27",
@@ -35,7 +35,7 @@
     "lastCommitDate": "2026-08-27"
   },
   "wpt": {
-    "tests": 210,
+    "tests": 211,
     "subtests": null,
     "url": "https://wpt.fyi/results?q=feature:speculation-rules"
   },
