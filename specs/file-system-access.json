@@ -48,7 +48,7 @@
     "url": "https://chromestatus.com/feature/5324970347200512"
   },
   "compatDataUrl": "https://caniuse.com/native-filesystem-api",
-  "progress": null,
+  "progress": 1,
   "cgStatus": null,
   "incubatingGroup": null,
   "standardizationPlan": null,

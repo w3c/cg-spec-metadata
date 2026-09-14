@@ -48,7 +48,7 @@
     "url": "https://chromestatus.com/feature/6266249336586240"
   },
   "compatDataUrl": "https://developer.mozilla.org/docs/Web/API/Prioritized_Task_Scheduling_API#browser_compatibility",
-  "progress": null,
+  "progress": 2,
   "cgStatus": null,
   "incubatingGroup": null,
   "standardizationPlan": null,

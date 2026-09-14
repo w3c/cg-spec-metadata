@@ -48,7 +48,7 @@
     "url": "https://chromestatus.com/feature/5074313831120896"
   },
   "compatDataUrl": "https://developer.mozilla.org/docs/Web/API/Speculation_Rules_API#browser_compatibility",
-  "progress": null,
+  "progress": 1,
   "cgStatus": null,
   "incubatingGroup": null,
   "standardizationPlan": null,

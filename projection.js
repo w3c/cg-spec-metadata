@@ -32,6 +32,19 @@ const BROWSERS = [
   { column: "webkit",  supportKey: "safari",  position: "webkit" },
 ];
 
+// Which engine each web-features support key belongs to. Counting engines
+// rather than browsers is what "two implementations" means in a standards
+// context: Chrome and Edge are both Blink, so they are one implementation.
+const ENGINES = {
+  chrome: "blink",
+  chrome_android: "blink",
+  edge: "blink",
+  firefox: "gecko",
+  firefox_android: "gecko",
+  safari: "webkit",
+  safari_ios: "webkit",
+};
+
 // The rendered label for every documented position value. Mozilla and WebKit
 // use different words for the same stances, and "no-signal" is the collectors'
 // own marker for "this spec is absent from the dataset", where `issue` is the
@@ -83,6 +96,32 @@ function support(spec) {
     };
   }
   return out;
+}
+
+/**
+ * The progress-bar state, as a 0-based index into the four states in
+ * cg-program's spec-lifecycle.md:
+ *
+ *   0  Early idea                   no implementation
+ *   1  Implementer experimentation  one engine has shipped it
+ *   2  Partial availability         two or more engines have shipped it
+ *   3  Standardization started      never computed; some or all of the spec is
+ *                                   in a standards body, which no collector can
+ *                                   see. Set it in override.json.
+ *
+ * An override wins outright, which is also the only way to reach 3 or to walk
+ * a specification back to an earlier state after material has been transferred
+ * (spec-lifecycle.md allows a group to do that deliberately).
+ */
+function progress(spec) {
+  if (Number.isInteger(spec.progress)) return spec.progress;
+
+  const versions = ok(ok(ok(spec.web_features).status).support);
+  const engines = new Set();
+  for (const key of Object.keys(versions)) {
+    if (versions[key] && ENGINES[key]) engines.add(ENGINES[key]);
+  }
+  return Math.min(engines.size, 2);
 }
 
 /** Where a reader should go for per-browser compatibility detail. */
@@ -146,7 +185,7 @@ export function project(spec, input = {}) {
 
     // Editorial, and authored rather than collected. Emitted so that the shape
     // is stable and a document can tell "not known" from "known to be empty".
-    progress: spec.progress ?? null,
+    progress: progress(spec),
     cgStatus: spec.cgStatus ?? null,
     incubatingGroup: isObject(spec.incubatingGroup) ? spec.incubatingGroup : null,
     standardizationPlan: isObject(spec.standardizationPlan) ? spec.standardizationPlan : null,
