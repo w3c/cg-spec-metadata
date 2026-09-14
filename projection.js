@@ -99,15 +99,18 @@ function support(spec) {
 }
 
 /**
- * The progress-bar state, as a 0-based index into the four states in
- * cg-program's spec-lifecycle.md:
+ * The progress-bar state: the 0-based index of the last of cg-program's four
+ * spec-lifecycle.md states that the work has *completed*. A document ticks
+ * every step up to and including it, and shows the one after it, if there is
+ * one, as where the work stands now.
  *
- *   0  Early idea                   no implementation
- *   1  Implementer experimentation  one engine has shipped it
- *   2  Partial availability         two or more engines have shipped it
- *   3  Standardization started      never computed; some or all of the spec is
- *                                   in a standards body, which no collector can
- *                                   see. Set it in override.json.
+ *   0  Early idea completed                   no implementation
+ *   1  Implementer experimentation completed  one engine has shipped it
+ *   2  Partial availability completed         two or more engines have shipped it
+ *   3  Standardization started completed      never computed; some or all of the
+ *                                             spec is in a standards body, which
+ *                                             no collector can see. Set it in
+ *                                             override.json.
  *
  * An override wins outright, which is also the only way to reach 3 or to walk
  * a specification back to an earlier state after material has been transferred

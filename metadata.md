@@ -313,16 +313,21 @@ Chrome as `Proposed` although it shipped in Chrome 86.
 
 ### `progress` — the progress-bar state
 
-A 0-based index into the four states defined in cg-program's
-[spec-lifecycle.md](https://github.com/w3c/cg-program/blob/main/proposals/spec-lifecycle.md#progress-bar),
-derived from how many **engines** have shipped the feature:
+The 0-based index of the last of the four states defined in cg-program's
+[spec-lifecycle.md](https://github.com/w3c/cg-program/blob/main/proposals/spec-lifecycle.md#progress-bar)
+that the work has **completed**, derived from how many **engines** have shipped the feature:
 
-| value | state | rule |
+| value | last completed state | rule |
 |---|---|---|
 | `0` | Early idea | no implementation |
 | `1` | Implementer experimentation | one engine has shipped it |
 | `2` | Partial availability | two or more engines have shipped it |
 | `3` | Standardization started | never computed — set it in `override.json` |
+
+A document ticks every step up to and including this one, and shows the step after it, if there is
+one, as where the work stands now. So `2` renders *Early idea*, *Implementer experimentation* and
+*Partial availability* as completed, with *Standardization started* as the current step; `3`
+completes the bar and leaves no current step.
 
 Engines, not browsers: Chrome and Edge are both Blink, so a feature shipping in both is *one*
 implementation. The count comes from the keys present in `web_features.status.support`, mapped
