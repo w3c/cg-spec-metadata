@@ -279,14 +279,13 @@ a document. That takes a ~26 KB entry down to ~1.2 KB.
   "chromeStatus": { "label": null, "url": "..." },
   "compatDataUrl": "...",
 
-  "progress": null,
+  "progress": 2,
   "cgStatus": null,
   "incubatingGroup": null,
   "standardizationPlan": null,
   "stability": null,
   "contributions": null,
-  "experimentationStatus": null,
-  "snapshotsIndex": null
+  "experimentationStatus": null
 }
 ```
 
@@ -312,12 +311,35 @@ to `Unknown` without a link.
 where it does match it returns one arbitrary sub-feature, which for `file-system-access` reports
 Chrome as `Proposed` although it shipped in Chrome 86.
 
+### `progress` — the progress-bar state
+
+A 0-based index into the four states defined in cg-program's
+[spec-lifecycle.md](https://github.com/w3c/cg-program/blob/main/proposals/spec-lifecycle.md#progress-bar),
+derived from how many **engines** have shipped the feature:
+
+| value | state | rule |
+|---|---|---|
+| `0` | Early idea | no implementation |
+| `1` | Implementer experimentation | one engine has shipped it |
+| `2` | Partial availability | two or more engines have shipped it |
+| `3` | Standardization started | never computed — set it in `override.json` |
+
+Engines, not browsers: Chrome and Edge are both Blink, so a feature shipping in both is *one*
+implementation. The count comes from the keys present in `web_features.status.support`, mapped
+`chrome` / `chrome_android` / `edge` → Blink, `firefox` / `firefox_android` → Gecko,
+`safari` / `safari_ios` → WebKit.
+
+An override wins outright. That is the only way to reach `3`, which means some or all of the
+specification is undergoing standardization somewhere no collector can see; it is also how a group
+walks a specification back to an earlier state after transferring material, which
+spec-lifecycle.md explicitly allows.
+
 ### Fields that are authored, not collected
 
-`progress`, `cgStatus`, `incubatingGroup`, `standardizationPlan`, `stability`, `contributions`,
-`experimentationStatus` and `snapshotsIndex` have no source. They are group decisions — the
-maturity stage, the progress-bar step, whether the CG is open, the plan to take the work to a
-standards body — and are supplied through `override.json` until they have a home of their own.
+`cgStatus`, `incubatingGroup`, `standardizationPlan`, `stability`, `contributions`
+and `experimentationStatus` have no source. They are group decisions — whether the CG is open,
+the plan to take the work to a standards body, the stability sentence — and are supplied through
+`override.json` until they have a home of their own.
 They are emitted as `null` so that the shape is stable and a document can tell "not known" from
 "known to be empty".
 
