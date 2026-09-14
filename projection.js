@@ -153,6 +153,5 @@ export function project(spec, input = {}) {
     stability: spec.stability ?? null,
     contributions: isObject(spec.contributions) ? spec.contributions : null,
     experimentationStatus: spec.experimentationStatus ?? null,
-    snapshotsIndex: spec.snapshotsIndex ?? null,
   };
 }

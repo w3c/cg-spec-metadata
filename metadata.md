@@ -285,8 +285,7 @@ a document. That takes a ~26 KB entry down to ~1.2 KB.
   "standardizationPlan": null,
   "stability": null,
   "contributions": null,
-  "experimentationStatus": null,
-  "snapshotsIndex": null
+  "experimentationStatus": null
 }
 ```
 
@@ -314,8 +313,8 @@ Chrome as `Proposed` although it shipped in Chrome 86.
 
 ### Fields that are authored, not collected
 
-`progress`, `cgStatus`, `incubatingGroup`, `standardizationPlan`, `stability`, `contributions`,
-`experimentationStatus` and `snapshotsIndex` have no source. They are group decisions — the
+`progress`, `cgStatus`, `incubatingGroup`, `standardizationPlan`, `stability`, `contributions`
+and `experimentationStatus` have no source. They are group decisions — the
 maturity stage, the progress-bar step, whether the CG is open, the plan to take the work to a
 standards body — and are supplied through `override.json` until they have a home of their own.
 They are emitted as `null` so that the shape is stable and a document can tell "not known" from
