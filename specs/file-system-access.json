@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "file-system-access",
-  "collectedAt": "2026-09-11T12:06:18.638Z",
+  "collectedAt": "2026-09-17T11:53:21.500Z",
   "specUrl": "https://wicg.github.io/file-system-access/",
   "lastEdited": {
     "date": "2025-10-10",
@@ -49,8 +49,12 @@
   },
   "compatDataUrl": "https://caniuse.com/native-filesystem-api",
   "progress": 1,
-  "cgStatus": null,
-  "incubatingGroup": null,
+  "cgStatus": "Open",
+  "incubatingGroup": {
+    "name": "Web Platform Incubator Community Group",
+    "url": "https://www.w3.org/community/wicg/",
+    "joinUrl": "https://www.w3.org/community/wicg/join"
+  },
   "standardizationPlan": null,
   "stability": null,
   "contributions": null,

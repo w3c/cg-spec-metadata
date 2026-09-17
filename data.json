@@ -3,13 +3,13 @@
     "shortname": "file-system-access",
     "specUrl": "https://wicg.github.io/file-system-access/",
     "repo": "WICG/file-system-access",
-    "collectedAt": "2026-09-11T12:06:18.638Z",
+    "collectedAt": "2026-09-17T11:53:21.500Z",
     "github": {
       "stars": 706,
       "forks": 70,
       "openIssues": 88,
       "openPRs": 7,
-      "closedPRs": 0,
+      "closedPRs": 134,
       "lastCommitDate": "2025-10-10T14:22:22Z"
     },
     "mozilla": {
@@ -426,7 +426,7 @@
           }
         ],
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.00004804,
+          "percentageOfPageLoad": 0.0000479,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/258"
         },
         "chrome-status": [
@@ -548,6 +548,14 @@
     "lastEdited": {
       "date": "2025-10-10",
       "source": "http-last-modified"
+    },
+    "w3cGroup": {
+      "id": 80485,
+      "shortname": "wicg",
+      "name": "Web Platform Incubator Community Group",
+      "isClosed": false,
+      "url": "https://www.w3.org/community/wicg/",
+      "joinUrl": "https://www.w3.org/community/wicg/join"
     }
   },
   {
@@ -555,7 +563,7 @@
     "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
     "repo": "WICG/nav-speculation",
     "feature": "prefetch",
-    "collectedAt": "2026-09-11T12:06:19.386Z",
+    "collectedAt": "2026-09-17T11:53:24.937Z",
     "github": {
       "stars": 200,
       "forks": 43,
@@ -959,7 +967,7 @@
           "votes": 27
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.11774985,
+          "percentageOfPageLoad": 0.11687236,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/317"
         },
         "chrome-status": [
@@ -1193,10 +1201,6 @@
           }
         ],
         "bugs": {
-          "firefox": [
-            "https://bugzil.la/1969396",
-            "https://bugzil.la/1969838"
-          ],
           "chrome": [
             "https://issues.chromium.org/issues/346555939",
             "https://issues.chromium.org/issues/40170951",
@@ -1211,6 +1215,10 @@
             "https://bugs.chromium.org/p/chromium/issues/detail?id=1355146",
             "https://bugs.chromium.org/p/chromium/issues/detail?id=1371522",
             "https://crbug.com/1366940"
+          ],
+          "firefox": [
+            "https://bugzil.la/1969396",
+            "https://bugzil.la/1969838"
           ],
           "firefox_android": [
             "https://bugzil.la/1969396",
@@ -1227,26 +1235,34 @@
     ],
     "wpt": {
       "hasResults": true,
-      "tests": 210,
-      "subtests": 244
+      "tests": 211,
+      "subtests": 245
     },
     "substantiveContributionsLastYear": 2,
     "lastEdited": {
       "date": "2026-08-27",
       "source": "http-last-modified"
+    },
+    "w3cGroup": {
+      "id": 80485,
+      "shortname": "wicg",
+      "name": "Web Platform Incubator Community Group",
+      "isClosed": false,
+      "url": "https://www.w3.org/community/wicg/",
+      "joinUrl": "https://www.w3.org/community/wicg/join"
     }
   },
   {
     "shortname": "scheduling-apis",
     "specUrl": "https://wicg.github.io/scheduling-apis/",
     "repo": "WICG/scheduling-apis",
-    "collectedAt": "2026-09-11T12:06:18.484Z",
+    "collectedAt": "2026-09-17T11:53:24.364Z",
     "github": {
-      "stars": 926,
+      "stars": 927,
       "forks": 47,
       "openIssues": 29,
       "openPRs": 1,
-      "closedPRs": 0,
+      "closedPRs": 61,
       "lastCommitDate": "2025-05-30T20:41:30Z"
     },
     "mozilla": {
@@ -1470,10 +1486,10 @@
         ],
         "developer-signals": {
           "url": "https://github.com/web-platform-dx/developer-signals/issues/254",
-          "votes": 19
+          "votes": 21
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.11942082,
+          "percentageOfPageLoad": 0.1168625,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/118"
         },
         "chrome-status": [
@@ -1522,12 +1538,20 @@
     "wpt": {
       "hasResults": true,
       "tests": 118,
-      "subtests": 341
+      "subtests": 343
     },
     "substantiveContributionsLastYear": 0,
     "lastEdited": {
       "date": "2025-05-30",
       "source": "http-last-modified"
+    },
+    "w3cGroup": {
+      "id": 80485,
+      "shortname": "wicg",
+      "name": "Web Platform Incubator Community Group",
+      "isClosed": false,
+      "url": "https://www.w3.org/community/wicg/",
+      "joinUrl": "https://www.w3.org/community/wicg/join"
     }
   }
 ]

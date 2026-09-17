@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "speculation-rules",
-  "collectedAt": "2026-09-11T12:06:19.386Z",
+  "collectedAt": "2026-09-17T11:53:24.937Z",
   "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
   "lastEdited": {
     "date": "2026-08-27",
@@ -35,7 +35,7 @@
     "lastCommitDate": "2026-08-27"
   },
   "wpt": {
-    "tests": 210,
+    "tests": 211,
     "subtests": null,
     "url": "https://wpt.fyi/results?q=feature:speculation-rules"
   },
@@ -49,8 +49,12 @@
   },
   "compatDataUrl": "https://developer.mozilla.org/docs/Web/API/Speculation_Rules_API#browser_compatibility",
   "progress": 1,
-  "cgStatus": null,
-  "incubatingGroup": null,
+  "cgStatus": "Open",
+  "incubatingGroup": {
+    "name": "Web Platform Incubator Community Group",
+    "url": "https://www.w3.org/community/wicg/",
+    "joinUrl": "https://www.w3.org/community/wicg/join"
+  },
   "standardizationPlan": null,
   "stability": null,
   "contributions": null,
