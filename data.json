@@ -3,7 +3,7 @@
     "shortname": "file-system-access",
     "specUrl": "https://wicg.github.io/file-system-access/",
     "repo": "WICG/file-system-access",
-    "collectedAt": "2026-09-17T11:53:21.500Z",
+    "collectedAt": "2026-09-17T12:11:35.015Z",
     "github": {
       "stars": 706,
       "forks": 70,
@@ -545,6 +545,17 @@
       "subtests": 163
     },
     "substantiveContributionsLastYear": 1,
+    "contributions": {
+      "substantive": {
+        "contributions": 47,
+        "contributors": 3
+      },
+      "nonSubstantive": {
+        "contributions": 5,
+        "contributors": 5
+      },
+      "substantiveContributorsLastYear": 1
+    },
     "lastEdited": {
       "date": "2025-10-10",
       "source": "http-last-modified"
@@ -563,7 +574,7 @@
     "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
     "repo": "WICG/nav-speculation",
     "feature": "prefetch",
-    "collectedAt": "2026-09-17T11:53:24.937Z",
+    "collectedAt": "2026-09-17T12:11:35.426Z",
     "github": {
       "stars": 200,
       "forks": 43,
@@ -1239,6 +1250,17 @@
       "subtests": 245
     },
     "substantiveContributionsLastYear": 2,
+    "contributions": {
+      "substantive": {
+        "contributions": 181,
+        "contributors": 3
+      },
+      "nonSubstantive": {
+        "contributions": 3,
+        "contributors": 3
+      },
+      "substantiveContributorsLastYear": 2
+    },
     "lastEdited": {
       "date": "2026-08-27",
       "source": "http-last-modified"
@@ -1256,7 +1278,7 @@
     "shortname": "scheduling-apis",
     "specUrl": "https://wicg.github.io/scheduling-apis/",
     "repo": "WICG/scheduling-apis",
-    "collectedAt": "2026-09-17T11:53:24.364Z",
+    "collectedAt": "2026-09-17T12:11:32.900Z",
     "github": {
       "stars": 927,
       "forks": 47,
@@ -1541,6 +1563,17 @@
       "subtests": 343
     },
     "substantiveContributionsLastYear": 0,
+    "contributions": {
+      "substantive": {
+        "contributions": 31,
+        "contributors": 2
+      },
+      "nonSubstantive": {
+        "contributions": 3,
+        "contributors": 3
+      },
+      "substantiveContributorsLastYear": 0
+    },
     "lastEdited": {
       "date": "2025-05-30",
       "source": "http-last-modified"

@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "speculation-rules",
-  "collectedAt": "2026-09-17T11:53:24.937Z",
+  "collectedAt": "2026-09-17T12:11:35.426Z",
   "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
   "lastEdited": {
     "date": "2026-08-27",
@@ -57,6 +57,10 @@
   },
   "standardizationPlan": null,
   "stability": null,
-  "contributions": null,
+  "contributions": {
+    "count": 181,
+    "contributors": 3,
+    "url": "https://labs.w3.org/repo-manager/repos/WICG/nav-speculation/contributors"
+  },
   "experimentationStatus": null
 }
