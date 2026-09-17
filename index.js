@@ -11,6 +11,7 @@ import { collectWebFeaturesMapping } from "./collectors/web-features-mapping.js"
 import { collectWPTFyi } from "./collectors/wpt.js";
 import { collectRecentSubstantiveContributions } from "./collectors/substantive-contributions.js";
 import { collectLastEdited } from "./collectors/last-edited.js";
+import { collectW3CGroup } from "./collectors/w3c-group.js";
 import { project } from "./projection.js";
 
 import specs from "./specs.json" with { type: "json" };
@@ -27,6 +28,7 @@ const collectors = [
   { key: "wpt",                              fn: collectWPTFyi },
   { key: "substantiveContributionsLastYear", fn: collectRecentSubstantiveContributions },
   { key: "lastEdited",                       fn: collectLastEdited },
+  { key: "w3cGroup",                         fn: collectW3CGroup },
 ];
 
 const args = process.argv;

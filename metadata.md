@@ -25,7 +25,8 @@ Every entry in `data.json` has the following top-level shape:
   "web_features_mapping": [ ... ],
   "wpt": { ... },
   "substantiveContributionsLastYear": 0,
-  "lastEdited": { ... }
+  "lastEdited": { ... },
+  "w3cGroup": { ... }
 }
 ```
 
@@ -55,6 +56,7 @@ Each spec is declared with the following properties:
 | `feature` | string | no | Sub-feature name for specs that cover several features (e.g. `prefetch` for `speculation-rules`). When present, the wpt.fyi query becomes `shortname/feature`. |
 | `repo` | string | yes | GitHub repository in `owner/name` form (e.g. `WICG/file-system-access`). Used by the GitHub and substantive-contributions collectors. |
 | `url` | string | yes | Canonical URL of the spec. Used to match entries in the Mozilla and WebKit standards-positions datasets. |
+| `group` | number \| string | no | W3C group, as the numeric id or the shortname (`wicg`). Only needed when the repository has no `w3c.json` to read it from; see [`w3cGroup`](#w3cgroup--the-community-group). |
 
 ---
 
@@ -214,6 +216,33 @@ The `mappings` object links the feature to external resources. Possible keys (ea
 
 A single number: the count of substantive contributors who had at least one pull request updated in the last 12 months. This is an indicator of active, IPR-relevant participation in the spec's repository.
 
+### `w3cGroup` — the Community Group
+
+- **Source:** the repository's own `w3c.json`, resolved against the [W3C API](https://api.w3.org/groups)
+- **Collector:** `collectors/w3c-group.js`
+
+```json
+{
+  "id": 80485,
+  "shortname": "wicg",
+  "name": "Web Platform Incubator Community Group",
+  "isClosed": false,
+  "url": "https://www.w3.org/community/wicg/",
+  "joinUrl": "https://www.w3.org/community/wicg/join"
+}
+```
+
+The collector reads `https://raw.githubusercontent.com/<repo>/HEAD/w3c.json`, which W3C repositoriescarry
+carry and which records the group by numeric id, then asks the API about that id.
+
+`specs.json` may declare `group` to skip the first step — as the numeric id or the shortname — and
+it wins when present. That is the escape hatch for a repository with no `w3c.json`. When neither is
+available every field is `null` and the collector logs what to do about it.
+
+`isClosed` is what the *Community Group status* row renders: `false` → `Open`, `true` → `Closed`.
+Responses are cached per group and per repository for the length of a run, so a dozen specs from
+one Community Group cost one API request.
+
 ### `lastEdited` — when the document itself was last edited
 
 - **Source:** the HTTP `Last-Modified` of `specs.json`'s `url`
@@ -280,8 +309,8 @@ a document. That takes a ~26 KB entry down to ~1.2 KB.
   "compatDataUrl": "...",
 
   "progress": 2,
-  "cgStatus": null,
-  "incubatingGroup": null,
+  "cgStatus": "Open",
+  "incubatingGroup": { "name": "...", "url": "...", "joinUrl": "..." },
   "standardizationPlan": null,
   "stability": null,
   "contributions": null,
@@ -341,10 +370,12 @@ spec-lifecycle.md explicitly allows.
 
 ### Fields that are authored, not collected
 
-`cgStatus`, `incubatingGroup`, `standardizationPlan`, `stability`, `contributions`
-and `experimentationStatus` have no source. They are group decisions — whether the CG is open,
-the plan to take the work to a standards body, the stability sentence — and are supplied through
-`override.json` until they have a home of their own.
+`standardizationPlan`, `stability`, `contributions` and `experimentationStatus` have no source.
+They are group decisions — the plan to take the work to a standards body, the stability sentence —
+and are supplied through `override.json` until they have a home of their own.
+
+`cgStatus` and `incubatingGroup` are derived from [`w3cGroup`](#w3cgroup--the-community-group);
+an entry in `override.json` still wins over the derived value.
 They are emitted as `null` so that the shape is stable and a document can tell "not known" from
 "known to be empty".
 

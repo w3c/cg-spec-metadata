@@ -142,6 +142,20 @@ function compatDataUrl(spec) {
  *              static inputs rather than collected data, so reading them from
  *              here keeps a re-projection of older data.json entries correct.
  */
+function cgStatus(spec) {
+  if (spec.cgStatus) return spec.cgStatus;
+  const group = ok(spec.w3cGroup);
+  if (typeof group.isClosed !== "boolean") return null;
+  return group.isClosed ? "Closed" : "Open";
+}
+
+function incubatingGroup(spec) {
+  if (isObject(spec.incubatingGroup)) return spec.incubatingGroup;
+  const group = ok(spec.w3cGroup);
+  if (!group.name) return null;
+  return { name: group.name, url: group.url ?? null, joinUrl: group.joinUrl ?? null };
+}
+
 export function project(spec, input = {}) {
   const github = ok(spec.github);
   const wpt = ok(spec.wpt);
@@ -189,8 +203,8 @@ export function project(spec, input = {}) {
     // Editorial, and authored rather than collected. Emitted so that the shape
     // is stable and a document can tell "not known" from "known to be empty".
     progress: progress(spec),
-    cgStatus: spec.cgStatus ?? null,
-    incubatingGroup: isObject(spec.incubatingGroup) ? spec.incubatingGroup : null,
+    cgStatus: cgStatus(spec),
+    incubatingGroup: incubatingGroup(spec),
     standardizationPlan: isObject(spec.standardizationPlan) ? spec.standardizationPlan : null,
     stability: spec.stability ?? null,
     contributions: isObject(spec.contributions) ? spec.contributions : null,
