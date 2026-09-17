@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "scheduling-apis",
-  "collectedAt": "2026-09-17T12:11:32.900Z",
+  "collectedAt": "2026-09-17T12:33:13.341Z",
   "specUrl": "https://wicg.github.io/scheduling-apis/",
   "lastEdited": {
     "date": "2025-05-30",
@@ -56,7 +56,7 @@
     "joinUrl": "https://www.w3.org/community/wicg/join"
   },
   "standardizationPlan": null,
-  "stability": null,
+  "stability": "0 substantive changes in the past year.",
   "contributions": {
     "count": 31,
     "contributors": 2,

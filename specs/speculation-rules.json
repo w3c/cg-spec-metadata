@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "speculation-rules",
-  "collectedAt": "2026-09-17T12:11:35.426Z",
+  "collectedAt": "2026-09-17T12:33:15.904Z",
   "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
   "lastEdited": {
     "date": "2026-08-27",
@@ -56,7 +56,7 @@
     "joinUrl": "https://www.w3.org/community/wicg/join"
   },
   "standardizationPlan": null,
-  "stability": null,
+  "stability": "21 substantive changes in the past year.",
   "contributions": {
     "count": 181,
     "contributors": 3,

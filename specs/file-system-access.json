@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "file-system-access",
-  "collectedAt": "2026-09-17T12:11:35.015Z",
+  "collectedAt": "2026-09-17T12:33:15.159Z",
   "specUrl": "https://wicg.github.io/file-system-access/",
   "lastEdited": {
     "date": "2025-10-10",
@@ -56,7 +56,7 @@
     "joinUrl": "https://www.w3.org/community/wicg/join"
   },
   "standardizationPlan": null,
-  "stability": null,
+  "stability": "1 substantive change in the past year.",
   "contributions": {
     "count": 47,
     "contributors": 3,

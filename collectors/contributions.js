@@ -36,16 +36,24 @@ function tally(group) {
   };
 }
 
-function activeLastYear(group) {
+function withinLastYear(pr) {
   const oneYearAgo = new Date();
   oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+  const date = new Date(pr.lastUpdated);
+  return !isNaN(date) && date >= oneYearAgo;
+}
 
+// The changes themselves, not the people who made them.
+function changesLastYear(group) {
+  return Object.values(group || {})
+    .flatMap((contributor) => (Array.isArray(contributor.prs) ? contributor.prs : []))
+    .filter(withinLastYear).length;
+}
+
+function activeLastYear(group) {
   return Object.values(group || {}).filter((contributor) => {
     if (!Array.isArray(contributor.prs)) return false;
-    return contributor.prs.some((pr) => {
-      const date = new Date(pr.lastUpdated);
-      return !isNaN(date) && date >= oneYearAgo;
-    });
+    return contributor.prs.some(withinLastYear);
   }).length;
 }
 
@@ -55,6 +63,7 @@ export async function collectContributions(spec) {
     return {
       substantive: tally(data.substantiveContributors),
       nonSubstantive: tally(data.nonSubstantiveContributors),
+      substantiveChangesLastYear: changesLastYear(data.substantiveContributors),
       substantiveContributorsLastYear: activeLastYear(data.substantiveContributors),
     };
   } catch (err) {

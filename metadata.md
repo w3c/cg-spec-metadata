@@ -219,6 +219,7 @@ The `mappings` object links the feature to external resources. Possible keys (ea
 {
   "substantive":    { "contributions": 31, "contributors": 2 },
   "nonSubstantive": { "contributions": 3,  "contributors": 3 },
+  "substantiveChangesLastYear": 0,
   "substantiveContributorsLastYear": 0
 }
 ```
@@ -234,8 +235,15 @@ The API returns two maps keyed by W3C identity, each holding that contributor's 
 A "contributor" is an organization as often as a person — `Google LLC`, `Igalia`, `John Doe` — so
 both the pull requests and the contributors who landed them are counted.
 
-`substantiveContributorsLastYear` counts the contributors with at least one pull request touched in
-the last 12 months.
+Every pull request carries its own date, so the last 12 months can be counted two ways, and the two
+differ a lot: `speculation-rules` has **21** substantive changes from **2** contributors.
+
+| field | counts |
+|---|---|
+| `substantiveChangesLastYear` | pull requests touched in the last 12 months — the changes themselves |
+| `substantiveContributorsLastYear` | contributors with at least one such pull request |
+
+`substantiveChangesLastYear` is what the *Specification stability* row renders.
 
 ### `substantiveContributionsLastYear` — recent substantive contributors
 
@@ -341,7 +349,7 @@ a document. That takes a ~26 KB entry down to ~1.2 KB.
   "cgStatus": "Open",
   "incubatingGroup": { "name": "...", "url": "...", "joinUrl": "..." },
   "standardizationPlan": null,
-  "stability": null,
+  "stability": "0 substantive changes in the past year.",
   "contributions": { "count": 31, "contributors": 2, "url": "..." },
   "experimentationStatus": null
 }
@@ -399,13 +407,16 @@ spec-lifecycle.md explicitly allows.
 
 ### Fields that are authored, not collected
 
-`standardizationPlan`, `stability` and `experimentationStatus` have no source. They are group
-decisions — the plan to take the work to a standards body, the stability sentence — and are
-supplied through `override.json` until they have a home of their own.
+`standardizationPlan` and `experimentationStatus` have no source. They are group decisions — the
+plan to take the work to a standards body — and are supplied through `override.json` until they
+have a home of their own.
 
-`cgStatus` and `incubatingGroup` are derived from [`w3cGroup`](#w3cgroup--the-community-group),
-and `contributions` from [`contributions`](#contributions--w3c-repo-manager-contributions); an
-entry in `override.json` still wins over a derived value.
+`cgStatus` and `incubatingGroup` are derived from [`w3cGroup`](#w3cgroup--the-community-group);
+`contributions` and `stability` from
+[`contributions`](#contributions--w3c-repo-manager-contributions). `stability` is rendered as
+"*N* substantive change(s) in the past year." — built here rather than in a published document,
+which can never be updated to reword it. An entry in `override.json` still wins over a derived
+value.
 They are emitted as `null` so that the shape is stable and a document can tell "not known" from
 "known to be empty".
 

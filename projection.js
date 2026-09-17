@@ -156,6 +156,17 @@ function incubatingGroup(spec) {
   return { name: group.name, url: group.url ?? null, joinUrl: group.joinUrl ?? null };
 }
 
+// The wording is built here, not in a published document that can never be
+// updated to reword it.
+function stability(spec) {
+  if (spec.stability) return spec.stability;
+
+  const changes = ok(spec.contributions).substantiveChangesLastYear;
+  if (!Number.isInteger(changes)) return null;
+
+  return `${changes} substantive change${changes === 1 ? "" : "s"} in the past year.`;
+}
+
 function contributions(spec, input) {
   const repo = spec.repo ?? input.repo ?? null;
   const url = repo ? `https://labs.w3.org/repo-manager/repos/${repo}/contributors` : null;
@@ -220,7 +231,7 @@ export function project(spec, input = {}) {
     cgStatus: cgStatus(spec),
     incubatingGroup: incubatingGroup(spec),
     standardizationPlan: isObject(spec.standardizationPlan) ? spec.standardizationPlan : null,
-    stability: spec.stability ?? null,
+    stability: stability(spec),
     contributions: contributions(spec, input),
     experimentationStatus: spec.experimentationStatus ?? null,
   };

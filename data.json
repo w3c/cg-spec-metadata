@@ -3,7 +3,7 @@
     "shortname": "file-system-access",
     "specUrl": "https://wicg.github.io/file-system-access/",
     "repo": "WICG/file-system-access",
-    "collectedAt": "2026-09-17T12:11:35.015Z",
+    "collectedAt": "2026-09-17T12:33:15.159Z",
     "github": {
       "stars": 706,
       "forks": 70,
@@ -554,6 +554,7 @@
         "contributions": 5,
         "contributors": 5
       },
+      "substantiveChangesLastYear": 1,
       "substantiveContributorsLastYear": 1
     },
     "lastEdited": {
@@ -574,7 +575,7 @@
     "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
     "repo": "WICG/nav-speculation",
     "feature": "prefetch",
-    "collectedAt": "2026-09-17T12:11:35.426Z",
+    "collectedAt": "2026-09-17T12:33:15.904Z",
     "github": {
       "stars": 200,
       "forks": 43,
@@ -1259,6 +1260,7 @@
         "contributions": 3,
         "contributors": 3
       },
+      "substantiveChangesLastYear": 21,
       "substantiveContributorsLastYear": 2
     },
     "lastEdited": {
@@ -1278,7 +1280,7 @@
     "shortname": "scheduling-apis",
     "specUrl": "https://wicg.github.io/scheduling-apis/",
     "repo": "WICG/scheduling-apis",
-    "collectedAt": "2026-09-17T12:11:32.900Z",
+    "collectedAt": "2026-09-17T12:33:13.341Z",
     "github": {
       "stars": 927,
       "forks": 47,
@@ -1572,6 +1574,7 @@
         "contributions": 3,
         "contributors": 3
       },
+      "substantiveChangesLastYear": 0,
       "substantiveContributorsLastYear": 0
     },
     "lastEdited": {
