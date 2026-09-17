@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "file-system-access",
-  "collectedAt": "2026-09-17T12:33:15.159Z",
+  "collectedAt": "2026-09-17T12:44:10.606Z",
   "specUrl": "https://wicg.github.io/file-system-access/",
   "lastEdited": {
     "date": "2025-10-10",
@@ -36,7 +36,7 @@
   },
   "wpt": {
     "tests": 10,
-    "subtests": null,
+    "subtests": 163,
     "url": "https://wpt.fyi/results?q=feature:file-system-access"
   },
   "developerSignals": {

@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "scheduling-apis",
-  "collectedAt": "2026-09-17T12:33:13.341Z",
+  "collectedAt": "2026-09-17T12:44:07.766Z",
   "specUrl": "https://wicg.github.io/scheduling-apis/",
   "lastEdited": {
     "date": "2025-05-30",
@@ -36,7 +36,7 @@
   },
   "wpt": {
     "tests": 118,
-    "subtests": null,
+    "subtests": 343,
     "url": "https://wpt.fyi/results?q=feature:scheduler"
   },
   "developerSignals": {

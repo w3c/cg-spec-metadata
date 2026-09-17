@@ -211,9 +211,7 @@ export function project(spec, input = {}) {
 
     wpt: {
       tests: wpt.tests ?? null,
-      // wpt.subtests is summed across browser runs, and the run count is not
-      // collected, so the per-run figure a document wants is not derivable yet.
-      subtests: null,
+      subtests: wpt.subtests ?? null,
       url: mapping(spec).wpt?.url ?? null,
     },
 

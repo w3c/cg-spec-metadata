@@ -208,7 +208,14 @@ The `mappings` object links the feature to external resources. Possible keys (ea
 |---|---|---|
 | `hasResults` | boolean | Whether at least one test exists for the spec. |
 | `tests` | number | Number of test files matching the query. |
-| `subtests` | number | Combined number of subtests across all matching tests and browsers. |
+| `subtests` | number | Number of subtests across the matching tests. |
+| `runs` | number \| null | How many browser runs the query covered. |
+
+`legacy_status` holds one entry per browser run, in the order of `runs`, and a run that did not
+execute a test reports a total of `0`. The number of subtests is a property of the test, so it is
+the largest total any run saw. Summing across runs — which this collector used to do — multiplied
+the figure by however many browsers happened to have results that day: `scheduling-apis` reported
+921 subtests when three runs had results and 343 when one did, for the same 343 subtests.
 
 ### `contributions` — W3C Repo Manager contributions
 
@@ -340,7 +347,7 @@ a document. That takes a ~26 KB entry down to ~1.2 KB.
                  "url": "https://github.com/WebKit/standards-positions/issues/361" }
   },
   "github": { "stars": 925, "starsUrl": "...", "lastCommitDate": "2025-05-30" },
-  "wpt": { "tests": 114, "subtests": null, "url": "..." },
+  "wpt": { "tests": 118, "subtests": 343, "url": "..." },
   "developerSignals": { "votes": 17, "url": "..." },
   "chromeStatus": { "label": null, "url": "..." },
   "compatDataUrl": "...",
@@ -419,10 +426,6 @@ which can never be updated to reword it. An entry in `override.json` still wins 
 value.
 They are emitted as `null` so that the shape is stable and a document can tell "not known" from
 "known to be empty".
-
-`wpt.subtests` is `null` for a different reason: the collected `wpt.subtests` is summed across
-browser runs and the run count is not collected, so the per-run figure a document wants is not yet
-derivable.
 
 ---
 
