@@ -9,7 +9,7 @@ import { collectChromiumPosition } from "./collectors/chromium.js";
 import { collectWebFeatures } from "./collectors/web-features.js";
 import { collectWebFeaturesMapping } from "./collectors/web-features-mapping.js";
 import { collectWPTFyi } from "./collectors/wpt.js";
-import { collectRecentSubstantiveContributions } from "./collectors/substantive-contributions.js";
+import { collectContributions, collectRecentSubstantiveContributions } from "./collectors/contributions.js";
 import { collectLastEdited } from "./collectors/last-edited.js";
 import { collectW3CGroup } from "./collectors/w3c-group.js";
 import { project } from "./projection.js";
@@ -27,6 +27,7 @@ const collectors = [
   { key: "web_features_mapping",             fn: collectWebFeaturesMapping },
   { key: "wpt",                              fn: collectWPTFyi },
   { key: "substantiveContributionsLastYear", fn: collectRecentSubstantiveContributions },
+  { key: "contributions",                    fn: collectContributions },
   { key: "lastEdited",                       fn: collectLastEdited },
   { key: "w3cGroup",                         fn: collectW3CGroup },
 ];

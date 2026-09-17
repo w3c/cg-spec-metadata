@@ -156,6 +156,20 @@ function incubatingGroup(spec) {
   return { name: group.name, url: group.url ?? null, joinUrl: group.joinUrl ?? null };
 }
 
+function contributions(spec, input) {
+  const repo = spec.repo ?? input.repo ?? null;
+  const url = repo ? `https://labs.w3.org/repo-manager/repos/${repo}/contributors` : null;
+
+  const substantive = ok(ok(spec.contributions).substantive);
+  if (!Number.isInteger(substantive.contributions)) return null;
+
+  return {
+    count: substantive.contributions,
+    contributors: substantive.contributors ?? null,
+    url: url,
+  };
+}
+
 export function project(spec, input = {}) {
   const github = ok(spec.github);
   const wpt = ok(spec.wpt);
@@ -207,7 +221,7 @@ export function project(spec, input = {}) {
     incubatingGroup: incubatingGroup(spec),
     standardizationPlan: isObject(spec.standardizationPlan) ? spec.standardizationPlan : null,
     stability: spec.stability ?? null,
-    contributions: isObject(spec.contributions) ? spec.contributions : null,
+    contributions: contributions(spec, input),
     experimentationStatus: spec.experimentationStatus ?? null,
   };
 }

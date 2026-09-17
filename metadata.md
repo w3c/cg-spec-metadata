@@ -25,6 +25,7 @@ Every entry in `data.json` has the following top-level shape:
   "web_features_mapping": [ ... ],
   "wpt": { ... },
   "substantiveContributionsLastYear": 0,
+  "contributions": { ... },
   "lastEdited": { ... },
   "w3cGroup": { ... }
 }
@@ -209,12 +210,40 @@ The `mappings` object links the feature to external resources. Possible keys (ea
 | `tests` | number | Number of test files matching the query. |
 | `subtests` | number | Combined number of subtests across all matching tests and browsers. |
 
-### `substantiveContributionsLastYear` — recent substantive contributors
+### `contributions` — W3C Repo Manager contributions
 
 - **Source:** [W3C Repo Manager API](https://labs.w3.org/repo-manager/) (`/api/repos/<repo>/contributors`)
-- **Collector:** `collectors/substantive-contributions.js`
+- **Collector:** `collectors/contributions.js`
 
-A single number: the count of substantive contributors who had at least one pull request updated in the last 12 months. This is an indicator of active, IPR-relevant participation in the spec's repository.
+```json
+{
+  "substantive":    { "contributions": 31, "contributors": 2 },
+  "nonSubstantive": { "contributions": 3,  "contributors": 3 },
+  "substantiveContributorsLastYear": 0
+}
+```
+
+The API returns two maps keyed by W3C identity, each holding that contributor's pull requests:
+
+```json
+{ "substantiveContributors": {
+    "35662": { "name": "Google LLC",
+               "prs": [ { "num": "100", "lastUpdated": "Sat Sep 07 2024" } ] } } }
+```
+
+A "contributor" is an organization as often as a person — `Google LLC`, `Igalia`, `John Doe` — so
+both the pull requests and the contributors who landed them are counted.
+
+`substantiveContributorsLastYear` counts the contributors with at least one pull request touched in
+the last 12 months.
+
+### `substantiveContributionsLastYear` — recent substantive contributors
+
+- **Collector:** `collectors/contributions.js` (same response, cached per repository)
+
+A single number, and a misnomer: the name says contributions but the value has always been a count
+of *contributors*. It is the same figure as `contributions.substantiveContributorsLastYear`, kept
+so that existing consumers of `data.json` keep working. Prefer the one inside `contributions`.
 
 ### `w3cGroup` — the Community Group
 
@@ -313,7 +342,7 @@ a document. That takes a ~26 KB entry down to ~1.2 KB.
   "incubatingGroup": { "name": "...", "url": "...", "joinUrl": "..." },
   "standardizationPlan": null,
   "stability": null,
-  "contributions": null,
+  "contributions": { "count": 31, "contributors": 2, "url": "..." },
   "experimentationStatus": null
 }
 ```
@@ -370,12 +399,13 @@ spec-lifecycle.md explicitly allows.
 
 ### Fields that are authored, not collected
 
-`standardizationPlan`, `stability`, `contributions` and `experimentationStatus` have no source.
-They are group decisions — the plan to take the work to a standards body, the stability sentence —
-and are supplied through `override.json` until they have a home of their own.
+`standardizationPlan`, `stability` and `experimentationStatus` have no source. They are group
+decisions — the plan to take the work to a standards body, the stability sentence — and are
+supplied through `override.json` until they have a home of their own.
 
-`cgStatus` and `incubatingGroup` are derived from [`w3cGroup`](#w3cgroup--the-community-group);
-an entry in `override.json` still wins over the derived value.
+`cgStatus` and `incubatingGroup` are derived from [`w3cGroup`](#w3cgroup--the-community-group),
+and `contributions` from [`contributions`](#contributions--w3c-repo-manager-contributions); an
+entry in `override.json` still wins over a derived value.
 They are emitted as `null` so that the shape is stable and a document can tell "not known" from
 "known to be empty".
 
