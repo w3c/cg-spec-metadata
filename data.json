@@ -3,7 +3,7 @@
     "shortname": "file-system-access",
     "specUrl": "https://wicg.github.io/file-system-access/",
     "repo": "WICG/file-system-access",
-    "collectedAt": "2026-09-18T11:30:30.171Z",
+    "collectedAt": "2026-09-18T11:35:25.104Z",
     "github": {
       "stars": 706,
       "forks": 70,
@@ -21,58 +21,59 @@
       "position": "oppose"
     },
     "chromium": {
-      "featureId": 5324970347200512,
-      "name": "FileSystemAccess: add \"write\" access mode",
-      "intentStage": "None",
-      "shipping_year": 2025,
+      "featureId": 6284708426022912,
+      "name": "File System Access",
+      "intentStage": "Shipped",
+      "shipping_year": 2020,
       "browsers": {
         "chrome": {
-          "bug": "https://crbug.com/40276567",
+          "bug": "https://crbug.com/853326",
           "blink_components": [
             "Blink>Storage>FileSystem"
           ],
           "devrel": [
-            "devrel-chromestatus-all@google.com"
+            "petele@google.com"
           ],
           "owners": [
-            "mych@chromium.org"
+            "mek@chromium.org",
+            "joelhockey@chromium.org"
           ],
           "origintrial": false,
-          "prefixed": null,
+          "prefixed": false,
           "flag": false,
           "status": {
-            "text": "Proposed",
-            "val": 2,
-            "milestone_str": "Proposed"
+            "text": "Enabled by default",
+            "val": 5,
+            "milestone_str": "86"
           },
-          "announced": false,
-          "desktop": null,
+          "announced": true,
+          "desktop": 86,
           "android": null,
           "webview": null,
           "ios": null
         },
         "ff": {
           "view": {
-            "url": "https://github.com/mozilla/standards-positions/issues/1276",
-            "notes": null,
-            "text": "No signal",
-            "val": 5
+            "url": "https://mozilla.github.io/standards-positions/#native-file-system",
+            "notes": "It's complicated.  The standards-position entry linked above says that there is a subset that they support.  And, there is a positive position on an overlapping entry https://mozilla.github.io/standards-positions/#fs",
+            "text": "Negative",
+            "val": 7
           }
         },
         "safari": {
           "view": {
-            "url": "https://github.com/WebKit/standards-positions/issues/534",
-            "notes": null,
+            "url": "https://lists.webkit.org/pipermail/webkit-dev/2020-August/031347.html",
+            "notes": "",
             "text": "No signal",
             "val": 5
           }
         },
         "webdev": {
           "view": {
-            "text": "No signals",
-            "val": 4,
-            "url": null,
-            "notes": null
+            "text": "Positive",
+            "val": 2,
+            "url": "https://discourse.wicg.io/t/writable-file-api/1433",
+            "notes": ""
           }
         },
         "other": {
@@ -80,10 +81,11 @@
             "text": null,
             "val": null,
             "url": null,
-            "notes": null
+            "notes": ""
           }
         }
-      }
+      },
+      "matches": 6
     },
     "web_features": {
       "caniuse": [
@@ -576,7 +578,7 @@
     "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
     "repo": "WICG/nav-speculation",
     "feature": "prefetch",
-    "collectedAt": "2026-09-18T11:30:30.859Z",
+    "collectedAt": "2026-09-18T11:35:25.529Z",
     "github": {
       "stars": 200,
       "forks": 43,
@@ -594,48 +596,48 @@
       "position": null
     },
     "chromium": {
-      "featureId": 5074313831120896,
-      "name": "Speculation rules: form_submission field",
-      "intentStage": "None",
-      "shipping_year": 2026,
+      "featureId": 5182859125456896,
+      "name": "Speculation rules: Content Security Policy extension",
+      "intentStage": "Prepare to ship",
+      "shipping_year": 2023,
       "browsers": {
         "chrome": {
-          "bug": "https://issues.chromium.org/issues/346555939",
+          "bug": null,
           "blink_components": [
-            "Internals>Preload>Prerender"
+            "Blink>SecurityFeature>ContentSecurityPolicy"
           ],
           "devrel": [
             "devrel-chromestatus-all@google.com"
           ],
           "owners": [
-            "robertlin@chromium.org"
+            "toyoshim@chromium.org"
           ],
           "origintrial": false,
           "prefixed": null,
           "flag": false,
           "status": {
-            "text": "Proposed",
-            "val": 2,
-            "milestone_str": "Proposed"
+            "text": "Enabled by default",
+            "val": 5,
+            "milestone_str": "110"
           },
           "announced": true,
-          "desktop": 151,
-          "android": 151,
-          "webview": null,
+          "desktop": 110,
+          "android": 110,
+          "webview": 110,
           "ios": null
         },
         "ff": {
           "view": {
-            "url": "https://github.com/mozilla/standards-positions/issues/1355",
-            "notes": "Mozilla is neutral on speculation rules syntax in general (https://github.com/mozilla/standards-positions/issues/620), although positive on prefetching. This new request for this specific feature is still pending for new response after pinging.",
-            "text": "No signal",
-            "val": 5
+            "url": "https://github.com/mozilla/standards-positions/issues/620",
+            "notes": "",
+            "text": "Neutral",
+            "val": 8
           }
         },
         "safari": {
           "view": {
-            "url": "https://github.com/WebKit/standards-positions/issues/614",
-            "notes": "WebKit has not yet responded to our 2022 request for a position on speculation rules although positive on same-origin prefetching. (https://github.com/WebKit/standards-positions/issues/54) We opened a new request for this specific feature to ensure we captured any of their input.",
+            "url": "https://github.com/WebKit/standards-positions/issues/54",
+            "notes": "",
             "text": "No signal",
             "val": 5
           }
@@ -644,8 +646,8 @@
           "view": {
             "text": "Positive",
             "val": 2,
-            "url": "https://github.com/WICG/nav-speculation/issues/322",
-            "notes": null
+            "url": null,
+            "notes": "We heard positive feedback from partners as there was no handy approach to permit speculation rules without allowing unsafe inline scripts."
           }
         },
         "other": {
@@ -653,10 +655,11 @@
             "text": null,
             "val": null,
             "url": null,
-            "notes": null
+            "notes": ""
           }
         }
-      }
+      },
+      "matches": 15
     },
     "web_features": {
       "compat_features": [
@@ -1282,7 +1285,7 @@
     "shortname": "scheduling-apis",
     "specUrl": "https://wicg.github.io/scheduling-apis/",
     "repo": "WICG/scheduling-apis",
-    "collectedAt": "2026-09-18T11:30:29.345Z",
+    "collectedAt": "2026-09-18T11:35:24.549Z",
     "github": {
       "stars": 927,
       "forks": 47,
@@ -1300,7 +1303,69 @@
       "position": null
     },
     "chromium": {
-      "status": "no-signal"
+      "featureId": 6031161734201344,
+      "name": "Scheduling APIs: Prioritized scheduler.postTask",
+      "intentStage": "Shipped",
+      "shipping_year": 2021,
+      "browsers": {
+        "chrome": {
+          "bug": "https://bugs.chromium.org/p/chromium/issues/detail?id=979017",
+          "blink_components": [
+            "Blink>Scheduling"
+          ],
+          "devrel": [],
+          "owners": [
+            "shaseley@chromium.org",
+            "japhet@chromium.org"
+          ],
+          "origintrial": false,
+          "prefixed": false,
+          "flag": false,
+          "status": {
+            "text": "Enabled by default",
+            "val": 5,
+            "milestone_str": "94"
+          },
+          "announced": true,
+          "desktop": 94,
+          "android": 94,
+          "webview": 94,
+          "ios": null
+        },
+        "ff": {
+          "view": {
+            "url": "https://github.com/mozilla/standards-positions/issues/546",
+            "notes": "",
+            "text": "Positive",
+            "val": 3
+          }
+        },
+        "safari": {
+          "view": {
+            "url": "https://lists.webkit.org/pipermail/webkit-dev/2021-June/031912.html",
+            "notes": "",
+            "text": "No signal",
+            "val": 5
+          }
+        },
+        "webdev": {
+          "view": {
+            "text": "Positive",
+            "val": 2,
+            "url": null,
+            "notes": "Positive:\r\n - We've worked closely with React and Airbnb while designing this API, and both are planning to use the API. Airbnb wrote about there uses cases and performance improvements using the API here: https://medium.com/airbnb-engineering/building-a-faster-web-experience-with-the-posttask-scheduler-276b83454e91\r\n\r\n - The tracking bug (crbug.com/979017) has 9 stars\r\n\r\n - Misc blog post about using the API behind a flag: https://dev.to/nielsen-tlv/the-hidden-magic-of-main-thread-scheduling-16i9\r\n"
+          }
+        },
+        "other": {
+          "view": {
+            "text": null,
+            "val": null,
+            "url": null,
+            "notes": null
+          }
+        }
+      },
+      "matches": 2
     },
     "web_features": {
       "compat_features": [

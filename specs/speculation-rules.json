@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "speculation-rules",
-  "collectedAt": "2026-09-18T11:30:30.859Z",
+  "collectedAt": "2026-09-18T11:35:25.529Z",
   "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
   "lastEdited": {
     "date": "2026-08-27",
@@ -44,8 +44,8 @@
     "url": "https://github.com/web-platform-dx/developer-signals/issues/186"
   },
   "chromeStatus": {
-    "label": null,
-    "url": "https://chromestatus.com/feature/5074313831120896"
+    "label": "Positive",
+    "url": "https://chromestatus.com/feature/5182859125456896"
   },
   "compatDataUrl": "https://developer.mozilla.org/docs/Web/API/Speculation_Rules_API#browser_compatibility",
   "progress": 1,

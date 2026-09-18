@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "scheduling-apis",
-  "collectedAt": "2026-09-18T11:30:29.345Z",
+  "collectedAt": "2026-09-18T11:35:24.549Z",
   "specUrl": "https://wicg.github.io/scheduling-apis/",
   "lastEdited": {
     "date": "2025-05-30",
@@ -44,8 +44,8 @@
     "url": "https://github.com/web-platform-dx/developer-signals/issues/254"
   },
   "chromeStatus": {
-    "label": null,
-    "url": "https://chromestatus.com/feature/6266249336586240"
+    "label": "Positive",
+    "url": "https://chromestatus.com/feature/6031161734201344"
   },
   "compatDataUrl": "https://developer.mozilla.org/docs/Web/API/Prioritized_Task_Scheduling_API#browser_compatibility",
   "progress": 2,

@@ -188,6 +188,24 @@ function stability(spec) {
   return `${changes} substantive change${changes === 1 ? "" : "s"} in the past year.`;
 }
 
+/**
+ * The web-developer signal Chrome Status records, and a link to the feature it
+ * belongs to. Both come from the same entry, so the sentiment and the link
+ * never describe different features.
+ */
+function chromeStatusOf(spec) {
+  const chromium = ok(spec.chromium);
+  const view = ok(ok(ok(chromium.browsers).webdev).view);
+  const mapped = firstOf(mapping(spec)["chrome-status"]);
+
+  return {
+    label: view.text ?? null,
+    url: chromium.featureId
+      ? `https://chromestatus.com/feature/${chromium.featureId}`
+      : mapped?.url ?? null,
+  };
+}
+
 function contributions(spec, input) {
   const repo = spec.repo ?? input.repo ?? null;
   const url = repo ? `https://labs.w3.org/repo-manager/repos/${repo}/contributors` : null;
@@ -206,7 +224,6 @@ export function project(spec, input = {}) {
   const github = ok(spec.github);
   const wpt = ok(spec.wpt);
   const signals = ok(mapping(spec)["developer-signals"]);
-  const chromeStatus = firstOf(mapping(spec)["chrome-status"]);
   const lastEdited = ok(spec.lastEdited);
 
   return {
@@ -237,11 +254,7 @@ export function project(spec, input = {}) {
     },
 
     developerSignals: { votes: signals.votes ?? null, url: signals.url ?? null },
-    chromeStatus: {
-      // No sentiment is collected for Chrome Status; see collectors/chromium.js.
-      label: null,
-      url: chromeStatus?.url ?? null,
-    },
+    chromeStatus: chromeStatusOf(spec),
     compatDataUrl: compatDataUrl(spec),
 
     // Editorial, and authored rather than collected. Emitted so that the shape

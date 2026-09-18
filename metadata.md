@@ -122,9 +122,9 @@ Possible values for `position`:
 
 ### `chromium` — Chrome platform status
 
-- **Source:** [Chrome Status API](https://chromestatus.com/api/v0/features), matched by spec `shortname` against the `web_feature` field
+- **Source:** [Chrome Status API](https://chromestatus.com/api/v0/features), matched by `webFeaturesId` against the `web_feature` field
 - **Collector:** `collectors/chromium.js`
-- Returns `{ "status": "no-signal" }` when no Chrome Status feature matches the shortname.
+- Returns `{ "status": "no-signal" }` when no Chrome Status feature carries this `web_feature`.
 
 | Property | Type | Description |
 |---|---|---|
@@ -133,6 +133,18 @@ Possible values for `position`:
 | `intentStage` | string | Current stage of the feature in the Blink launch process. |
 | `shipping_year` | number | Year the feature shipped (or is expected to ship) in Chrome. |
 | `browsers` | object | Per-browser implementation status as reported by Chrome Status (see below). |
+| `matches` | number | How many Chrome Status entries carry this `web_feature`. |
+
+Chrome Status tags its features with a `web_feature` id from the web-features dataset, so the
+lookup is keyed on `webFeaturesId` rather than the shortname. Those differ often enough to matter:
+`scheduling-apis` is `scheduler` there, and matching on the shortname used to find nothing at all,
+leaving the entry as `{ "status": "no-signal" }`.
+
+One web feature usually covers several Chrome Status entries — `scheduler` covers both
+`scheduler.postTask` and `scheduler.yield()`, `speculation-rules` covers 15 — so the entry that
+shipped first is taken as the primary one, since that is the one that established the API.
+`browsers.webdev.view.text` is what the *Chrome Status* column of the adopter-interest row
+renders, and the link points at the same entry the signal came from.
 
 Possible values for `intentStage` (Blink launch process stages, as returned by the API):
 
@@ -349,7 +361,7 @@ a document. That takes a ~26 KB entry down to ~1.2 KB.
   "github": { "stars": 925, "starsUrl": "...", "lastCommitDate": "2025-05-30" },
   "wpt": { "tests": 118, "subtests": 343, "url": "..." },
   "developerSignals": { "votes": 17, "url": "..." },
-  "chromeStatus": { "label": null, "url": "..." },
+  "chromeStatus": { "label": "Positive", "url": "..." },
   "compatDataUrl": "...",
 
   "progress": 2,
