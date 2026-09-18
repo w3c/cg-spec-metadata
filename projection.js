@@ -156,6 +156,27 @@ function incubatingGroup(spec) {
   return { name: group.name, url: group.url ?? null, joinUrl: group.joinUrl ?? null };
 }
 
+// Advice to adopters, one sentence per progress state. The phrase
+// COMPAT_DATA_PHRASE becomes a link to compatDataUrl in the rendered document;
+// there is nothing to point at before an implementation exists.
+export const COMPAT_DATA_PHRASE = "detailed browser compatibility data";
+
+const EXPERIMENTATION = [
+  "It may be too soon for adopters to experiment given lack of implementation.",
+  `There is enough implementation to support some experimentation, which can help improve the technology (see ${COMPAT_DATA_PHRASE}).`,
+  `There is now a shipping implementation, so experimentation encouraged, but use with caution for broad deployment given limited availability (see ${COMPAT_DATA_PHRASE}).`,
+  `Experimentation encouraged, interoperability will increase as standardization proceeds (see ${COMPAT_DATA_PHRASE}).`,
+];
+
+// A direct mapping from progress, kept as its own field so that a group can
+// override the sentence without touching the progress bar.
+function experimentationStatus(spec) {
+  if (spec.experimentationStatus) return spec.experimentationStatus;
+
+  const state = progress(spec);
+  return EXPERIMENTATION[state] ?? null;
+}
+
 // The wording is built here, not in a published document that can never be
 // updated to reword it.
 function stability(spec) {
@@ -231,6 +252,6 @@ export function project(spec, input = {}) {
     standardizationPlan: isObject(spec.standardizationPlan) ? spec.standardizationPlan : null,
     stability: stability(spec),
     contributions: contributions(spec, input),
-    experimentationStatus: spec.experimentationStatus ?? null,
+    experimentationStatus: experimentationStatus(spec),
   };
 }

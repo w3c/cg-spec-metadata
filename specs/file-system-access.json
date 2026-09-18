@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "file-system-access",
-  "collectedAt": "2026-09-17T12:44:10.606Z",
+  "collectedAt": "2026-09-18T11:30:30.171Z",
   "specUrl": "https://wicg.github.io/file-system-access/",
   "lastEdited": {
     "date": "2025-10-10",
@@ -62,5 +62,5 @@
     "contributors": 3,
     "url": "https://labs.w3.org/repo-manager/repos/WICG/file-system-access/contributors"
   },
-  "experimentationStatus": null
+  "experimentationStatus": "There is enough implementation to support some experimentation, which can help improve the technology (see detailed browser compatibility data)."
 }

@@ -3,7 +3,7 @@
     "shortname": "file-system-access",
     "specUrl": "https://wicg.github.io/file-system-access/",
     "repo": "WICG/file-system-access",
-    "collectedAt": "2026-09-17T12:44:10.606Z",
+    "collectedAt": "2026-09-18T11:30:30.171Z",
     "github": {
       "stars": 706,
       "forks": 70,
@@ -426,7 +426,7 @@
           }
         ],
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.0000479,
+          "percentageOfPageLoad": 0.00004859,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/258"
         },
         "chrome-status": [
@@ -576,7 +576,7 @@
     "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
     "repo": "WICG/nav-speculation",
     "feature": "prefetch",
-    "collectedAt": "2026-09-17T12:44:11.265Z",
+    "collectedAt": "2026-09-18T11:30:30.859Z",
     "github": {
       "stars": 200,
       "forks": 43,
@@ -980,7 +980,7 @@
           "votes": 27
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.11687236,
+          "percentageOfPageLoad": 0.11718859,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/317"
         },
         "chrome-status": [
@@ -1282,7 +1282,7 @@
     "shortname": "scheduling-apis",
     "specUrl": "https://wicg.github.io/scheduling-apis/",
     "repo": "WICG/scheduling-apis",
-    "collectedAt": "2026-09-17T12:44:07.766Z",
+    "collectedAt": "2026-09-18T11:30:29.345Z",
     "github": {
       "stars": 927,
       "forks": 47,
@@ -1515,7 +1515,7 @@
           "votes": 21
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.1168625,
+          "percentageOfPageLoad": 0.11507101,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/118"
         },
         "chrome-status": [

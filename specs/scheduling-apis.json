@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "scheduling-apis",
-  "collectedAt": "2026-09-17T12:44:07.766Z",
+  "collectedAt": "2026-09-18T11:30:29.345Z",
   "specUrl": "https://wicg.github.io/scheduling-apis/",
   "lastEdited": {
     "date": "2025-05-30",
@@ -62,5 +62,5 @@
     "contributors": 2,
     "url": "https://labs.w3.org/repo-manager/repos/WICG/scheduling-apis/contributors"
   },
-  "experimentationStatus": null
+  "experimentationStatus": "There is now a shipping implementation, so experimentation encouraged, but use with caution for broad deployment given limited availability (see detailed browser compatibility data)."
 }

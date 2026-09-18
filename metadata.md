@@ -414,9 +414,27 @@ spec-lifecycle.md explicitly allows.
 
 ### Fields that are authored, not collected
 
-`standardizationPlan` and `experimentationStatus` have no source. They are group decisions — the
-plan to take the work to a standards body — and are supplied through `override.json` until they
-have a home of their own.
+`standardizationPlan` has no source. It is a group decision — the plan to take the work to a
+standards body — and is supplied through `override.json` until it has a home of its own.
+
+### `experimentationStatus` — advice to adopters
+
+One sentence per [`progress`](#progress--the-progress-bar-state) state:
+
+| `progress` | sentence |
+|---|---|
+| `0` | It may be too soon for adopters to experiment given lack of implementation. |
+| `1` | There is enough implementation to support some experimentation, which can help improve the technology (see detailed browser compatibility data). |
+| `2` | There is now a shipping implementation, so experimentation encouraged, but use with caution for broad deployment given limited availability (see detailed browser compatibility data). |
+| `3` | Experimentation encouraged, interoperability will increase as standardization proceeds (see detailed browser compatibility data). |
+
+It is a direct mapping, but it is kept as a field of its own so that a group can reword the advice
+through `override.json` without moving the progress bar.
+
+The phrase *detailed browser compatibility data* becomes a link to `compatDataUrl` when the
+document is rendered — there is nothing to point at before an implementation exists, which is why
+state `0` does not mention it. An override that does not contain the phrase simply renders as
+plain prose.
 
 `cgStatus` and `incubatingGroup` are derived from [`w3cGroup`](#w3cgroup--the-community-group);
 `contributions` and `stability` from

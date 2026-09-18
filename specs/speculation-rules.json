@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "speculation-rules",
-  "collectedAt": "2026-09-17T12:44:11.265Z",
+  "collectedAt": "2026-09-18T11:30:30.859Z",
   "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
   "lastEdited": {
     "date": "2026-08-27",
@@ -62,5 +62,5 @@
     "contributors": 3,
     "url": "https://labs.w3.org/repo-manager/repos/WICG/nav-speculation/contributors"
   },
-  "experimentationStatus": null
+  "experimentationStatus": "There is enough implementation to support some experimentation, which can help improve the technology (see detailed browser compatibility data)."
 }
