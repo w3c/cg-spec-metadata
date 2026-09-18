@@ -1,6 +1,6 @@
 # Metadata reference
 
-This document describes the metadata collected by this project for each Community Group specification. The pipeline reads the list of specs from `specs.json`, runs one collector per data source (see `collectors/`), merges the results with any manual corrections from `override.json`, and writes two outputs:
+This document describes the metadata collected by this project for each Community Group specification. The pipeline reads the list of specs from `specs.json`, runs one collector per data source (see `collectors/`), merges the results with any manual corrections from `overrides/`, and writes two outputs:
 
 - **`data.json`** — the raw archive. One array entry per spec, everything every collector returned.
 - **`specs/<shortname>.json`** — a small, format-versioned *projection* of one spec, for published
@@ -38,11 +38,8 @@ targeted run (`node index.js <shortname>`) leaves the timestamps of the other sp
 
 **Error convention:** when a collector fails (network error, HTTP error, unexpected payload), its key contains `{ "error": "<message>" }` instead of the normal object.
 
-**Overrides:** `override.json` is matched on `shortname` and deep-merged over the collected result
-by `mergeResultsWithOverride` in `utils.js`, so it can correct any nested value and can also *add*
-keys that no collector produces. Two things to know: **arrays are replaced wholesale, never
-merged** — an override that touches `web_features_mapping` must supply the entire two-element array
-— and there is no way to delete a key, only to set it to `null` or `""`.
+**Overrides:** `overrides/<shortname>.json` is deep-merged over the collected result by
+`mergeResultsWithOverride` in `utils.js`. See [Manual overrides](#manual-overrides-overrides).
 
 ---
 
@@ -52,7 +49,7 @@ Each spec is declared with the following properties:
 
 | Property | Type | Required | Description |
 |---|---|---|---|
-| `shortname` | string | yes | Unique identifier of the spec. Used as the merge key in `data.json` and `override.json`, as the CLI filter argument, and as the lookup key against Chrome Status and wpt.fyi. |
+| `shortname` | string | yes | Unique identifier of the spec. Used as the merge key in `data.json`, as the name of its file in `overrides/`, as the CLI filter argument, and as the lookup key against Chrome Status and wpt.fyi. |
 | `webFeaturesId` | string | yes | Feature identifier in the [web-features](https://github.com/web-platform-dx/web-features) dataset. Used by the `web_features`, `web_features_mapping` and (as fallback) `wpt` collectors. |
 | `feature` | string | no | Sub-feature name for specs that cover several features (e.g. `prefetch` for `speculation-rules`). When present, the wpt.fyi query becomes `shortname/feature`. |
 | `repo` | string | yes | GitHub repository in `owner/name` form (e.g. `WICG/file-system-access`). Used by the GitHub and substantive-contributions collectors. |
@@ -309,7 +306,7 @@ one Community Group cost one API request.
 ```
 
 `date` is `YYYY-MM-DD`, or `null` when no trustworthy answer was available, in which case `source`
-is `"none"` and the value should be supplied through `override.json`.
+is `"none"` and the value should be supplied through `overrides/`.
 
 This is deliberately **not** `github.lastCommitDate`. A commit that touches only the README or the
 CI config moves the repository's date without editing the document, and for a repository that
@@ -407,7 +404,7 @@ that the work has **completed**, derived from how many **engines** have shipped 
 | `0` | Early idea | no implementation |
 | `1` | Implementer experimentation | one engine has shipped it |
 | `2` | Partial availability | two or more engines have shipped it |
-| `3` | Standardization started | never computed — set it in `override.json` |
+| `3` | Standardization started | TBD |
 
 A document ticks every step up to and including this one, and shows the step after it, if there is
 one, as where the work stands now. So `2` renders *Early idea*, *Implementer experimentation* and
@@ -419,15 +416,10 @@ implementation. The count comes from the keys present in `web_features.status.su
 `chrome` / `chrome_android` / `edge` → Blink, `firefox` / `firefox_android` → Gecko,
 `safari` / `safari_ios` → WebKit.
 
-An override wins outright. That is the only way to reach `3`, which means some or all of the
-specification is undergoing standardization somewhere no collector can see; it is also how a group
-walks a specification back to an earlier state after transferring material, which
-spec-lifecycle.md explicitly allows.
-
 ### Fields that are authored, not collected
 
 `standardizationPlan` has no source. It is a group decision — the plan to take the work to a
-standards body — and is supplied through `override.json` until it has a home of its own.
+standards body — and is supplied through `overrides/` until it has a home of its own.
 
 ### `experimentationStatus` — advice to adopters
 
@@ -441,7 +433,7 @@ One sentence per [`progress`](#progress--the-progress-bar-state) state:
 | `3` | Experimentation encouraged, interoperability will increase as standardization proceeds (see detailed browser compatibility data). |
 
 It is a direct mapping, but it is kept as a field of its own so that a group can reword the advice
-through `override.json` without moving the progress bar.
+through `overrides/` without moving the progress bar.
 
 The phrase *detailed browser compatibility data* becomes a link to `compatDataUrl` when the
 document is rendered — there is nothing to point at before an implementation exists, which is why
@@ -452,22 +444,38 @@ plain prose.
 `contributions` and `stability` from
 [`contributions`](#contributions--w3c-repo-manager-contributions). `stability` is rendered as
 "*N* substantive change(s) in the past year." — built here rather than in a published document,
-which can never be updated to reword it. An entry in `override.json` still wins over a derived
+which can never be updated to reword it. An entry in `overrides/` still wins over a derived
 value.
 They are emitted as `null` so that the shape is stable and a document can tell "not known" from
 "known to be empty".
 
 ---
 
-## Manual overrides (`override.json`)
+## Manual overrides (`overrides/`)
 
-An array of objects keyed by `shortname`. Any property present in an override entry is deep-merged over the automatically collected data before `data.json` is written, allowing corrections when a source is wrong or missing:
+One file per specification, `overrides/<shortname>.json`, holding only the fields to correct. A
+spec with no file has no overrides, and an empty object (`{}`) is the same as no file. Splitting
+them up keeps each spec's corrections reviewable on their own, rather than in one file that grows
+with every spec.
 
 ```json
-[
-  {
-    "shortname": "file-system-access",
-    "mozilla": { "position": "positive" }
-  }
-]
+{
+  "github": { "stars": 800 },
+  "standardizationPlan": { "text": "Agreement to migrate to XXX", "url": "https://..." }
+}
 ```
+
+Each file is deep-merged over the collected result before `data.json` and `specs/` are written, so
+it can correct any nested value and can also **add** keys that no collector produces — that is where
+the editorial fields live. Only the keys you name are touched: the example above leaves the rest of
+`github` alone.
+
+Two things to know:
+
+- **Arrays are replaced wholesale, never merged.** An override that touches `web_features_mapping`
+  must supply the entire two-element array.
+- **A key cannot be deleted**, only set to `null` or `""`.
+
+A malformed file is reported and skipped rather than failing the run, and a file whose name matches
+no spec in `specs.json` is reported too. Every applied override is logged, so a run says which
+values did not come from a collector.
