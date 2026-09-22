@@ -1,6 +1,10 @@
 /**
- * Collector: Mozilla's standards positions, based on the data from the standards-positions repository, which is maintained by the Mozilla web-platform team.
- * The collector looks up the position for each spec based on its URL and returns the corresponding data from the standards-positions dataset.
+ * Collector: Mozilla's standards positions, based on the data from the
+ * standards-positions repository, which is maintained by the Mozilla
+ * web-platform team.
+ * 
+ * The collector looks up the position for each spec based on its URL and
+ * returns the corresponding data from the standards-positions dataset.
  */
 import { logger } from '../logger.js';
 

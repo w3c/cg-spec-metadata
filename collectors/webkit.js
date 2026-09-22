@@ -1,5 +1,6 @@
 /**
- * Collector: WebKit's standards positions, based on the data from the standards-positions repository, which is maintained by the WebKit team.
+ * Collector: WebKit's standards positions, based on the data from the
+ * standards-positions repository, which is maintained by the WebKit team.
  */
 import { logger } from '../logger.js';
 const WEBKIT_JSON_URL =

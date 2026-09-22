@@ -19,7 +19,6 @@ async function groupFromRepo(repo) {
 
   let group = null;
   try {
-    // HEAD rather than a branch name: repositories differ on main vs master.
     const res = await fetch(`https://raw.githubusercontent.com/${repo}/HEAD/w3c.json`);
     if (res.ok) {
       const json = await res.json();
@@ -62,7 +61,6 @@ export async function collectW3CGroup(spec) {
       id: data.id ?? null,
       shortname: data.shortname ?? null,
       name: data.name ?? null,
-      // The one thing a reader is told: is this group still running?
       isClosed: typeof data.is_closed === "boolean" ? data.is_closed : null,
       url: (links.homepage || {}).href ?? null,
       joinUrl: (links.join || {}).href ?? null,

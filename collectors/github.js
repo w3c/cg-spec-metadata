@@ -1,5 +1,6 @@
 /**
- * Collector: GitHub Repository Metadata (stars, forks, open issues, PRs, last commit date)
+ * Collector: GitHub Repository Metadata (stars, forks, open issues, PRs, last
+ * commit date)
  */
 import { logger } from '../logger.js';
 

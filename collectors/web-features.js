@@ -1,9 +1,10 @@
 /**
- * Collector: Web Features, based on the data from the web-features dataset, which is maintained by the WebDX CG.
+ * Collector: Web Features, based on the data from the web-features dataset,
+ * which is maintained by the WebDX CG.
  */
 import { logger } from '../logger.js';
 import data from "web-features/data.json" with { type: "json" };
-const { browsers, features, groups, snapshots } = data;
+const { features } = data;
 
 export async function collectWebFeatures(spec) {
 
