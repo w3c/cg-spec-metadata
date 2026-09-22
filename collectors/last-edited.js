@@ -13,6 +13,7 @@
 import { logger } from '../logger.js';
 
 function toDate(value) {
+  if (!value) return null;
   const date = new Date(value);
   return Number.isFinite(date.valueOf()) ? date : null;
 }
