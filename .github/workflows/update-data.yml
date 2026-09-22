@@ -26,7 +26,7 @@ jobs:
         run: npm install
 
       - name: Run collectors and merge overrides
-        run: node index.js 
+        run: npm run collect
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

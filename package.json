@@ -2,6 +2,9 @@
   "name": "cg-spec-metadata-collector",
   "version": "1.0.0",
   "type": "module",
+  "scripts": {
+    "collect": "node index.js"
+  },
   "dependencies": {
     "web-features": "*"
   },

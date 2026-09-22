@@ -25,7 +25,7 @@ npm install
 To collect metadata for all specs defined in `specs.json` (pass a github token in the environment variable `GITHUB_TOKEN` to increase the GitHub API rate limit from 60 to 5000 requests per hour):
 
 ```shell
-GITHUB_TOKEN="@@@" node index.js
+GITHUB_TOKEN="@@@" npm run collect
 ```
 
 The script will:
@@ -40,8 +40,10 @@ The two outputs serve different readers. `data.json` is the raw archive: one arr
 It is possible to process a given list of specifications by passing their shortnames as parameters:
 
 ```shell
-GITHUB_TOKEN="@@@" node index.js shortname1 shortname2
+GITHUB_TOKEN="@@@" npm run collect -- shortname1 shortname2
 ```
+
+`npm run collect` is a thin wrapper around `node index.js`, so either form works.
 
 ### Manual overrides
 
