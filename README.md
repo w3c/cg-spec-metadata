@@ -61,6 +61,14 @@ Two things to know: **arrays are replaced wholesale, never merged**, and a key c
 
 See [`overrides/README.md`](overrides/README.md).
 
+### Tests
+
+```shell
+npm test
+```
+
+No test reaches the network — `fetch` is stubbed per test, and a request to an unstubbed URL fails the test rather than going out, so a collector that starts fetching something new cannot quietly turn these into live tests.
+
 ### Automatic pull requests
 
 A [GitHub action](https://github.com/w3c/cg-spec-metadata/blob/main/.github/workflows/update-data.yml) is configured to run every week and submit a pull request to keep `data.json` and `specs/` up-to-date.

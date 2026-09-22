@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "collect": "node index.js"
+    "collect": "node index.js",
+    "test": "node --test test/*.test.js"
   },
   "dependencies": {
     "web-features": "*"
