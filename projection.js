@@ -110,7 +110,7 @@ function support(spec) {
  *   3  Standardization started completed      never computed; some or all of the
  *                                             spec is in a standards body, which
  *                                             no collector can see. Set it in
- *                                             override.json.
+ *                                             overrides/<shortname>.json.
  *
  * An override wins outright, which is also the only way to reach 3 or to walk
  * a specification back to an earlier state after material has been transferred

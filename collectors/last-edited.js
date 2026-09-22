@@ -37,7 +37,7 @@ export async function collectLastEdited(spec) {
 
     const lastModified = toDate(res.headers.get("last-modified"));
     if (!lastModified) {
-      logger.warn(`[last-edited] ${spec.shortname}: no usable Last-Modified; set it in override.json`);
+      logger.warn(`[last-edited] ${spec.shortname}: no usable Last-Modified; set lastEdited in overrides/${spec.shortname}.json`);
       return { date: null, source: "none" };
     }
 
