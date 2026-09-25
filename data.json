@@ -3,7 +3,7 @@
     "shortname": "file-system-access",
     "specUrl": "https://wicg.github.io/file-system-access/",
     "repo": "WICG/file-system-access",
-    "collectedAt": "2026-09-18T11:35:25.104Z",
+    "collectedAt": "2026-09-21T00:28:06.559Z",
     "github": {
       "stars": 800,
       "forks": 70,
@@ -428,7 +428,7 @@
           }
         ],
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.00004859,
+          "percentageOfPageLoad": 0.00004769,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/258"
         },
         "chrome-status": [
@@ -578,10 +578,10 @@
     "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
     "repo": "WICG/nav-speculation",
     "feature": "prefetch",
-    "collectedAt": "2026-09-18T11:35:25.529Z",
+    "collectedAt": "2026-09-21T00:28:05.506Z",
     "github": {
       "stars": 200,
-      "forks": 43,
+      "forks": 44,
       "openIssues": 39,
       "openPRs": 5,
       "closedPRs": 249,
@@ -980,10 +980,10 @@
         ],
         "developer-signals": {
           "url": "https://github.com/web-platform-dx/developer-signals/issues/186",
-          "votes": 27
+          "votes": 28
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.11718859,
+          "percentageOfPageLoad": 0.11769298,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/317"
         },
         "chrome-status": [
@@ -1251,8 +1251,8 @@
     ],
     "wpt": {
       "hasResults": true,
-      "tests": 211,
-      "subtests": 245,
+      "tests": 214,
+      "subtests": 249,
       "runs": 4
     },
     "substantiveContributionsLastYear": 2,
@@ -1285,7 +1285,7 @@
     "shortname": "scheduling-apis",
     "specUrl": "https://wicg.github.io/scheduling-apis/",
     "repo": "WICG/scheduling-apis",
-    "collectedAt": "2026-09-18T11:35:24.549Z",
+    "collectedAt": "2026-09-21T00:28:06.441Z",
     "github": {
       "stars": 927,
       "forks": 47,
@@ -1580,7 +1580,7 @@
           "votes": 21
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.11507101,
+          "percentageOfPageLoad": 0.12554672,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/118"
         },
         "chrome-status": [
