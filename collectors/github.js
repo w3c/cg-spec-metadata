@@ -7,8 +7,8 @@ import { logger } from '../logger.js';
 async function githubFetch(url) {
   const response = await fetch(url, {
     headers: {
-      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
       Accept: "application/vnd.github+json",
+      ...(process.env.GITHUB_TOKEN && { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` }),
     },
   });
   if (!response.ok) {
@@ -17,10 +17,13 @@ async function githubFetch(url) {
   return response.json();
 }
 
+let hasWarned = false;
+
 export async function collectGithubMetadata(spec) {
   if (!spec.repo) return null;
-  if (!process.env.GITHUB_TOKEN) {
+  if (!process.env.GITHUB_TOKEN && !hasWarned) {
     logger.warn("[github] GITHUB_TOKEN is not set — API requests may be rate-limited");
+    hasWarned = true;
   }
   try {
     const GITHUB_API_REPO_URL = `https://api.github.com/repos/${spec.repo}`;
@@ -28,14 +31,10 @@ export async function collectGithubMetadata(spec) {
     const CLOSED_PR_URL = `https://api.github.com/search/issues?q=repo:${spec.repo}+type:pr+state:closed`;
     const COMMITS_URL = `${GITHUB_API_REPO_URL}/commits?per_page=1`;
 
-    const repoRes = await fetch(GITHUB_API_REPO_URL);
-    const repo = await repoRes.json();
-    const openPRsRes = await fetch(OPEN_PR_URL);
-    const openPRs = await openPRsRes.json();
-    const closedPRsRes = await fetch(CLOSED_PR_URL);
-    const closedPRs = await closedPRsRes.json();
-    const commitsRes = await fetch(COMMITS_URL);
-    const commits = await commitsRes.json();
+    const repo = await githubFetch(GITHUB_API_REPO_URL);
+    const openPRs = await githubFetch(OPEN_PR_URL);
+    const closedPRs = await githubFetch(CLOSED_PR_URL);
+    const commits = await githubFetch(COMMITS_URL);
 
     return {
       stars: repo.stargazers_count,
