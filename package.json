@@ -7,10 +7,14 @@
     "test": "node --test test/*.test.js"
   },
   "dependencies": {
+    "minimist": "^1.2.8",
     "web-features": "*"
   },
   "engines": {
     "node": ">=22",
     "npm": ">=9"
+  },
+  "devDependencies": {
+    "@types/minimist": "^1.2.5"
   }
 }

@@ -1,3 +1,5 @@
+import parseArgs from "minimist";
+
 import { mkdir, readdir, unlink, writeFile } from "node:fs/promises";
 import { join, sep } from "node:path";
 
@@ -13,34 +15,64 @@ import { collectLastEdited } from "./collectors/last-edited.js";
 import { collectW3CGroup } from "./collectors/w3c-group.js";
 import { logger } from "./logger.js";
 import { project } from "./projection.js";
-import { loadOverrides, mergeResultsWithOverride } from "./utils.js";
+import { ensureArray, loadOverrides, mergeResultsWithOverride } from "./utils.js";
 
 import data from "./data.json" with { type: "json" };
 import specs from "./specs.json" with { type: "json" };
 
-const collectors = [
-  { key: "github",                           fn: collectGithubMetadata },
-  { key: "mozilla",                          fn: collectMozillaPosition },
-  { key: "webkit",                           fn: collectWebkitPosition },
-  { key: "chromium",                         fn: collectChromiumPosition },
-  { key: "web_features",                     fn: collectWebFeatures },
-  { key: "web_features_mapping",             fn: collectWebFeaturesMapping },
-  { key: "wpt",                              fn: collectWPTFyi },
-  { key: "substantiveContributionsLastYear", fn: collectRecentSubstantiveContributions },
-  { key: "contributions",                    fn: collectContributions },
-  { key: "lastEdited",                       fn: collectLastEdited },
-  { key: "w3cGroup",                         fn: collectW3CGroup },
-];
+const collectorMap = {
+  github:                           collectGithubMetadata,
+  mozilla:                          collectMozillaPosition,
+  webkit:                           collectWebkitPosition,
+  chromium:                         collectChromiumPosition,
+  web_features:                     collectWebFeatures,
+  web_features_mapping:             collectWebFeaturesMapping,
+  wpt:                              collectWPTFyi,
+  substantiveContributionsLastYear: collectRecentSubstantiveContributions,
+  contributions:                    collectContributions,
+  lastEdited:                       collectLastEdited,
+  w3cGroup:                         collectW3CGroup,
+};
 
-const args = process.argv;
+const args = parseArgs(process.argv.slice(2), {
+  alias: {
+    collector: "c",
+    help: "h"
+  },
+  boolean: ["help"],
+  string: ["collector"],
+});
 
-if (args.includes('--help') || args.includes('-h')) {
-    console.log("Usage: node index.js [shortname1] [shortname2] ...\n\
-Example: node index.js\n\
-         node index.js file-system-access\n\
-\n\
-If no shortnames are provided, metadata for all specs will be collected.");
+if (args.help) {
+    console.log(`
+Usage: node . [-c|--collector collectorname] [shortname1 ...]
+
+If no arguments are provided, all metadata for all specs will be collected.
+
+Examples:
+  # Run all collectors on all specs
+  node .
+
+  # Run all collectors on a single spec
+  node . file-system-access
+
+  # Run one collector on a single spec
+  node . -c github file-system-access
+    `.trim());
     process.exit(0);
+}
+
+const selectedCollectors =
+  args.collector ? ensureArray(args.collector) : Object.keys(collectorMap);
+
+if (args.collector) {
+  const invalidCollectors = selectedCollectors.filter(arg => !(arg in collectorMap))
+  if (invalidCollectors.length) {
+    console.error(`Invalid collector${invalidCollectors.length > 1 ? "s" : ""}: ${
+      invalidCollectors.join(", ")
+    }`);
+    process.exit(1);
+  }
 }
 
 // Shortnames become filenames, so keep them to something obviously safe.
@@ -105,9 +137,7 @@ async function updateDataFile(results) {
 }
 
 async function run() {
-
-  // Get arguments starting from the 3rd index (node index.js shortname1 shortname2)
-  const targetShortnames = args.slice(2);
+  const targetShortnames = args._;
 
   // Filter specs: if no args provided, process all. Otherwise, filter by shortname.
   const specsToProcess = targetShortnames.length > 0
@@ -119,24 +149,23 @@ async function run() {
       process.exit(1);
   }
 
-  const results = await Promise.all(
-    specsToProcess.map(async (spec) => {
-      logger.info(`Collecting metadata for ${spec.shortname}`);
+  const results = [];
+  for (const spec of specsToProcess) {
+    logger.info(`Collecting metadata for ${spec.shortname}`);
 
-      const collectedEntries = await Promise.all(
-        collectors.map(async ({ key, fn }) => [key, await fn(spec)])
-      );
+    const collectedEntries = await Promise.all(
+      selectedCollectors.map(async (key) => [key, await collectorMap[key](spec)])
+    );
 
-      return {
-        shortname: spec.shortname,
-        specUrl: spec.url,
-        repo: spec.repo,
-        feature: spec.feature,
-        collectedAt: new Date().toISOString(),
-        ...Object.fromEntries(collectedEntries),
-      };
-    })
-  );
+    results.push({
+      shortname: spec.shortname,
+      specUrl: spec.url,
+      repo: spec.repo,
+      feature: spec.feature,
+      collectedAt: new Date().toISOString(),
+      ...Object.fromEntries(collectedEntries),
+    });
+  }
   await updateDataFile(results);
   logger.success("Metadata collection complete.");
 }
