@@ -1,4 +1,6 @@
 import { readdir, readFile } from 'node:fs/promises';
+import { basename, join, sep } from 'node:path';
+
 import { logger } from './logger.js';
 
 const isObject = (item) => item && typeof item === 'object' && !Array.isArray(item);
@@ -23,7 +25,7 @@ const deepMerge = (target, source) => {
 
 // Reads overrides/<shortname>.json. A spec with no file has no overrides, and
 // an empty object is the same as no file.
-const loadOverrides = async (dir = './overrides') => {
+const loadOverrides = async (dir = 'overrides') => {
   const overrides = new Map();
 
   let entries;
@@ -37,17 +39,18 @@ const loadOverrides = async (dir = './overrides') => {
   for (const entry of entries) {
     if (!entry.endsWith('.json')) continue;
 
-    const shortname = entry.slice(0, -'.json'.length);
+    const entryPath = join(dir, entry);
+    const shortname = basename(entry, '.json');
     try {
-      const contents = await readFile(`${dir}/${entry}`, 'utf8');
+      const contents = await readFile(entryPath, 'utf8');
       const patch = JSON.parse(contents);
       if (!isObject(patch)) {
-        logger.error(`${dir}/${entry} is not an object; ignoring it`);
+        logger.error(`${entryPath} is not an object; ignoring it`);
         continue;
       }
       if (Object.keys(patch).length) overrides.set(shortname, patch);
     } catch (err) {
-      logger.error(`Could not read ${dir}/${entry}; ignoring it`, err.message);
+      logger.error(`Could not read ${entryPath}; ignoring it`, err.message);
     }
   }
 
@@ -69,7 +72,7 @@ const mergeResultsWithOverride = (results, overrides) => {
 
   for (const shortname of overrides.keys()) {
     if (!applied.has(shortname)) {
-      logger.warn(`overrides/${shortname}.json does not match any spec in specs.json`);
+      logger.warn(`overrides${sep}${shortname}.json does not match any spec in specs.json`);
     }
   }
 
