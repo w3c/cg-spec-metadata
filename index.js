@@ -1,6 +1,5 @@
-import { mkdir, readdir, unlink, writeFile } from 'node:fs/promises';
-import { logger } from './logger.js';
-import { loadOverrides, mergeResultsWithOverride } from "./utils.js";
+import { mkdir, readdir, unlink, writeFile } from "node:fs/promises";
+import { join, sep } from "node:path";
 
 import { collectGithubMetadata } from "./collectors/github.js";
 import { collectMozillaPosition } from "./collectors/mozilla.js";
@@ -12,10 +11,12 @@ import { collectWPTFyi } from "./collectors/wpt.js";
 import { collectContributions, collectRecentSubstantiveContributions } from "./collectors/contributions.js";
 import { collectLastEdited } from "./collectors/last-edited.js";
 import { collectW3CGroup } from "./collectors/w3c-group.js";
+import { logger } from "./logger.js";
 import { project } from "./projection.js";
+import { loadOverrides, mergeResultsWithOverride } from "./utils.js";
 
-import specs from "./specs.json" with { type: "json" };
 import data from "./data.json" with { type: "json" };
+import specs from "./specs.json" with { type: "json" };
 
 const collectors = [
   { key: "github",                           fn: collectGithubMetadata },
@@ -43,8 +44,8 @@ If no shortnames are provided, metadata for all specs will be collected.");
 }
 
 // Shortnames become filenames, so keep them to something obviously safe.
-const SAFE_SHORTNAME = /^[a-z0-9][a-z0-9-]*$/;
-const SPECS_DIR = './specs';
+const SAFE_SHORTNAME = /^[a-z0-9][a-z0-9\.-]*$/i;
+const SPECS_DIR = "specs";
 
 // Write one projected file per spec for documents to read, and remove the files
 // of specs that are no longer in specs.json.
@@ -60,23 +61,25 @@ async function updateSpecFiles(finalData) {
       continue;
     }
     const name = `${spec.shortname}.json`;
+    const specPath = join(SPECS_DIR, name);
     try {
       const projected = project(spec, inputs.get(spec.shortname));
-      await writeFile(`${SPECS_DIR}/${name}`, JSON.stringify(projected, null, 2) + "\n", 'utf8');
+      await writeFile(specPath, JSON.stringify(projected, null, 2) + "\n", "utf8");
       written.add(name);
     } catch (err) {
-      logger.error(`Failed to write ${SPECS_DIR}/${name}`, err.message);
+      logger.error(`Failed to write ${specPath}`, err.message);
     }
   }
 
   for (const name of await readdir(SPECS_DIR)) {
     if (name.endsWith('.json') && !written.has(name)) {
-      await unlink(`${SPECS_DIR}/${name}`);
-      logger.info(`Removed ${SPECS_DIR}/${name}, which is no longer in specs.json`);
+      const specPath = join(SPECS_DIR, name);
+      await unlink(specPath);
+      logger.info(`Removed ${specPath}, which is no longer in specs.json`);
     }
   }
 
-  logger.success(`${SPECS_DIR}/ updated. Total specs: ${written.size}`);
+  logger.success(`${SPECS_DIR}${sep} updated. Total specs: ${written.size}`);
 }
 
 // Update data.json with new results, merging with existing data
@@ -92,7 +95,7 @@ async function updateDataFile(results) {
   const finalData = mergeResultsWithOverride(Array.from(dataMap.values()), overrides);
 
   try {
-    await writeFile('./data.json', JSON.stringify(finalData, null, 2), 'utf8');
+    await writeFile("data.json", JSON.stringify(finalData, null, 2), "utf8");
     logger.success(`data.json updated. Total specs: ${finalData.length}`);
   } catch (err) {
     logger.error("Failed to write to data.json", err.message);
