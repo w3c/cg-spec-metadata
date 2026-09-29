@@ -10,6 +10,9 @@
  * Returns { date, source } rather than a bare date so that it is auditable
  * which specs have a real answer and which are falling back to an override.
  */
+
+import { sep } from "node:path";
+
 import { logger } from '../logger.js';
 
 function toDate(value) {
@@ -37,7 +40,7 @@ export async function collectLastEdited(spec) {
 
     const lastModified = toDate(res.headers.get("last-modified"));
     if (!lastModified) {
-      logger.warn(`[last-edited] ${spec.shortname}: no usable Last-Modified; set lastEdited in overrides/${spec.shortname}.json`);
+      logger.warn(`[last-edited] ${spec.shortname}: no usable Last-Modified; set lastEdited in overrides${sep}${spec.shortname}.json`);
       return { date: null, source: "none" };
     }
 
