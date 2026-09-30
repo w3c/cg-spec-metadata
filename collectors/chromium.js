@@ -46,7 +46,7 @@ export async function collectChromiumPosition(spec) {
       featureId: match.id,
       name: match.name,
       intentStage: match.intent_stage,
-      shipping_year: match.shipping_year,
+      shippingYear: match.shipping_year,
       browsers: match.browsers,
       matches: matches.length
     };
