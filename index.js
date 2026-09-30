@@ -119,24 +119,23 @@ async function run() {
       process.exit(1);
   }
 
-  const results = await Promise.all(
-    specsToProcess.map(async (spec) => {
-      logger.info(`Collecting metadata for ${spec.shortname}`);
+  const results = [];
+  for (const spec of specsToProcess) {
+    logger.info(`Collecting metadata for ${spec.shortname}`);
 
-      const collectedEntries = await Promise.all(
-        collectors.map(async ({ key, fn }) => [key, await fn(spec)])
-      );
+    const collectedEntries = await Promise.all(
+      collectors.map(async ({ key, fn }) => [key, await fn(spec)])
+    );
 
-      return {
-        shortname: spec.shortname,
-        specUrl: spec.url,
-        repo: spec.repo,
-        feature: spec.feature,
-        collectedAt: new Date().toISOString(),
-        ...Object.fromEntries(collectedEntries),
-      };
-    })
-  );
+    results.push({
+      shortname: spec.shortname,
+      specUrl: spec.url,
+      repo: spec.repo,
+      feature: spec.feature,
+      collectedAt: new Date().toISOString(),
+      ...Object.fromEntries(collectedEntries),
+    });
+  }
   await updateDataFile(results);
   logger.success("Metadata collection complete.");
 }
