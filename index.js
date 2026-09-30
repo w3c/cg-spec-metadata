@@ -43,8 +43,7 @@ const args = parseArgs(process.argv.slice(2), {
   string: ["collector"],
 });
 
-if (args.help) {
-    console.log(`
+const HELP_MESSAGE = `
 Usage: node . [-c|--collector collectorname] [shortname1 ...]
 
 If no arguments are provided, all metadata for all specs will be collected.
@@ -58,8 +57,11 @@ Examples:
 
   # Run one collector on a single spec
   node . -c github file-system-access
-    `.trim());
-    process.exit(0);
+`.trim();
+
+if (args.help) {
+  console.log(HELP_MESSAGE);
+  process.exit(0);
 }
 
 const selectedCollectors =
@@ -73,6 +75,10 @@ if (args.collector) {
     }`);
     process.exit(1);
   }
+} else if (args.collector !== "undefined") {
+  console.log("-c or --collector requires specifying one or more collectors");
+  console.log(HELP_MESSAGE);
+  process.exit(1);
 }
 
 // Shortnames become filenames, so keep them to something obviously safe.
