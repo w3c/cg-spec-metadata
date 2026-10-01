@@ -128,7 +128,7 @@ Possible values for `position`:
 | `featureId` | number | Chrome Status feature identifier. |
 | `name` | string | Feature name as displayed on chromestatus.com. |
 | `intentStage` | string | Current stage of the feature in the Blink launch process. |
-| `shipping_year` | number | Year the feature shipped (or is expected to ship) in Chrome. |
+| `shippingYear` | number | Year the feature shipped (or is expected to ship) in Chrome. |
 | `browsers` | object | Per-browser implementation status as reported by Chrome Status (see below). |
 | `matches` | number | How many Chrome Status entries carry this `web_feature`. |
 
