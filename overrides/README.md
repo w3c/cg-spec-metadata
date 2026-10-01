@@ -1,11 +1,9 @@
 # Overrides
 
-One file per specification, named `<shortname>.json`, holding only the fields to correct. A spec
-with no file here has no overrides, and an empty object (`{}`) is the same as no file.
+To correct data for a given specification, add `<shortname>.json` within this subdirectory, and define only the fields to correct.
 
-Each file is deep-merged over the collected result before `data.json` and `specs/` are written, so
-it can correct any nested value and can also **add** keys that no collector produces — the editorial
-fields such as `standardizationPlan` live here.
+Each file is deep-merged over the collected result, so overrides can correct any nested value.
+Overrides can also _add_ fields that no collector produces, such as `standardizationPlan` or `progress`.
 
 ```json
 {
@@ -14,11 +12,11 @@ fields such as `standardizationPlan` live here.
 }
 ```
 
-Two things to know:
+Limitations of merging behavior:
 
-- **Arrays are replaced wholesale, never merged.** An override that touches `web_features_mapping`
-  must supply the entire two-element array.
-- **A key cannot be deleted**, only set to `null` or `""`.
+- Arrays are fully replaced, not merged.
+- A key cannot be deleted, only set to `null` or a falsy value such as `""` or `0`.
 
-A malformed file is reported and skipped rather than failing the run, and a file whose name matches
-no spec in `specs.json` is reported as well.
+For each spec with overrides, the process indicates which top-level keys are overridden.
+
+Any malformed file is reported and skipped, rather than terminating the process.

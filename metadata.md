@@ -448,34 +448,3 @@ which can never be updated to reword it. An entry in `overrides/` still wins ove
 value.
 They are emitted as `null` so that the shape is stable and a document can tell "not known" from
 "known to be empty".
-
----
-
-## Manual overrides (`overrides/`)
-
-One file per specification, `overrides/<shortname>.json`, holding only the fields to correct. A
-spec with no file has no overrides, and an empty object (`{}`) is the same as no file. Splitting
-them up keeps each spec's corrections reviewable on their own, rather than in one file that grows
-with every spec.
-
-```json
-{
-  "github": { "stars": 800 },
-  "standardizationPlan": { "text": "Agreement to migrate to XXX", "url": "https://..." }
-}
-```
-
-Each file is deep-merged over the collected result before `data.json` and `specs/` are written, so
-it can correct any nested value and can also **add** keys that no collector produces — that is where
-the editorial fields live. Only the keys you name are touched: the example above leaves the rest of
-`github` alone.
-
-Two things to know:
-
-- **Arrays are replaced wholesale, never merged.** An override that touches `web_features_mapping`
-  must supply the entire two-element array.
-- **A key cannot be deleted**, only set to `null` or `""`.
-
-A malformed file is reported and skipped rather than failing the run, and a file whose name matches
-no spec in `specs.json` is reported too. Every applied override is logged, so a run says which
-values did not come from a collector.
