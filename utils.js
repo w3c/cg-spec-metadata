@@ -5,6 +5,13 @@ import { logger } from './logger.js';
 
 const isObject = (item) => item && typeof item === 'object' && !Array.isArray(item);
 
+/**
+ * Returns the passed variable if it is already an array;
+ * otherwise, returns the item wrapped in a new array.
+ */
+export const ensureArray = (itemOrArray) =>
+  Array.isArray(itemOrArray) ? itemOrArray : [itemOrArray];
+
 const deepMerge = (target, source) => {
   let output = { ...target };
   if (isObject(target) && isObject(source)) {
