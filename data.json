@@ -583,7 +583,7 @@
     }
   },
   {
-    "shortname": "speculation-rules",
+    "shortname": "prefetch",
     "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
     "repo": "WICG/nav-speculation",
     "feature": "prefetch",
