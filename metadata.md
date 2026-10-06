@@ -31,9 +31,9 @@ Every entry in `data.json` has the following top-level shape:
 }
 ```
 
-`specUrl`, `repo` and `collectedAt` are copied from `specs.json` (or stamped) when a spec is
-collected, so an entry that has not been collected since they were introduced will not have them
-yet. `collectedAt` is stamped per entry at collection time, not when the file is written, so a
+`specUrl` and `repo` are resolved from [browser-specs](#where-the-url-and-the-repository-come-from)
+and recorded when a spec is collected, so an entry that has not been collected since
+they were introduced will not have them yet. `collectedAt` is stamped per entry at collection time, not when the file is written, so a
 targeted run (`node index.js <shortname>`) leaves the timestamps of the other specs alone.
 
 **Error convention:** when a collector fails (network error, HTTP error, unexpected payload), its key contains `{ "error": "<message>" }` instead of the normal object.
@@ -49,11 +49,9 @@ Each spec is declared with the following properties:
 
 | Property | Type | Required | Description |
 |---|---|---|---|
-| `shortname` | string | yes | Unique identifier of the spec. Used as the merge key in `data.json`, as the name of its file in `overrides/`, as the CLI filter argument, and as the lookup key against Chrome Status and wpt.fyi. |
-| `webFeaturesId` | string | yes | Feature identifier in the [web-features](https://github.com/web-platform-dx/web-features) dataset. Used by the `web_features`, `web_features_mapping` and (as fallback) `wpt` collectors. |
-| `feature` | string | no | Sub-feature name for specs that cover several features (e.g. `prefetch` for `speculation-rules`). When present, the wpt.fyi query becomes `shortname/feature`. |
-| `repo` | string | yes | GitHub repository in `owner/name` form (e.g. `WICG/file-system-access`). Used by the GitHub and substantive-contributions collectors. |
-| `url` | string | yes | Canonical URL of the spec. Used to match entries in the Mozilla and WebKit standards-positions datasets. |
+| `shortname` | string | yes | Unique identifier of the spec, and the shortname it has in [browser-specs](https://github.com/w3c/browser-specs). Used as the merge key in `data.json`, as the name of its file in `specs/` and `overrides/`, as the CLI filter argument, and as the lookup key against Chrome Status. |
+| `webFeaturesId` | string | yes | Feature identifier in the [web-features](https://github.com/web-platform-dx/web-features) dataset. Used by the `web_features`, `web_features_mapping` and (as the default wpt.fyi query) `wpt` collectors. |
+| `wptPath` | string | no | The web-platform-tests directory, when it is not the `webFeaturesId`. |
 | `group` | number \| string | no | W3C group, as the numeric id or the shortname (`wicg`). Only needed when the repository has no `w3c.json` to read it from; see [`w3cGroup`](#w3cgroup--the-community-group). |
 
 ---
@@ -210,7 +208,7 @@ The `mappings` object links the feature to external resources. Possible keys (ea
 
 ### `wpt` — web-platform-tests coverage
 
-- **Source:** [wpt.fyi search API](https://wpt.fyi/api/search) on the `master` label; the query is `shortname/feature` when `feature` is set, otherwise `webFeaturesId`, and results are restricted to test paths under `/<query>/`
+- **Source:** [wpt.fyi search API](https://wpt.fyi/api/search) on the `master` label; the query is `wptPath` when set, otherwise `webFeaturesId`, and results are restricted to test paths under `/<query>/`
 - **Collector:** `collectors/wpt.js`
 
 | Property | Type | Description |
@@ -298,7 +296,7 @@ one Community Group cost one API request.
 
 ### `lastEdited` — when the document itself was last edited
 
-- **Source:** the HTTP `Last-Modified` of `specs.json`'s `url`
+- **Source:** the HTTP `Last-Modified` of the spec's `nightly.url` in browser-specs
 - **Collector:** `collectors/last-edited.js`
 
 ```json
