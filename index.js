@@ -13,6 +13,7 @@ import { collectLastEdited } from "./collectors/last-edited.js";
 import { collectW3CGroup } from "./collectors/w3c-group.js";
 import { logger } from "./logger.js";
 import { project } from "./projection.js";
+import { resolveSpec } from "./specs.js";
 import { loadOverrides, mergeResultsWithOverride } from "./utils.js";
 
 import data from "./data.json" with { type: "json" };
@@ -31,6 +32,15 @@ const collectors = [
   { key: "lastEdited",                       fn: collectLastEdited },
   { key: "w3cGroup",                         fn: collectW3CGroup },
 ];
+
+// Find the URLs and their repositories
+const resolvedSpecs = [];
+const unlistedSpecs = [];
+for (const spec of specs) {
+  const resolved = resolveSpec(spec);
+  if (resolved) resolvedSpecs.push(resolved);
+  else unlistedSpecs.push(spec.shortname);
+}
 
 const args = process.argv;
 
@@ -51,7 +61,7 @@ const SPECS_DIR = "specs";
 // of specs that are no longer in specs.json.
 async function updateSpecFiles(finalData) {
   const written = new Set();
-  const inputs = new Map(specs.map(spec => [spec.shortname, spec]));
+  const inputs = new Map(resolvedSpecs.map(spec => [spec.shortname, spec]));
 
   await mkdir(SPECS_DIR, { recursive: true });
 
@@ -90,9 +100,13 @@ async function updateDataFile(results) {
     dataMap.set(result.shortname, result);
   });
 
+  const merged = specs
+    .map(spec => dataMap.get(spec.shortname))
+    .filter(entry => entry !== undefined);
+
   // Apply the overrides to the merged results before writing to file
   const overrides = await loadOverrides();
-  const finalData = mergeResultsWithOverride(Array.from(dataMap.values()), overrides);
+  const finalData = mergeResultsWithOverride(merged, overrides);
 
   try {
     await writeFile("data.json", JSON.stringify(finalData, null, 2), "utf8");
@@ -109,10 +123,17 @@ async function run() {
   // Get arguments starting from the 3rd index (node index.js shortname1 shortname2)
   const targetShortnames = args.slice(2);
 
+  // Collecting for a spec browser-specs does not list would mean guessing its
+  // URL and repository. Say which one, and leave whatever was collected for it
+  // last time in place rather than overwriting it with nulls.
+  for (const shortname of unlistedSpecs) {
+    logger.error(`[specs] "${shortname}" is unknown to browser-specs. Skipping it`);
+  }
+
   // Filter specs: if no args provided, process all. Otherwise, filter by shortname.
   const specsToProcess = targetShortnames.length > 0
-      ? specs.filter(s => targetShortnames.includes(s.shortname))
-      : specs;
+      ? resolvedSpecs.filter(s => targetShortnames.includes(s.shortname))
+      : resolvedSpecs;
 
   if (targetShortnames.length > 0 && specsToProcess.length === 0) {
       logger.error(`No specs found matching ${targetShortnames.join(', ')}`);
@@ -131,7 +152,7 @@ async function run() {
       shortname: spec.shortname,
       specUrl: spec.url,
       repo: spec.repo,
-      feature: spec.feature,
+      wptPath: spec.wptPath,
       collectedAt: new Date().toISOString(),
       ...Object.fromEntries(collectedEntries),
     });
