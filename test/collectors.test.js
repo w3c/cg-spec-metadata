@@ -2,7 +2,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 
 import { collectWPTFyi } from "../collectors/wpt.js";
-import { collectContributions } from "../collectors/contributions.js";
+import {
+  collectContributions,
+  collectRecentSubstantiveContributions,
+} from "../collectors/contributions.js";
 import { collectW3CGroup } from "../collectors/w3c-group.js";
 import { collectLastEdited } from "../collectors/last-edited.js";
 import { collectChromiumPosition } from "../collectors/chromium.js";
@@ -43,6 +46,44 @@ test("wpt: results outside the queried path are ignored", async () => {
     const wpt = await collectWPTFyi({ shortname: "x", webFeaturesId: "scheduler" });
     assert.equal(wpt.tests, 1);
     assert.equal(wpt.subtests, 2);
+  } finally {
+    fetch.restore();
+  }
+});
+
+test("wpt: wptPath names the directory when it doesn't match the web-features id", async () => {
+  const fetch = stubFetch({
+    "wpt.fyi": {
+      json: {
+        runs: [{ browser_name: "chrome" }],
+        results: [wptTest("/speculation-rules/prefetch/a.html", [2])],
+      },
+    },
+  });
+
+  try {
+    const wpt = await collectWPTFyi({
+      shortname: "prefetch",
+      webFeaturesId: "speculation-rules",
+      wptPath: "speculation-rules/prefetch",
+    });
+    assert.equal(wpt.tests, 1);
+    assert.match(fetch.calls[0].url, /q=speculation-rules%2Fprefetch/);
+  } finally {
+    fetch.restore();
+  }
+});
+
+test("contributions: a spec with no repository returns null for contributions", async () => {
+  const fetch = stubFetch({});
+
+  try {
+    assert.equal(await collectContributions({ shortname: "x", repo: null }), null);
+    assert.equal(
+      await collectRecentSubstantiveContributions({ shortname: "x", repo: null }),
+      null
+    );
+    assert.deepEqual(fetch.calls, []);
   } finally {
     fetch.restore();
   }
