@@ -6,9 +6,9 @@ const WPT_FYI_URL = "https://wpt.fyi/api/search";
 
 export async function collectWPTFyi(spec) {
   try {
-    const query = spec.feature
-      ? spec.shortname + (spec.feature ? `/${spec.feature}` : "")
-      : spec.webFeaturesId;
+    // The WPT directory, which follows neither our shortname nor the
+    // web-features id reliably: `wptPath` states it when they diverge.
+    const query = spec.wptPath ?? spec.webFeaturesId;
     const url = `${WPT_FYI_URL}?label=master&q=${encodeURIComponent(query)}`;
 
     const res = await fetch(url);
