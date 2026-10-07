@@ -1,7 +1,7 @@
 /**
  * Resolves the entries of specs.json against browser-specs.
  */
-import webSpecs from "web-specs/index.json" with { type: "json" };
+import webSpecs from "web-specs" with { type: "json" };
 import { logger } from "./logger.js";
 
 // Track former shortname so that an old shortname used in specs.json can still be resolved

@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-import webSpecs from "web-specs/index.json" with { type: "json" };
+import webSpecs from "web-specs" with { type: "json" };
 
 import { githubRepo, resolveSpec } from "../specs.js";
 
