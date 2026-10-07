@@ -4,8 +4,11 @@
 
 Collects metadata for CG (Community Group) specifications, from various sources including GitHub, Mozilla, WebKit, Chromium, web-features, WPT, the W3C API, and the W3C Repo Manager.
 
+`specs.json` lists the specifications to track. See [input metadata](metadata.md#input-metadata-specsjson).
+
 The process performs the following operations on each spec in `specs.json`:
 
+1. resolves the spec's URL and repository from browser-specs
 1. fetches metadata from multiple sources
 1. applies any [manual overrides](overrides/README.md)
 1. writes all data collected to `data.json`

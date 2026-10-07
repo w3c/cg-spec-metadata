@@ -3,13 +3,13 @@
     "shortname": "file-system-access",
     "specUrl": "https://wicg.github.io/file-system-access/",
     "repo": "WICG/file-system-access",
-    "collectedAt": "2026-10-05T00:30:27.347Z",
+    "collectedAt": "2026-10-06T14:50:43.738Z",
     "github": {
       "stars": 800,
       "forks": 70,
       "openIssues": 88,
       "openPRs": 7,
-      "closedPRs": 134,
+      "closedPRs": 135,
       "lastCommitDate": "2025-10-10T14:22:22Z"
     },
     "mozilla": {
@@ -250,6 +250,14 @@
         "wpt": {
           "url": "https://wpt.fyi/results?q=feature:file-system-access"
         },
+        "web-specs": [
+          {
+            "shortname": "file-system-access"
+          },
+          {
+            "shortname": "fs"
+          }
+        ],
         "state-of-surveys": [
           {
             "name": "State of JS 2025",
@@ -428,7 +436,7 @@
           }
         ],
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.00004491,
+          "percentageOfPageLoad": 0.00003873,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/258"
         },
         "chrome-status": [
@@ -575,11 +583,11 @@
     }
   },
   {
-    "shortname": "speculation-rules",
+    "shortname": "prefetch",
     "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
     "repo": "WICG/nav-speculation",
-    "feature": "prefetch",
-    "collectedAt": "2026-10-05T00:30:29.339Z",
+    "wptPath": "speculation-rules/prefetch",
+    "collectedAt": "2026-10-06T14:50:46.325Z",
     "github": {
       "stars": 200,
       "forks": 44,
@@ -910,6 +918,17 @@
         "wpt": {
           "url": "https://wpt.fyi/results?q=feature:speculation-rules"
         },
+        "web-specs": [
+          {
+            "shortname": "fenced-frame"
+          },
+          {
+            "shortname": "html"
+          },
+          {
+            "shortname": "prerendering-revamped"
+          }
+        ],
         "use-cases": [
           {
             "description": "My company has a web app in which users can create, edit, and save documents. The app's landing page is the documents list, from which users can open their documents in a proprietary editor in a new tab.\n\nThe editor has many features, so it loads and evaluates several megabytes of assets. Even with request & bytecode caching, loading and evaluating assets is pretty slow. \n\nWith the Speculation Rules API (specifically prerendering), I can start asset load and evaluation before a user opens their document, and then use the Broadcast Channel API to tell the prerendered page what document to open.",
@@ -981,10 +1000,10 @@
         ],
         "developer-signals": {
           "url": "https://github.com/web-platform-dx/developer-signals/issues/186",
-          "votes": 28
+          "votes": 30
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.12091068,
+          "percentageOfPageLoad": 0.13209978,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/317"
         },
         "chrome-status": [
@@ -1286,9 +1305,9 @@
     "shortname": "scheduling-apis",
     "specUrl": "https://wicg.github.io/scheduling-apis/",
     "repo": "WICG/scheduling-apis",
-    "collectedAt": "2026-10-05T00:30:31.390Z",
+    "collectedAt": "2026-10-06T14:50:49.004Z",
     "github": {
-      "stars": 926,
+      "stars": 925,
       "forks": 47,
       "openIssues": 28,
       "openPRs": 1,
@@ -1551,6 +1570,11 @@
         "wpt": {
           "url": "https://wpt.fyi/results?q=feature:scheduler"
         },
+        "web-specs": [
+          {
+            "shortname": "scheduling-apis"
+          }
+        ],
         "state-of-surveys": [
           {
             "name": "State of JS 2025",
@@ -1578,10 +1602,10 @@
         ],
         "developer-signals": {
           "url": "https://github.com/web-platform-dx/developer-signals/issues/254",
-          "votes": 21
+          "votes": 23
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.12550187,
+          "percentageOfPageLoad": 0.13588759,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/118"
         },
         "chrome-status": [
