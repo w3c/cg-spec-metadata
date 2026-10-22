@@ -15,7 +15,6 @@ Every entry in `data.json` has the following top-level shape:
   "shortname": "...",
   "specUrl": "...",
   "repo": "...",
-  "feature": "...",
   "collectedAt": "2026-08-24T00:12:03.114Z",
   "github": { ... },
   "mozilla": { ... },
@@ -51,8 +50,27 @@ Each spec is declared with the following properties:
 |---|---|---|---|
 | `shortname` | string | yes | Unique identifier of the spec, and the shortname it has in [browser-specs](https://github.com/w3c/browser-specs). Used as the merge key in `data.json`, as the name of its file in `specs/` and `overrides/`, as the CLI filter argument, and as the lookup key against Chrome Status. |
 | `webFeaturesId` | string | yes | Feature identifier in the [web-features](https://github.com/web-platform-dx/web-features) dataset. Used by the `web_features`, `web_features_mapping` and (as the default wpt.fyi query) `wpt` collectors. |
-| `wptPath` | string | no | The web-platform-tests directory, when it is not the `webFeaturesId`. |
 | `group` | number \| string | no | W3C group, as the numeric id or the shortname (`wicg`). Only needed when the repository has no `w3c.json` to read it from; see [`w3cGroup`](#w3cgroup--the-community-group). |
+
+---
+
+## Where the URL and the repository come from
+
+`specs.js` resolves each `shortname` against [browser-specs](https://github.com/w3c/browser-specs) and takes
+
+| Value | browser-specs property | Used by |
+|---|---|---|
+| `specUrl` | `nightly.url` | the `mozilla`, `webkit` and `lastEdited` collectors |
+| `repo` | `nightly.repository`, reduced to `owner/name` | the `github` and contributions collectors |
+| test paths | `tests.testPaths` and `tests.excludePaths` | the `wpt` collector |
+
+A spec whose shortname browser-specs does not know is reported as error.
+A shortname browser-specs now lists as a *former* name still resolves, with a warning: rename it in
+`specs.json`.
+
+Only a repository hosted on GitHub yields a `repo`; anything else resolves to `null`, and the
+collectors that need one return `null` in turn. browser-specs knows the test paths of about half
+of the specs, so `webFeaturesId` remains the fallback for the wpt.fyi query.
 
 ---
 
@@ -208,7 +226,7 @@ The `mappings` object links the feature to external resources. Possible keys (ea
 
 ### `wpt` — web-platform-tests coverage
 
-- **Source:** [wpt.fyi search API](https://wpt.fyi/api/search) on the `master` label; the query is `wptPath` when set, otherwise `webFeaturesId`, and results are restricted to test paths under `/<query>/`
+- **Source:** [wpt.fyi search API](https://wpt.fyi/api/search) on the `master` label; one query per directory browser-specs lists in `tests.testPaths`, falling back to `webFeaturesId` when it lists none. Results are restricted to test paths under `/<query>/`, the subdirectories in `tests.excludePaths` are dropped, and a test two queries both report is counted once
 - **Collector:** `collectors/wpt.js`
 
 | Property | Type | Description |

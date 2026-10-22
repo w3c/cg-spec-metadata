@@ -152,7 +152,6 @@ async function run() {
       shortname: spec.shortname,
       specUrl: spec.url,
       repo: spec.repo,
-      wptPath: spec.wptPath,
       collectedAt: new Date().toISOString(),
       ...Object.fromEntries(collectedEntries),
     });

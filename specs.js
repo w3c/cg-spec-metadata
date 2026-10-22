@@ -35,7 +35,8 @@ export function githubRepo(repository) {
 }
 
 /**
- * Adds the URL and the repository from browser-specs to an entry from specs.json
+ * Adds the URL, the repository and the test paths from browser-specs to an entry
+ * from specs.json
  *
  * @param {object} entry
  * @returns {object | null} null when browser-specs doesn't know the shortname
@@ -50,5 +51,6 @@ export function resolveSpec(entry) {
     ...entry,
     url: found.nightly?.url ?? null,
     repo: githubRepo(found.nightly?.repository),
+    tests: found.tests ?? null,
   };
 }

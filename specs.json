@@ -5,8 +5,7 @@
   },
   {
     "shortname": "prefetch",
-    "webFeaturesId": "speculation-rules",
-    "wptPath": "speculation-rules/prefetch"
+    "webFeaturesId": "speculation-rules"
   },
   {
     "shortname": "scheduling-apis",
