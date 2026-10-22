@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "speculation-rules",
-  "collectedAt": "2026-10-05T00:30:29.339Z",
+  "collectedAt": "2026-10-19T00:26:30.524Z",
   "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
   "lastEdited": {
     "date": "2026-08-27",
@@ -35,12 +35,12 @@
     "lastCommitDate": "2026-08-27"
   },
   "wpt": {
-    "tests": 214,
-    "subtests": 249,
+    "tests": 215,
+    "subtests": 250,
     "url": "https://wpt.fyi/results?q=feature:speculation-rules"
   },
   "developerSignals": {
-    "votes": 28,
+    "votes": 35,
     "url": "https://github.com/web-platform-dx/developer-signals/issues/186"
   },
   "chromeStatus": {
@@ -56,7 +56,7 @@
     "joinUrl": "https://www.w3.org/community/wicg/join"
   },
   "standardizationPlan": null,
-  "stability": "18 substantive changes in the past year.",
+  "stability": "15 substantive changes in the past year.",
   "contributions": {
     "count": 181,
     "contributors": 3,
