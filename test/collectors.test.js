@@ -51,7 +51,7 @@ test("wpt: results outside the queried path are ignored", async () => {
   }
 });
 
-test("wpt: wptPath names the directory when it doesn't match the web-features id", async () => {
+test("wpt: browser-specs names the directory when it doesn't match the web-features id", async () => {
   const fetch = stubFetch({
     "wpt.fyi": {
       json: {
@@ -65,10 +65,101 @@ test("wpt: wptPath names the directory when it doesn't match the web-features id
     const wpt = await collectWPTFyi({
       shortname: "prefetch",
       webFeaturesId: "speculation-rules",
-      wptPath: "speculation-rules/prefetch",
+      tests: { testPaths: ["speculation-rules/prefetch"] },
     });
     assert.equal(wpt.tests, 1);
     assert.match(fetch.calls[0].url, /q=speculation-rules%2Fprefetch/);
+  } finally {
+    fetch.restore();
+  }
+});
+
+test("wpt: a spec browser-specs has no test paths for falls back to the web-features id", async () => {
+  const fetch = stubFetch({
+    "wpt.fyi": {
+      json: { runs: [{ browser_name: "chrome" }], results: [wptTest("/scheduler/a.html", [2])] },
+    },
+  });
+
+  try {
+    const wpt = await collectWPTFyi({ shortname: "scheduling-apis", webFeaturesId: "scheduler", tests: null });
+    assert.equal(fetch.calls.length, 1);
+    assert.match(fetch.calls[0].url, /q=scheduler$/);
+    assert.equal(wpt.tests, 1);
+    assert.equal(wpt.runs, 1);
+  } finally {
+    fetch.restore();
+  }
+});
+
+test("wpt: every test path is searched, and a test under two of them counts once", async () => {
+  const fetch = stubFetch({
+    "q=speculation-rules%2Fprefetch": {
+      json: {
+        runs: [{ browser_name: "chrome" }],
+        results: [wptTest("/speculation-rules/prefetch/a.html", [2])],
+      },
+    },
+    "q=speculation-rules": {
+      json: {
+        runs: [{ browser_name: "chrome" }],
+        results: [
+          wptTest("/speculation-rules/prefetch/a.html", [2]),
+          wptTest("/speculation-rules/b.html", [5]),
+        ],
+      },
+    },
+  });
+
+  try {
+    const wpt = await collectWPTFyi({
+      shortname: "speculation-rules",
+      webFeaturesId: "speculation-rules",
+      tests: { testPaths: ["speculation-rules", "speculation-rules/prefetch"] },
+    });
+    assert.equal(fetch.calls.length, 2);
+    assert.equal(wpt.tests, 2, "the nested test is reported by both queries");
+    assert.equal(wpt.subtests, 7);
+  } finally {
+    fetch.restore();
+  }
+});
+
+test("wpt: the directories in excludePaths are left out", async () => {
+  const fetch = stubFetch({
+    "wpt.fyi": {
+      json: {
+        runs: [{ browser_name: "chrome" }],
+        results: [
+          wptTest("/speculation-rules/b.html", [5]),
+          wptTest("/speculation-rules/prefetch/a.html", [2]),
+        ],
+      },
+    },
+  });
+
+  try {
+    const wpt = await collectWPTFyi({
+      shortname: "speculation-rules",
+      webFeaturesId: "speculation-rules",
+      tests: {
+        testPaths: ["speculation-rules"],
+        excludePaths: ["speculation-rules/prefetch"],
+      },
+    });
+    assert.equal(wpt.tests, 1);
+    assert.equal(wpt.subtests, 5);
+  } finally {
+    fetch.restore();
+  }
+});
+
+test("wpt: a failing search reports the error rather than a partial count", async () => {
+  const fetch = stubFetch({ "wpt.fyi": { ok: false, status: 503 } });
+
+  try {
+    const wpt = await collectWPTFyi({ shortname: "x", webFeaturesId: "scheduler" });
+    assert.deepEqual(wpt, { error: "HTTP 503" });
   } finally {
     fetch.restore();
   }

@@ -13,6 +13,16 @@ test("specs: a shortname resolves to the nightly URL and owner/name", () => {
   assert.equal(resolved.shortname, "scheduling-apis");
 });
 
+test("specs: the web-platform-tests paths come along", () => {
+  const resolved = resolveSpec({ shortname: "prefetch", webFeaturesId: "speculation-rules" });
+  assert.deepEqual(resolved.tests.testPaths, ["speculation-rules/prefetch"]);
+});
+
+test("specs: a spec without test paths in browser-specs resolves to null tests", () => {
+  const untested = webSpecs.find((spec) => !spec.tests);
+  assert.equal(resolveSpec({ shortname: untested.shortname }).tests, null);
+});
+
 test("specs: a former shortname still resolves, to the spec that has it now", () => {
   const renamed = webSpecs.find((spec) => spec.formerNames?.length);
   const resolved = resolveSpec({ shortname: renamed.formerNames[0] });
