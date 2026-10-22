@@ -7,7 +7,8 @@
     "test": "node --test test/*.test.js"
   },
   "dependencies": {
-    "web-features": "*"
+    "web-features": "*",
+    "web-specs": "^4.19.1"
   },
   "engines": {
     "node": ">=22",

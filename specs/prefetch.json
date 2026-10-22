@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
-  "shortname": "speculation-rules",
-  "collectedAt": "2026-10-19T00:26:30.524Z",
+  "shortname": "prefetch",
+  "collectedAt": "2026-10-22T05:11:25.723Z",
   "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
   "lastEdited": {
     "date": "2026-08-27",

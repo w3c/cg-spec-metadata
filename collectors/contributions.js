@@ -14,6 +14,7 @@ const API = "https://labs.w3.org/repo-manager/api/repos";
 const cache = new Map();
 
 async function fetchContributors(repo) {
+  if (!repo) return null;
   if (!cache.has(repo)) {
     const url = `${API}/${repo}/contributors`;
     const response = await fetch(url);
@@ -60,6 +61,7 @@ function activeLastYear(group) {
 export async function collectContributions(spec) {
   try {
     const data = await fetchContributors(spec.repo);
+    if (!data) return null;
     return {
       substantive: tally(data.substantiveContributors),
       nonSubstantive: tally(data.nonSubstantiveContributors),
@@ -75,6 +77,7 @@ export async function collectContributions(spec) {
 export async function collectRecentSubstantiveContributions(spec) {
   try {
     const data = await fetchContributors(spec.repo);
+    if (!data) return null;
     return activeLastYear(data.substantiveContributors);
   } catch (err) {
     logger.error(`[contributions] Error fetching contributors for ${spec.repo}: ${err.message}`);

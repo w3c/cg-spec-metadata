@@ -2,7 +2,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 
 import { collectWPTFyi } from "../collectors/wpt.js";
-import { collectContributions } from "../collectors/contributions.js";
+import {
+  collectContributions,
+  collectRecentSubstantiveContributions,
+} from "../collectors/contributions.js";
 import { collectW3CGroup } from "../collectors/w3c-group.js";
 import { collectLastEdited } from "../collectors/last-edited.js";
 import { collectChromiumPosition } from "../collectors/chromium.js";
@@ -43,6 +46,135 @@ test("wpt: results outside the queried path are ignored", async () => {
     const wpt = await collectWPTFyi({ shortname: "x", webFeaturesId: "scheduler" });
     assert.equal(wpt.tests, 1);
     assert.equal(wpt.subtests, 2);
+  } finally {
+    fetch.restore();
+  }
+});
+
+test("wpt: browser-specs names the directory when it doesn't match the web-features id", async () => {
+  const fetch = stubFetch({
+    "wpt.fyi": {
+      json: {
+        runs: [{ browser_name: "chrome" }],
+        results: [wptTest("/speculation-rules/prefetch/a.html", [2])],
+      },
+    },
+  });
+
+  try {
+    const wpt = await collectWPTFyi({
+      shortname: "prefetch",
+      webFeaturesId: "speculation-rules",
+      tests: { testPaths: ["speculation-rules/prefetch"] },
+    });
+    assert.equal(wpt.tests, 1);
+    assert.match(fetch.calls[0].url, /q=speculation-rules%2Fprefetch/);
+  } finally {
+    fetch.restore();
+  }
+});
+
+test("wpt: a spec browser-specs has no test paths for falls back to the web-features id", async () => {
+  const fetch = stubFetch({
+    "wpt.fyi": {
+      json: { runs: [{ browser_name: "chrome" }], results: [wptTest("/scheduler/a.html", [2])] },
+    },
+  });
+
+  try {
+    const wpt = await collectWPTFyi({ shortname: "scheduling-apis", webFeaturesId: "scheduler", tests: null });
+    assert.equal(fetch.calls.length, 1);
+    assert.match(fetch.calls[0].url, /q=scheduler$/);
+    assert.equal(wpt.tests, 1);
+    assert.equal(wpt.runs, 1);
+  } finally {
+    fetch.restore();
+  }
+});
+
+test("wpt: every test path is searched, and a test under two of them counts once", async () => {
+  const fetch = stubFetch({
+    "q=speculation-rules%2Fprefetch": {
+      json: {
+        runs: [{ browser_name: "chrome" }],
+        results: [wptTest("/speculation-rules/prefetch/a.html", [2])],
+      },
+    },
+    "q=speculation-rules": {
+      json: {
+        runs: [{ browser_name: "chrome" }],
+        results: [
+          wptTest("/speculation-rules/prefetch/a.html", [2]),
+          wptTest("/speculation-rules/b.html", [5]),
+        ],
+      },
+    },
+  });
+
+  try {
+    const wpt = await collectWPTFyi({
+      shortname: "speculation-rules",
+      webFeaturesId: "speculation-rules",
+      tests: { testPaths: ["speculation-rules", "speculation-rules/prefetch"] },
+    });
+    assert.equal(fetch.calls.length, 2);
+    assert.equal(wpt.tests, 2, "the nested test is reported by both queries");
+    assert.equal(wpt.subtests, 7);
+  } finally {
+    fetch.restore();
+  }
+});
+
+test("wpt: the directories in excludePaths are left out", async () => {
+  const fetch = stubFetch({
+    "wpt.fyi": {
+      json: {
+        runs: [{ browser_name: "chrome" }],
+        results: [
+          wptTest("/speculation-rules/b.html", [5]),
+          wptTest("/speculation-rules/prefetch/a.html", [2]),
+        ],
+      },
+    },
+  });
+
+  try {
+    const wpt = await collectWPTFyi({
+      shortname: "speculation-rules",
+      webFeaturesId: "speculation-rules",
+      tests: {
+        testPaths: ["speculation-rules"],
+        excludePaths: ["speculation-rules/prefetch"],
+      },
+    });
+    assert.equal(wpt.tests, 1);
+    assert.equal(wpt.subtests, 5);
+  } finally {
+    fetch.restore();
+  }
+});
+
+test("wpt: a failing search reports the error rather than a partial count", async () => {
+  const fetch = stubFetch({ "wpt.fyi": { ok: false, status: 503 } });
+
+  try {
+    const wpt = await collectWPTFyi({ shortname: "x", webFeaturesId: "scheduler" });
+    assert.deepEqual(wpt, { error: "HTTP 503" });
+  } finally {
+    fetch.restore();
+  }
+});
+
+test("contributions: a spec with no repository returns null for contributions", async () => {
+  const fetch = stubFetch({});
+
+  try {
+    assert.equal(await collectContributions({ shortname: "x", repo: null }), null);
+    assert.equal(
+      await collectRecentSubstantiveContributions({ shortname: "x", repo: null }),
+      null
+    );
+    assert.deepEqual(fetch.calls, []);
   } finally {
     fetch.restore();
   }
