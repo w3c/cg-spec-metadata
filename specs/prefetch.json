@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "prefetch",
-  "collectedAt": "2026-10-22T05:11:25.723Z",
+  "collectedAt": "2026-10-26T00:25:41.029Z",
   "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
   "lastEdited": {
     "date": "2026-08-27",
@@ -56,7 +56,7 @@
     "joinUrl": "https://www.w3.org/community/wicg/join"
   },
   "standardizationPlan": null,
-  "stability": "15 substantive changes in the past year.",
+  "stability": "10 substantive changes in the past year.",
   "contributions": {
     "count": 181,
     "contributors": 3,
