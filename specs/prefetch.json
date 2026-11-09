@@ -1,10 +1,10 @@
 {
   "formatVersion": 1,
   "shortname": "prefetch",
-  "collectedAt": "2026-10-26T00:25:41.029Z",
+  "collectedAt": "2026-11-09T00:17:02.869Z",
   "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
   "lastEdited": {
-    "date": "2026-08-27",
+    "date": "2026-11-06",
     "source": "http-last-modified"
   },
   "support": {
@@ -32,11 +32,11 @@
   "github": {
     "stars": 200,
     "starsUrl": "https://github.com/WICG/nav-speculation/stargazers",
-    "lastCommitDate": "2026-08-27"
+    "lastCommitDate": "2026-11-06"
   },
   "wpt": {
-    "tests": 215,
-    "subtests": 250,
+    "tests": 220,
+    "subtests": 260,
     "url": "https://wpt.fyi/results?q=feature:speculation-rules"
   },
   "developerSignals": {
@@ -56,10 +56,10 @@
     "joinUrl": "https://www.w3.org/community/wicg/join"
   },
   "standardizationPlan": null,
-  "stability": "10 substantive changes in the past year.",
+  "stability": "11 substantive changes in the past year.",
   "contributions": {
-    "count": 181,
-    "contributors": 3,
+    "count": 182,
+    "contributors": 4,
     "url": "https://labs.w3.org/repo-manager/repos/WICG/nav-speculation/contributors"
   },
   "experimentationStatus": "There is enough implementation to support some experimentation, which can help improve the technology (see detailed browser compatibility data)."
