@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "shortname": "prefetch",
-  "collectedAt": "2026-11-09T00:17:02.869Z",
+  "collectedAt": "2026-11-16T00:20:33.455Z",
   "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
   "lastEdited": {
     "date": "2026-11-06",
@@ -30,13 +30,13 @@
     }
   },
   "github": {
-    "stars": 200,
+    "stars": 201,
     "starsUrl": "https://github.com/WICG/nav-speculation/stargazers",
     "lastCommitDate": "2026-11-06"
   },
   "wpt": {
-    "tests": 220,
-    "subtests": 260,
+    "tests": 226,
+    "subtests": 268,
     "url": "https://wpt.fyi/results?q=feature:speculation-rules"
   },
   "developerSignals": {

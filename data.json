@@ -3,7 +3,7 @@
     "shortname": "file-system-access",
     "specUrl": "https://wicg.github.io/file-system-access/",
     "repo": "WICG/file-system-access",
-    "collectedAt": "2026-11-09T00:17:00.957Z",
+    "collectedAt": "2026-11-16T00:20:30.699Z",
     "github": {
       "stars": 800,
       "forks": 71,
@@ -436,7 +436,7 @@
           }
         ],
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.00004576,
+          "percentageOfPageLoad": 0.00004353,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/258"
         },
         "chrome-status": [
@@ -556,7 +556,7 @@
       "subtests": 163,
       "runs": 4
     },
-    "substantiveContributionsLastYear": 1,
+    "substantiveContributionsLastYear": 0,
     "contributions": {
       "substantive": {
         "contributions": 47,
@@ -566,8 +566,8 @@
         "contributions": 5,
         "contributors": 5
       },
-      "substantiveChangesLastYear": 1,
-      "substantiveContributorsLastYear": 1
+      "substantiveChangesLastYear": 0,
+      "substantiveContributorsLastYear": 0
     },
     "lastEdited": {
       "date": "2025-10-10",
@@ -586,9 +586,9 @@
     "shortname": "prefetch",
     "specUrl": "https://wicg.github.io/nav-speculation/prefetch.html",
     "repo": "WICG/nav-speculation",
-    "collectedAt": "2026-11-09T00:17:02.869Z",
+    "collectedAt": "2026-11-16T00:20:33.455Z",
     "github": {
-      "stars": 200,
+      "stars": 201,
       "forks": 45,
       "openIssues": 42,
       "openPRs": 7,
@@ -1006,7 +1006,7 @@
           "votes": 35
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.11794796,
+          "percentageOfPageLoad": 0.12086105,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/317"
         },
         "chrome-status": [
@@ -1279,20 +1279,14 @@
           ],
           "firefox_android": [
             "https://bugzil.la/1969838"
-          ],
-          "safari": [
-            "https://webkit.org/b/295193"
-          ],
-          "safari_ios": [
-            "https://webkit.org/b/295193"
           ]
         }
       }
     ],
     "wpt": {
       "hasResults": true,
-      "tests": 220,
-      "subtests": 260,
+      "tests": 226,
+      "subtests": 268,
       "runs": 4
     },
     "substantiveContributionsLastYear": 2,
@@ -1325,12 +1319,12 @@
     "shortname": "scheduling-apis",
     "specUrl": "https://wicg.github.io/scheduling-apis/",
     "repo": "WICG/scheduling-apis",
-    "collectedAt": "2026-11-09T00:17:04.398Z",
+    "collectedAt": "2026-11-16T00:20:35.644Z",
     "github": {
       "stars": 925,
-      "forks": 47,
-      "openIssues": 28,
-      "openPRs": 1,
+      "forks": 48,
+      "openIssues": 29,
+      "openPRs": 2,
       "closedPRs": 61,
       "lastCommitDate": "2025-05-30T20:41:30Z"
     },
@@ -1625,7 +1619,7 @@
           "votes": 26
         },
         "chrome-use-counters": {
-          "percentageOfPageLoad": 0.11999605,
+          "percentageOfPageLoad": 0.13072529,
           "url": "https://chromestatus.com/metrics/webfeature/timeline/popularity/118"
         },
         "chrome-status": [
